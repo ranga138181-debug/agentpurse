@@ -44,7 +44,7 @@ Version 1.0 · 9 Oct 2026
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Not started |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Not started |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Not started |
-| NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Not started |
+| NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Done |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | In progress |
 | NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Not started |
 | NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Not started |
@@ -55,7 +55,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Not started |
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Not started |
 | SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
-| SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | In progress |
+| SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
 | SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Not started |
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Not started |
 | SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Not started |
