@@ -19,3 +19,10 @@ export const auditEvents = pgTable("audit_events", {
   reason_codes: text("reason_codes").array().notNull(),
   payload: jsonb("payload").notNull(),
 });
+
+export const sessions = pgTable("sessions", {
+  id: uuid("id").primaryKey(),
+  created_at: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

@@ -1,3 +1,4 @@
+import { randomBytes } from "node:crypto";
 import { existsSync } from "node:fs";
 import { defineConfig } from "vitest/config";
 
@@ -18,6 +19,10 @@ export default defineConfig({
           include: ["tests/integration/**/*.test.ts"],
           globalSetup: "tests/integration/global-setup.ts",
           fileParallelism: false,
+          env: {
+            SESSION_SECRET: randomBytes(32).toString("hex"),
+            APP_URL: "http://localhost:3000",
+          },
         },
       },
     ],
