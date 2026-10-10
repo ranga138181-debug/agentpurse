@@ -1,10 +1,23 @@
 import { eq } from "drizzle-orm";
 import { localDate } from "@/agent/dates";
-import type { ModelAdapter } from "@/agent/model/adapter";
+import {
+  AttemptsExhausted,
+  DeadlineExceeded,
+  MODEL_TIMEOUT_MS,
+  SEARCH_TIMEOUT_MS,
+  withRetry,
+  withTimeout,
+  type Deadline,
+} from "@/agent/attempt";
+import type { MandateConstraints, ModelAdapter } from "@/agent/model/adapter";
 import { parseConstraints } from "@/agent/parse";
-import { fallbackRanking, rankProducts } from "@/agent/rank";
+import {
+  fallbackRanking,
+  rankProducts,
+  type RankedProduct,
+} from "@/agent/rank";
 import { searchProducts } from "@/agent/search";
-import type { ProductSearch } from "@/agent/search/product";
+import type { Product, ProductSearch } from "@/agent/search/product";
 import { insertAuditEvent } from "@/audit/insert";
 import { appendAuditEvent } from "@/audit/writer";
 import { db } from "@/db/client";
@@ -22,6 +35,7 @@ interface MandateInput {
   sessionId: string;
   now: Date;
   requestId: string;
+  deadline: Deadline;
 }
 
 interface MandateDeps {
@@ -36,7 +50,7 @@ const REJECTION_CODES: Record<string, string> = {
 };
 
 export async function submitMandate(
-  { text, timezone, sessionId, now, requestId }: MandateInput,
+  { text, timezone, sessionId, now, requestId, deadline }: MandateInput,
   { adapter, searchProvider, createSearch }: MandateDeps,
 ): Promise<Response> {
   const mandateId = crypto.randomUUID();
@@ -85,12 +99,45 @@ export async function submitMandate(
   }
 
   const { today, weekday } = localDate(now, timezone);
-  const { signal } = new AbortController();
-  const constraints = await parseConstraints(
-    adapter,
-    { text, today, weekday, timezone, signal },
-    budget,
-  );
+  const fail = async (
+    step: string,
+    error: unknown,
+    status: number,
+    code: string,
+  ) => {
+    const timedOut = error instanceof DeadlineExceeded;
+    const cause = error instanceof AttemptsExhausted ? error.cause : error;
+    await audit("AGENT", "AGENT_ERROR", {
+      payload: {
+        step,
+        error_code: cause instanceof Error ? cause.name : "Error",
+        attempts: error instanceof AttemptsExhausted ? error.attempts : 1,
+      },
+    });
+    return errorResponse(
+      timedOut ? 504 : status,
+      timedOut ? "AGENT_TIMEOUT" : code,
+      "The mandate could not be processed",
+      requestId,
+      { mandate_id: mandateId },
+    );
+  };
+
+  let constraints: MandateConstraints;
+  try {
+    constraints = await withRetry(
+      (signal) =>
+        parseConstraints(
+          adapter,
+          { text, today, weekday, timezone, signal },
+          budget,
+        ),
+      MODEL_TIMEOUT_MS,
+      deadline,
+    );
+  } catch (error) {
+    return fail("parse", error, 503, "AGENT_UNAVAILABLE");
+  }
   await update(constraints);
   await audit("AGENT", "MANDATE_PARSED", { payload: { constraints } });
   const deadlineDecision = validateDeadline(constraints.deliver_by, today);
@@ -98,7 +145,16 @@ export async function submitMandate(
     return reject(deadlineDecision.reason_codes);
   }
 
-  const products = await searchProducts(createSearch(today), constraints.query);
+  let products: Product[];
+  try {
+    products = await withTimeout(
+      () => searchProducts(createSearch(today), constraints.query),
+      SEARCH_TIMEOUT_MS,
+      deadline,
+    );
+  } catch (error) {
+    return fail("search", error, 503, "SEARCH_UNAVAILABLE");
+  }
   await audit("AGENT", "SEARCH_COMPLETED", {
     payload: {
       provider: searchProvider,
@@ -106,21 +162,28 @@ export async function submitMandate(
     },
   });
 
-  const ranked = await rankProducts(
-    adapter,
-    constraints,
-    products,
-    signal,
-  ).catch(async (error: unknown) => {
+  let ranked: RankedProduct[];
+  try {
+    ranked = await withRetry(
+      (signal) => rankProducts(adapter, constraints, products, signal),
+      MODEL_TIMEOUT_MS,
+      deadline,
+    );
+  } catch (error) {
+    if (error instanceof DeadlineExceeded) {
+      return fail("rank", error, 504, "AGENT_TIMEOUT");
+    }
+    const cause = error instanceof AttemptsExhausted ? error.cause : error;
     await audit("AGENT", "AGENT_ERROR", {
       payload: {
         step: "rank",
-        error_code: error instanceof Error ? error.name : "Error",
+        error_code: cause instanceof Error ? cause.name : "Error",
+        attempts: error instanceof AttemptsExhausted ? error.attempts : 1,
         fallback: true,
       },
     });
-    return fallbackRanking(products);
-  });
+    ranked = fallbackRanking(products);
+  }
 
   const rows = ranked.map(({ product, rank, rationale }) => {
     const { decision, reason_codes, policy_version, total_cents } =
