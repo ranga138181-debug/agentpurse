@@ -41,6 +41,7 @@ const requiredEnv = {
   RENDER_GIT_COMMIT: "sha",
   PAYPAL_CLIENT_ID: "test-client",
   PAYPAL_WEBHOOK_ID: "WH-TEST",
+  NEXT_PUBLIC_PAYPAL_CLIENT_ID: "test-client",
   PAYPAL_CLIENT_SECRET: "test-value",
   PAYPAL_ENV: "sandbox",
 };
