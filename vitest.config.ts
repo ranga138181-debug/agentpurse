@@ -24,7 +24,10 @@ export default defineConfig({
           name: "integration",
           include: ["tests/integration/**/*.test.ts"],
           globalSetup: "tests/integration/global-setup.ts",
+          setupFiles: ["tests/integration/setup.ts"],
           fileParallelism: false,
+          // Each test makes several real database round trips; the 5 s default was occasionally exceeded.
+          testTimeout: 15000,
           env: {
             SESSION_SECRET: randomBytes(32).toString("hex"),
             APP_URL: "http://localhost:3000",
