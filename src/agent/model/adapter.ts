@@ -18,8 +18,10 @@ export interface RankProduct {
   in_stock: boolean | null;
 }
 
+export type MandateConstraints = Constraints & { query: string };
+
 export interface RankInput {
-  constraints: Constraints & { query: string };
+  constraints: MandateConstraints;
   products: RankProduct[];
   boundary: string;
   signal: AbortSignal;
