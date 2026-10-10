@@ -40,6 +40,7 @@ const requiredEnv = {
   APP_URL: "http://localhost:3000",
   RENDER_GIT_COMMIT: "sha",
   PAYPAL_CLIENT_ID: "test-client",
+  PAYPAL_WEBHOOK_ID: "WH-TEST",
   PAYPAL_CLIENT_SECRET: "test-value",
   PAYPAL_ENV: "sandbox",
 };

@@ -30,6 +30,17 @@ const captureSchema = z.object({
     .min(1),
 });
 
+const verificationSchema = z.object({ verification_status: z.string() });
+
+export interface WebhookTransmission {
+  auth_algo: string;
+  cert_url: string;
+  transmission_id: string;
+  transmission_sig: string;
+  transmission_time: string;
+  webhook_id: string;
+}
+
 export type CaptureResult =
   { outcome: "COMPLETED"; captureId: string } | { outcome: "DECLINED" };
 
@@ -188,6 +199,28 @@ export function createPayPalClient(settings: PayPalSettings) {
         return { outcome: "DECLINED" };
       }
       throw new PaymentProviderError(`PayPal capture is ${capture.status}`);
+    },
+
+    async verifyWebhook(
+      transmission: WebhookTransmission,
+      rawEvent: string,
+    ): Promise<boolean> {
+      // The event is spliced in as received: re-serialising it can make PayPal's verification fail.
+      const fields = JSON.stringify(transmission).slice(0, -1);
+      const response = await send(
+        "/v1/notifications/verify-webhook-signature",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await accessToken()}`,
+            "Content-Type": "application/json",
+          },
+          body: `${fields},"webhook_event":${rawEvent}}`,
+        },
+      );
+      if (response.status >= 400 && response.status < 500) return false;
+      const { verification_status } = await read(response, verificationSchema);
+      return verification_status === "SUCCESS";
     },
   };
 }

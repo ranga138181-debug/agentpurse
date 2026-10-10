@@ -72,6 +72,7 @@ jobs:
       PAYPAL_ENV: sandbox
       PAYPAL_CLIENT_ID: placeholder
       PAYPAL_CLIENT_SECRET: placeholder
+      PAYPAL_WEBHOOK_ID: placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

@@ -105,6 +105,10 @@ export function fakePayPal(handlers: Record<string, Handler> = {}) {
         purchase_units: [{ amount: amounts.get(idFrom(url)) }],
       },
     }),
+    "POST /v1/notifications/verify-webhook-signature": () => ({
+      status: 200,
+      body: { verification_status: "SUCCESS" },
+    }),
     "POST /v2/checkout/orders/{id}/capture": ({ url }) => ({
       status: 201,
       body: {
@@ -126,6 +130,7 @@ export function fakePayPal(handlers: Record<string, Handler> = {}) {
     key: string;
     headers: Record<string, string>;
     body: unknown;
+    text: string;
   }[] = [];
   vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
     const url = new URL(String(input));
@@ -137,7 +142,7 @@ export function fakePayPal(handlers: Record<string, Handler> = {}) {
     const headers = (init?.headers ?? {}) as Record<string, string>;
     const text = typeof init?.body === "string" ? init.body : "";
     const body = text.startsWith("{") ? JSON.parse(text) : text;
-    calls.push({ key, headers, body });
+    calls.push({ key, headers, body, text });
     const handler = handlers[key] ?? defaults[key];
     if (!handler) throw new Error(`No fake PayPal handler for ${key}`);
     const result = await handler({ url: url.pathname, headers, body });
@@ -154,3 +159,4 @@ export function fakePayPal(handlers: Record<string, Handler> = {}) {
 
 export const CAPTURE = "POST /v2/checkout/orders/{id}/capture";
 export const GET_ORDER = "GET /v2/checkout/orders/{id}";
+export const VERIFY = "POST /v1/notifications/verify-webhook-signature";

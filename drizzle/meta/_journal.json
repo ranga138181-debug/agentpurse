@@ -43,6 +43,13 @@
       "when": 1791616387217,
       "tag": "0005_idempotency_keys",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791616872503,
+      "tag": "0006_webhook_events",
+      "breakpoints": true
     }
   ]
 }

@@ -136,3 +136,11 @@ export const idempotencyKeys = pgTable(
     primaryKey({ columns: [table.session_id, table.endpoint, table.key] }),
   ],
 );
+
+export const webhookEvents = pgTable("webhook_events", {
+  paypal_event_id: text("paypal_event_id").primaryKey(),
+  event_type: text("event_type").notNull(),
+  received_at: timestamp("received_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

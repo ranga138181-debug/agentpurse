@@ -35,7 +35,7 @@ Version 1.0 · 9 Oct 2026
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Done |
 | FR-021 | Read mandate | MUST | 03-API-CONTRACTS.md | IT-API-008 | M3 | Done |
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Done |
-| FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Not started |
+| FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Done |
 | FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Done |
 | FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Not started |
 | FR-026 | Channel3 search adapter | SHOULD | 05-AGENT-SPEC.md | IT-SRCH-001 | M8 | Not started |
@@ -54,7 +54,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Done |
 | SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Done |
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Done |
-| SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
+| SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Done |
 | SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
 | SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Not started |
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Done |
