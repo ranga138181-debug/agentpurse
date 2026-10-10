@@ -29,6 +29,7 @@ export default defineConfig({
             SESSION_SECRET: randomBytes(32).toString("hex"),
             APP_URL: "http://localhost:3000",
             RENDER_GIT_COMMIT: "test-sha",
+            AI_PROVIDER: "fake",
           },
         },
       },
