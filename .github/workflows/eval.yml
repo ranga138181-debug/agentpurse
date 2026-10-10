@@ -6,12 +6,14 @@ on:
   workflow_dispatch:
     inputs:
       reliability:
-        description: Also run REL-001 (E2E-001 20 times against production)
+        description: Run REL-001 (E2E-001 20 times against production) instead of the eval
         type: boolean
         default: false
 
 jobs:
   eval:
+    # A manual reliability run does not repeat the eval, to stay inside the model's daily free quota.
+    if: ${{ !inputs.reliability }}
     runs-on: ubuntu-latest
     services:
       postgres:
