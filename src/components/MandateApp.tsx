@@ -6,6 +6,12 @@ import { CandidateCard } from "./CandidateCard";
 import { errorMessage } from "./messages";
 import { PayPalCheckout } from "./PayPalCheckout";
 
+const SAMPLES = [
+  "Gift for mom, max $40, delivered by Friday",
+  "Headphones, max $50",
+  "Vegan wallet for dad, max $50, nothing leather",
+];
+
 export function MandateApp({ nonce }: { nonce?: string }) {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
@@ -53,6 +59,18 @@ export function MandateApp({ nonce }: { nonce?: string }) {
             placeholder="Gift for mom, max $40, delivered by Friday"
             onChange={(event) => setText(event.target.value)}
           />
+          <fieldset>
+            <legend>Sample mandates</legend>
+            {SAMPLES.map((sample) => (
+              <button
+                key={sample}
+                type="button"
+                onClick={() => setText(sample)}
+              >
+                {sample}
+              </button>
+            ))}
+          </fieldset>
           <button type="submit" disabled={busy}>
             {busy ? "Working…" : "Find a product"}
           </button>
