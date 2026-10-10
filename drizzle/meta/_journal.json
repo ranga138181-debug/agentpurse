@@ -50,6 +50,13 @@
       "when": 1791616872503,
       "tag": "0006_webhook_events",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1791634203485,
+      "tag": "0007_audit_hash_chain",
+      "breakpoints": true
     }
   ]
 }

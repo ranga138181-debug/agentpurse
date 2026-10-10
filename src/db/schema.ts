@@ -25,6 +25,9 @@ export const auditEvents = pgTable("audit_events", {
   decision: text("decision"),
   reason_codes: text("reason_codes").array().notNull(),
   payload: jsonb("payload").notNull(),
+  // Null only for events written before the hash chain existed.
+  prev_hash: text("prev_hash"),
+  hash: text("hash"),
 });
 
 export const sessions = pgTable("sessions", {
