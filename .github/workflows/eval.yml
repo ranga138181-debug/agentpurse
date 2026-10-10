@@ -1,0 +1,77 @@
+name: eval
+
+on:
+  schedule:
+    - cron: "30 21 * * *"
+  workflow_dispatch:
+    inputs:
+      reliability:
+        description: Also run REL-001 (E2E-001 20 times against production)
+        type: boolean
+        default: false
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: agentpurse_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/agentpurse_test
+      AI_MODEL: ${{ vars.AI_MODEL }}
+      AI_API_KEY: ${{ secrets.AI_API_KEY }}
+      PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: EV-SET 30-mandate eval with the real model
+        run: pnpm test:eval
+      - name: PERF-001 latency on production
+        if: always()
+        run: node scripts/perf.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-reports
+          path: test-results/
+
+  reliability:
+    if: inputs.reliability
+    runs-on: ubuntu-latest
+    env:
+      E2E_BASE_URL: ${{ vars.PRODUCTION_URL }}
+      PAYPAL_BUYER_EMAIL: ${{ secrets.PAYPAL_BUYER_EMAIL }}
+      PAYPAL_BUYER_PASSWORD: ${{ secrets.PAYPAL_BUYER_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: REL-001 E2E-001 twenty times against production
+        run: pnpm exec playwright test tests/e2e/purchase.spec.ts --repeat-each 20 --reporter json > rel-report.json || true
+      - name: Require at least 19 of 20 settled
+        run: |
+          passed=$(jq '.stats.expected' rel-report.json)
+          echo "REL-001: $passed of 20 settled"
+          test "$passed" -ge 19
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reliability-report
+          path: |
+            rel-report.json
+            test-results/

@@ -11,7 +11,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test:unit": "vitest run --project unit --coverage",
     "test:integration": "vitest run --project integration",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:eval": "vitest run --project eval"
   },
   "dependencies": {
     "@ai-sdk/groq": "^4.0.59",
