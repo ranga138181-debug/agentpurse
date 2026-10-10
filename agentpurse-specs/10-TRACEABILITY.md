@@ -24,7 +24,7 @@ Version 1.0 · 9 Oct 2026
 | FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Done |
 | FR-010 | Create PayPal order | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, UT-PAY-002, IT-PAY-001, IT-PAY-010, E2E-001 | M4 | In progress |
 | FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Not started |
-| FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Not started |
+| FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | In progress |
 | FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Not started |
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Done |
 | FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Done |

@@ -6,6 +6,7 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
   text,
   timestamp,
   unique,
@@ -116,5 +117,22 @@ export const orders = pgTable(
     uniqueIndex("orders_one_created_per_mandate")
       .on(table.mandate_id)
       .where(sql`${table.status} = 'CREATED'`),
+  ],
+);
+
+export const idempotencyKeys = pgTable(
+  "idempotency_keys",
+  {
+    session_id: uuid("session_id").notNull(),
+    endpoint: text("endpoint").notNull(),
+    key: uuid("key").notNull(),
+    request_hash: text("request_hash").notNull(),
+    state: text("state").notNull(),
+    response_status: integer("response_status"),
+    response_body: jsonb("response_body"),
+    created_at: timestamp("created_at", { withTimezone: true }).notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.session_id, table.endpoint, table.key] }),
   ],
 );
