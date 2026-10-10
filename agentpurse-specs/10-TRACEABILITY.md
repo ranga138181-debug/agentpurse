@@ -21,7 +21,7 @@ Version 1.0 · 9 Oct 2026
 | FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Done |
 | FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Done |
 | FR-008 | Propose a pick | MUST | 05-AGENT-SPEC.md | UT-AGT-005, IT-API-005 | M3 | Done |
-| FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Not started |
+| FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Done |
 | FR-010 | Create PayPal order | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, UT-PAY-002, IT-PAY-001, IT-PAY-010, E2E-001 | M4 | Not started |
 | FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Not started |
 | FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Not started |
