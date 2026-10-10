@@ -1,9 +1,11 @@
+import { existsSync } from "node:fs";
 import { defineConfig } from "vitest/config";
+
+if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 
 export default defineConfig({
   resolve: { alias: { "@": new URL("./src", import.meta.url).pathname } },
   test: {
-    passWithNoTests: true,
     projects: [
       {
         extends: true,
@@ -14,6 +16,7 @@ export default defineConfig({
         test: {
           name: "integration",
           include: ["tests/integration/**/*.test.ts"],
+          globalSetup: "tests/integration/global-setup.ts",
           fileParallelism: false,
         },
       },
