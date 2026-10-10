@@ -67,6 +67,7 @@ jobs:
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/agentpurse_test
       SESSION_SECRET: "00000000000000000000000000000000"
       APP_URL: http://localhost:3000
+      RENDER_GIT_COMMIT: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

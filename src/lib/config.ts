@@ -5,5 +5,6 @@ export const config = z
     DATABASE_URL: z.url(),
     SESSION_SECRET: z.string().min(32),
     APP_URL: z.url(),
+    RENDER_GIT_COMMIT: z.string().min(1),
   })
   .parse(process.env);
