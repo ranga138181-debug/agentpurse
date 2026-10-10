@@ -11,6 +11,27 @@ const tokenSchema = z.object({
   expires_in: z.number(),
 });
 const createdOrderSchema = z.object({ id: z.string().min(1) });
+const amountSchema = z.object({ currency_code: z.string(), value: z.string() });
+const orderStateSchema = z.object({
+  status: z.string(),
+  purchase_units: z.array(z.object({ amount: amountSchema })).min(1),
+});
+const captureSchema = z.object({
+  purchase_units: z
+    .array(
+      z.object({
+        payments: z.object({
+          captures: z
+            .array(z.object({ id: z.string().min(1), status: z.string() }))
+            .min(1),
+        }),
+      }),
+    )
+    .min(1),
+});
+
+export type CaptureResult =
+  { outcome: "COMPLETED"; captureId: string } | { outcome: "DECLINED" };
 
 export class PaymentProviderError extends Error {
   name = "PaymentProviderError";
@@ -130,6 +151,43 @@ export function createPayPalClient(settings: PayPalSettings) {
         }),
       });
       return read(response, createdOrderSchema);
+    },
+
+    async getOrder(paypalOrderId: string) {
+      const response = await send(`/v2/checkout/orders/${paypalOrderId}`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${await accessToken()}` },
+      });
+      const { status, purchase_units } = await read(response, orderStateSchema);
+      return { status, ...purchase_units[0].amount };
+    },
+
+    async captureOrder(
+      paypalOrderId: string,
+      requestId: string,
+    ): Promise<CaptureResult> {
+      const response = await send(
+        `/v2/checkout/orders/${paypalOrderId}/capture`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${await accessToken()}`,
+            "Content-Type": "application/json",
+            "PayPal-Request-Id": requestId,
+          },
+        },
+      );
+      // PayPal reports a refused capture as 422, or as a capture whose status is not COMPLETED or PENDING.
+      if (response.status === 422) return { outcome: "DECLINED" };
+      const [capture] = (await read(response, captureSchema)).purchase_units[0]
+        .payments.captures;
+      if (capture.status === "COMPLETED") {
+        return { outcome: "COMPLETED", captureId: capture.id };
+      }
+      if (capture.status === "DECLINED" || capture.status === "FAILED") {
+        return { outcome: "DECLINED" };
+      }
+      throw new PaymentProviderError(`PayPal capture is ${capture.status}`);
     },
   };
 }

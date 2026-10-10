@@ -73,21 +73,52 @@ type Handler = (request: {
   url: string;
   headers: Record<string, string>;
   body: unknown;
-}) => { status: number; body: unknown } | Promise<never>;
+}) =>
+  | { status: number; body: unknown }
+  | Promise<{ status: number; body: unknown }>;
+
+interface Amount {
+  currency_code: string;
+  value: string;
+}
 
 // Replaces the network under the real PayPal client, so requests are built by production code.
 export function fakePayPal(handlers: Record<string, Handler> = {}) {
-  let orderNumber = 0;
+  const amounts = new Map<string, Amount>();
+  const idFrom = (url: string) => url.split("/")[4];
   const defaults: Record<string, Handler> = {
     "POST /v1/oauth2/token": () => ({
       status: 200,
       body: { access_token: "sandbox-token", expires_in: 3600 },
     }),
-    "POST /v2/checkout/orders": () => ({
+    "POST /v2/checkout/orders": ({ body }) => {
+      const id = `PP-${crypto.randomUUID()}`;
+      const order = body as { purchase_units: { amount: Amount }[] };
+      amounts.set(id, order.purchase_units[0].amount);
+      return { status: 201, body: { id, status: "CREATED" } };
+    },
+    "GET /v2/checkout/orders/{id}": ({ url }) => ({
+      status: 200,
+      body: {
+        id: idFrom(url),
+        status: "APPROVED",
+        purchase_units: [{ amount: amounts.get(idFrom(url)) }],
+      },
+    }),
+    "POST /v2/checkout/orders/{id}/capture": ({ url }) => ({
       status: 201,
       body: {
-        id: `PP-${crypto.randomUUID()}-${++orderNumber}`,
-        status: "CREATED",
+        id: idFrom(url),
+        status: "COMPLETED",
+        purchase_units: [
+          {
+            payments: {
+              captures: [
+                { id: `CAP-${crypto.randomUUID()}`, status: "COMPLETED" },
+              ],
+            },
+          },
+        ],
       },
     }),
   };
@@ -114,7 +145,12 @@ export function fakePayPal(handlers: Record<string, Handler> = {}) {
   });
   return {
     calls,
+    amounts,
     orderCalls: () =>
       calls.filter((call) => call.key !== "POST /v1/oauth2/token"),
+    callsTo: (key: string) => calls.filter((call) => call.key === key),
   };
 }
+
+export const CAPTURE = "POST /v2/checkout/orders/{id}/capture";
+export const GET_ORDER = "GET /v2/checkout/orders/{id}";

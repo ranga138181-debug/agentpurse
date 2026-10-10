@@ -131,7 +131,7 @@ test("IT-PAY-003 a request arriving while the same key is in flight returns 409 
       await gate;
       return { status: 201, body: { id: `PP-${crypto.randomUUID()}` } };
     },
-  } as never);
+  });
   const cookie = await newCookie();
   const { mandateId } = await approvedMandate(cookie);
   const key = crypto.randomUUID();
