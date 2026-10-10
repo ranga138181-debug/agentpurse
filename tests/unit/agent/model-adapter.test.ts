@@ -55,7 +55,7 @@ afterEach(() => {
 });
 
 test("UT-AGT-008 AI_PROVIDER=fake selects the deterministic fake adapter", async () => {
-  const adapter = createModelAdapter("fake");
+  const adapter = createModelAdapter({ AI_PROVIDER: "fake" });
 
   expect(await adapter.parseMandate(parseInput)).toEqual({
     query: "gift for mom, max , or ",
@@ -71,7 +71,7 @@ test("UT-AGT-008 AI_PROVIDER=fake selects the deterministic fake adapter", async
 });
 
 test("UT-AGT-008 the fake adapter truncates the query to 80 characters", async () => {
-  const adapter = createModelAdapter("fake");
+  const adapter = createModelAdapter({ AI_PROVIDER: "fake" });
 
   const output = await adapter.parseMandate({
     ...parseInput,
@@ -83,7 +83,7 @@ test("UT-AGT-008 the fake adapter truncates the query to 80 characters", async (
 
 test("UT-AGT-008 the fake adapter makes no network call", async () => {
   const fetchSpy = vi.spyOn(globalThis, "fetch");
-  const adapter = createModelAdapter("fake");
+  const adapter = createModelAdapter({ AI_PROVIDER: "fake" });
 
   await adapter.parseMandate(parseInput);
   await adapter.rankProducts(rankInput);
@@ -103,4 +103,31 @@ test("UT-AGT-008 AI_PROVIDER=fake passes configuration", async () => {
   const { config } = await loadConfig({ AI_PROVIDER: "fake" });
 
   expect(config.AI_PROVIDER).toBe("fake");
+});
+
+test("UT-AGT-008 a real provider without AI_MODEL and AI_API_KEY fails configuration", async () => {
+  await expect(loadConfig({ AI_PROVIDER: "google" })).rejects.toThrow();
+  await expect(
+    loadConfig({
+      AI_PROVIDER: "google",
+      AI_MODEL: "some-model",
+      AI_API_KEY: "",
+    }),
+  ).rejects.toThrow();
+});
+
+test("UT-AGT-008 AI_PROVIDER=google with a model and key selects the provider adapter without a network call", async () => {
+  const fetchSpy = vi.spyOn(globalThis, "fetch");
+  const settings = {
+    AI_PROVIDER: "google",
+    AI_MODEL: "some-model",
+    AI_API_KEY: "test-key",
+  };
+
+  const { config } = await loadConfig(settings);
+  const adapter = createModelAdapter(config);
+
+  expect(config.AI_PROVIDER).toBe("google");
+  expect(adapter).not.toBe(createModelAdapter({ AI_PROVIDER: "fake" }));
+  expect(fetchSpy).not.toHaveBeenCalled();
 });

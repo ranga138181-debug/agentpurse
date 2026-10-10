@@ -31,7 +31,7 @@ Version 1.0 · 9 Oct 2026
 | FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Not started |
 | FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | Not started |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Done |
-| FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | In progress |
+| FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | Done |
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Done |
 | FR-021 | Read mandate | MUST | 03-API-CONTRACTS.md | IT-API-008 | M3 | Done |
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Done |

@@ -13,6 +13,8 @@
     "test:integration": "vitest run --project integration"
   },
   "dependencies": {
+    "@ai-sdk/google": "^4.0.93",
+    "ai": "^7.0.137",
     "drizzle-orm": "^0.45.4",
     "next": "^16.4.0",
     "pg": "^8.23.1",

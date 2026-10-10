@@ -22,7 +22,7 @@ export const POST = sessionRoute(
     return submitMandate(
       { ...body, sessionId, now: new Date(), requestId, deadline },
       {
-        adapter: createModelAdapter(config.AI_PROVIDER),
+        adapter: createModelAdapter(config),
         searchProvider: config.SEARCH_PROVIDER,
         createSearch: createFixtureSearch,
       },
