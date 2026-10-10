@@ -33,8 +33,8 @@ const COLUMNS: ColDef<AuditEvent>[] = [
   { headerName: "Seq", field: "seq", width: 90 },
   { headerName: "Time", field: "ts" },
   { headerName: "Actor", field: "actor", width: 110 },
-  { headerName: "Event", field: "event_type" },
-  { headerName: "Decision", field: "decision", width: 120 },
+  { headerName: "Event", field: "event_type", filter: true },
+  { headerName: "Decision", field: "decision", width: 140, filter: true },
   {
     headerName: "Reason codes",
     valueGetter: ({ data }) => data?.reason_codes.join(", "),
@@ -81,6 +81,9 @@ export function AuditTable() {
   return (
     <section aria-labelledby="audit-heading">
       <h2 id="audit-heading">Audit log</h2>
+      <button type="button" onClick={() => grid.current?.exportDataAsCsv()}>
+        Export CSV
+      </button>
       <div className="audit-grid">
         <AgGridReact<AuditEvent>
           columnDefs={COLUMNS}
