@@ -13,14 +13,14 @@ Version 1.0 · 9 Oct 2026
 
 | Requirement | Title | Priority | Spec | Tests | Milestone | Status |
 |---|---|---|---|---|---|---|
-| FR-001 | Submit mandate | MUST | 03-API-CONTRACTS.md, 05-AGENT-SPEC.md | UT-AGT-001, IT-API-001 | M3 | In progress |
+| FR-001 | Submit mandate | MUST | 03-API-CONTRACTS.md, 05-AGENT-SPEC.md | UT-AGT-001, IT-API-001 | M3 | Done |
 | FR-002 | Parse mandate into constraints | MUST | 05-AGENT-SPEC.md, 04-POLICY-ENGINE-SPEC.md | UT-AGT-002, EV-SET | M3 | Done |
-| FR-003 | Reject incomplete, ambiguous or invalid mandates | MUST | 04-POLICY-ENGINE-SPEC.md, 03-API-CONTRACTS.md | UT-POL-002, IT-API-002, EV-SET | M3 | In progress |
-| FR-004 | Product search | MUST | 05-AGENT-SPEC.md | UT-AGT-003, IT-API-003 | M3 | In progress |
+| FR-003 | Reject incomplete, ambiguous or invalid mandates | MUST | 04-POLICY-ENGINE-SPEC.md, 03-API-CONTRACTS.md | UT-POL-002, IT-API-002, EV-SET | M3 | Done |
+| FR-004 | Product search | MUST | 05-AGENT-SPEC.md | UT-AGT-003, IT-API-003 | M3 | Done |
 | FR-005 | Rank products | MUST | 05-AGENT-SPEC.md | UT-AGT-004 | M3 | Done |
 | FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Done |
-| FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Not started |
-| FR-008 | Propose a pick | MUST | 05-AGENT-SPEC.md | UT-AGT-005, IT-API-005 | M3 | In progress |
+| FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Done |
+| FR-008 | Propose a pick | MUST | 05-AGENT-SPEC.md | UT-AGT-005, IT-API-005 | M3 | Done |
 | FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Not started |
 | FR-010 | Create PayPal order | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, UT-PAY-002, IT-PAY-001, IT-PAY-010, E2E-001 | M4 | Not started |
 | FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Not started |
@@ -34,7 +34,7 @@ Version 1.0 · 9 Oct 2026
 | FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | In progress |
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Done |
 | FR-021 | Read mandate | MUST | 03-API-CONTRACTS.md | IT-API-008 | M3 | Not started |
-| FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | In progress |
+| FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Done |
 | FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Not started |
 | FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Not started |
 | FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Not started |

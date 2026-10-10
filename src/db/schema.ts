@@ -1,9 +1,13 @@
 import {
   bigserial,
+  boolean,
+  date,
+  integer,
   jsonb,
   pgTable,
   text,
   timestamp,
+  unique,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -26,3 +30,57 @@ export const sessions = pgTable("sessions", {
     .notNull()
     .defaultNow(),
 });
+
+export const mandates = pgTable("mandates", {
+  id: uuid("id").primaryKey(),
+  session_id: uuid("session_id")
+    .notNull()
+    .references(() => sessions.id),
+  raw_text: text("raw_text").notNull(),
+  timezone: text("timezone").notNull(),
+  status: text("status").notNull(),
+  max_total_cents: integer("max_total_cents"),
+  currency: text("currency"),
+  query: text("query"),
+  deliver_by: date("deliver_by"),
+  exclude_terms: text("exclude_terms").array().notNull().default([]),
+  reject_reasons: text("reject_reasons").array().notNull().default([]),
+  pick_candidate_id: uuid("pick_candidate_id"),
+  approved_candidate_id: uuid("approved_candidate_id"),
+  approved_at: timestamp("approved_at", { withTimezone: true }),
+  created_at: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const candidates = pgTable(
+  "candidates",
+  {
+    id: uuid("id").primaryKey(),
+    mandate_id: uuid("mandate_id")
+      .notNull()
+      .references(() => mandates.id),
+    product_id: text("product_id").notNull(),
+    title: text("title"),
+    merchant: text("merchant"),
+    category: text("category"),
+    image_url: text("image_url"),
+    product_url: text("product_url"),
+    price_cents: integer("price_cents"),
+    shipping_cents: integer("shipping_cents"),
+    tax_cents: integer("tax_cents"),
+    total_cents: integer("total_cents"),
+    currency: text("currency"),
+    estimated_delivery_date: date("estimated_delivery_date"),
+    in_stock: boolean("in_stock"),
+    rank: integer("rank").notNull(),
+    rationale: text("rationale"),
+    decision: text("decision").notNull(),
+    reason_codes: text("reason_codes").array().notNull(),
+    policy_version: text("policy_version").notNull(),
+  },
+  (table) => [
+    unique().on(table.mandate_id, table.product_id),
+    unique().on(table.mandate_id, table.rank),
+  ],
+);

@@ -8,5 +8,6 @@ export const config = z
     APP_URL: z.url(),
     RENDER_GIT_COMMIT: z.string().min(1),
     AI_PROVIDER: z.enum(AI_PROVIDERS),
+    SEARCH_PROVIDER: z.enum(["fixture"]).default("fixture"),
   })
   .parse(process.env);
