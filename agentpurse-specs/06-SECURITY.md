@@ -102,13 +102,13 @@ Limits reset on restart. This is accepted for a single-instance demo.
 
 | Header | Value |
 |---|---|
-| `Content-Security-Policy` | `default-src 'self'`; scripts from self (nonce for framework inline scripts) and the PayPal SDK origins; frames from the PayPal origins; `connect-src` self and PayPal origins; images from self, `data:` and PayPal image origins; `object-src 'none'`; `base-uri 'self'`; `frame-ancestors 'none'` |
+| `Content-Security-Policy` | `default-src 'self'`; `script-src 'self' 'nonce-<per-request>'` and the PayPal origins; `style-src 'self' 'unsafe-inline'` and the PayPal origins; `frame-src` the PayPal origins; `connect-src 'self'` and the PayPal origins; `img-src 'self' data:` and the PayPal origins; `object-src 'none'`; `base-uri 'self'`; `frame-ancestors 'none'` |
 | `X-Content-Type-Options` | `nosniff` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
 | `Strict-Transport-Security` | `max-age=31536000; includeSubDomains` |
 | `X-Frame-Options` | `DENY` |
 
-The exact PayPal origins are taken from PayPal's current CSP guidance at integration and recorded here by spec change.
+The PayPal origins are `https://*.paypal.com` and `https://*.paypalobjects.com`, from PayPal's CSP guidance for its JavaScript SDK. `https://*.venmo.com` is omitted because only the PayPal button is offered. Inline styles are allowed because AG Grid and the PayPal button inject them; inline scripts remain nonce-only. In development only, `script-src` also carries `'unsafe-eval'`, which React's dev tooling needs.
 
 **Output encoding (SEC-012):** product and model text is rendered through the framework's default text escaping. No API that injects raw HTML is used anywhere. AG Grid cells use default text rendering, not HTML cell renderers. URLs from product sources are rendered as links only if they are `https:`.
 
