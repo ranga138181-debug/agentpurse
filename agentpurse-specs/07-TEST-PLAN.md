@@ -108,7 +108,7 @@ Version 1.0 · 9 Oct 2026
 
 | ID | Verifies | Description |
 |---|---|---|
-| PERF-001 | NFR-001 | The 30 eval mandate texts are sent to the warm production host, paced one every 15 s to stay inside the rate limit. p95 of logged `duration_ms` for `POST /api/mandates` over responses with status 201 is ≤ 8000 ms. Only duration is assessed in this run |
+| PERF-001 | NFR-001 | The 30 eval mandate texts are sent to the warm production host, paced one every 15 s to stay inside the rate limit. p95 of the request duration for `POST /api/mandates`, measured by the client making the requests, over responses with status 201 is ≤ 8000 ms. Client time includes the network, so it is an upper bound on the server's logged `duration_ms`. Only duration is assessed in this run |
 | REL-001 | NFR-002 | E2E-001 run 20 times consecutively against production: at least 19 `SETTLED` |
 | CI-001 | NFR-006 | Branch protection requires the CI checks; a deliberately failing PR cannot merge (verified once, recorded in the M1 review) |
 | CI-002 | SEC-007 | Secret scan on every push and PR; zero findings |
