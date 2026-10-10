@@ -29,6 +29,27 @@
       "when": 1791609010284,
       "tag": "0003_mandates_candidates",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791616098183,
+      "tag": "0004_orders",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791616387217,
+      "tag": "0005_idempotency_keys",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1791616872503,
+      "tag": "0006_webhook_events",
+      "breakpoints": true
     }
   ]
 }

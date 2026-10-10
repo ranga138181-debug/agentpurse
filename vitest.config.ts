@@ -30,6 +30,12 @@ export default defineConfig({
             APP_URL: "http://localhost:3000",
             RENDER_GIT_COMMIT: "test-sha",
             AI_PROVIDER: "fake",
+            PAYPAL_ENV: "sandbox",
+            PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID ?? "test-client",
+            PAYPAL_WEBHOOK_ID: "WH-TEST",
+            PAYPAL_CLIENT_SECRET:
+              process.env.PAYPAL_CLIENT_SECRET ??
+              randomBytes(16).toString("hex"),
           },
         },
       },

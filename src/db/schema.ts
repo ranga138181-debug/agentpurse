@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import {
   bigserial,
   boolean,
@@ -5,9 +6,11 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
   text,
   timestamp,
   unique,
+  uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -84,3 +87,60 @@ export const candidates = pgTable(
     unique().on(table.mandate_id, table.rank),
   ],
 );
+
+export const orders = pgTable(
+  "orders",
+  {
+    id: uuid("id").primaryKey(),
+    mandate_id: uuid("mandate_id")
+      .notNull()
+      .references(() => mandates.id),
+    candidate_id: uuid("candidate_id")
+      .notNull()
+      .references(() => candidates.id),
+    paypal_order_id: text("paypal_order_id").notNull().unique(),
+    paypal_capture_id: text("paypal_capture_id"),
+    amount_cents: integer("amount_cents").notNull(),
+    currency: text("currency").notNull(),
+    status: text("status").notNull(),
+    created_at: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("orders_one_captured_per_mandate")
+      .on(table.mandate_id)
+      .where(sql`${table.status} = 'CAPTURED'`),
+    uniqueIndex("orders_one_created_per_mandate")
+      .on(table.mandate_id)
+      .where(sql`${table.status} = 'CREATED'`),
+  ],
+);
+
+export const idempotencyKeys = pgTable(
+  "idempotency_keys",
+  {
+    session_id: uuid("session_id").notNull(),
+    endpoint: text("endpoint").notNull(),
+    key: uuid("key").notNull(),
+    request_hash: text("request_hash").notNull(),
+    state: text("state").notNull(),
+    response_status: integer("response_status"),
+    response_body: jsonb("response_body"),
+    created_at: timestamp("created_at", { withTimezone: true }).notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.session_id, table.endpoint, table.key] }),
+  ],
+);
+
+export const webhookEvents = pgTable("webhook_events", {
+  paypal_event_id: text("paypal_event_id").primaryKey(),
+  event_type: text("event_type").notNull(),
+  received_at: timestamp("received_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

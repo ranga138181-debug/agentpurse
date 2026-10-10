@@ -21,11 +21,11 @@ Version 1.0 · 9 Oct 2026
 | FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Done |
 | FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Done |
 | FR-008 | Propose a pick | MUST | 05-AGENT-SPEC.md | UT-AGT-005, IT-API-005 | M3 | Done |
-| FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Not started |
-| FR-010 | Create PayPal order | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, UT-PAY-002, IT-PAY-001, IT-PAY-010, E2E-001 | M4 | Not started |
-| FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Not started |
-| FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Not started |
-| FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Not started |
+| FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Done |
+| FR-010 | Create PayPal order | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, UT-PAY-002, IT-PAY-001, IT-PAY-010, E2E-001 | M4 | Done |
+| FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Done |
+| FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Done |
+| FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Done |
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Done |
 | FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Done |
 | FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Not started |
@@ -35,8 +35,8 @@ Version 1.0 · 9 Oct 2026
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Done |
 | FR-021 | Read mandate | MUST | 03-API-CONTRACTS.md | IT-API-008 | M3 | Done |
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Done |
-| FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Not started |
-| FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Not started |
+| FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Done |
+| FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Done |
 | FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Not started |
 | FR-026 | Channel3 search adapter | SHOULD | 05-AGENT-SPEC.md | IT-SRCH-001 | M8 | Not started |
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Not started |
@@ -53,18 +53,18 @@ Version 1.0 · 9 Oct 2026
 | SEC-002 | Catalog is the only source of product facts | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-010, EV-027 | M3 | Done |
 | SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Done |
 | SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Done |
-| SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Not started |
-| SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
+| SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Done |
+| SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Done |
 | SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
 | SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Not started |
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Done |
 | SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Done |
 | SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Not started |
 | SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Not started |
-| SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Not started |
+| SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Done |
 | SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Done |
 | SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Not started |
-| SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Not started |
+| SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Done |
 
 ## Summary
 

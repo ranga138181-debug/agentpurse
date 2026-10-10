@@ -13,6 +13,10 @@ export const config = z
     AI_MODEL: optional,
     AI_API_KEY: optional,
     SEARCH_PROVIDER: z.enum(["fixture"]).default("fixture"),
+    PAYPAL_ENV: z.literal("sandbox"),
+    PAYPAL_CLIENT_ID: z.string().min(1),
+    PAYPAL_CLIENT_SECRET: z.string().min(1),
+    PAYPAL_WEBHOOK_ID: z.string().min(1),
   })
   .refine(
     (env) => env.AI_PROVIDER === "fake" || (env.AI_MODEL && env.AI_API_KEY),
