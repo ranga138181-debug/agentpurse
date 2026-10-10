@@ -51,7 +51,7 @@ Version 1.0 · 9 Oct 2026
 | NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Not started |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Done |
 | SEC-002 | Catalog is the only source of product facts | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-010, EV-027 | M3 | Not started |
-| SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Not started |
+| SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Done |
 | SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Done |
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Not started |
 | SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
