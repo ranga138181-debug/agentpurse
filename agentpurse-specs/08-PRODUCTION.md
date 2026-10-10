@@ -50,8 +50,6 @@ Builds the app, starts it against a CI Postgres with `AI_PROVIDER=fake` and PayP
 
 ### 3.3 `deploy.yml` — after `ci.yml` and `e2e.yml` succeed on `main`
 
-Temporary deviation (approved 10 Oct 2026): until E2E-001 passes in CI, `deploy.yml` follows `ci.yml` only and `e2e.yml` does not gate deploys. Once E2E-001 is green, `deploy.yml` is switched to follow `e2e.yml` and this note is removed.
-
 1. Trigger the Render deploy hook for the commit.
 2. Poll production `/api/healthz` until it reports the commit SHA (timeout 10 minutes).
 3. SMOKE-001. On failure, the job fails and the rollback procedure in §6 applies.
