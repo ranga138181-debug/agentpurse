@@ -70,3 +70,16 @@ export async function rankProducts(
       .map((product) => ({ product, rationale: null })),
   ].map((entry, index) => ({ ...entry, rank: index + 1 }));
 }
+
+export function fallbackRanking(products: Product[]): RankedProduct[] {
+  const total = (product: Product) => totalCents(product) ?? Infinity;
+  return [...products]
+    .sort(
+      (a, b) => total(a) - total(b) || a.product_id.localeCompare(b.product_id),
+    )
+    .map((product, index) => ({
+      product,
+      rank: index + 1,
+      rationale: "Ranked by price (model ranking unavailable)",
+    }));
+}
