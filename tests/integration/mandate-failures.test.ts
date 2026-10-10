@@ -45,7 +45,12 @@ async function run(
       requestId: crypto.randomUUID(),
       deadline: createDeadline(deadlineMs),
     },
-    { adapter: fakeAdapter, searchProvider: "fixture", createSearch },
+    {
+      adapter: fakeAdapter,
+      dailyCap: 1_000_000,
+      searchProvider: "fixture",
+      createSearch,
+    },
   );
   return { response, body: await response.json() };
 }

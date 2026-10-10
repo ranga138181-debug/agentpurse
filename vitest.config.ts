@@ -37,6 +37,7 @@ export default defineConfig({
             PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID ?? "test-client",
             PAYPAL_WEBHOOK_ID: "WH-TEST",
             NEXT_PUBLIC_PAYPAL_CLIENT_ID: "test-client",
+            DAILY_MANDATE_CAP: "1000000",
             PAYPAL_CLIENT_SECRET:
               process.env.PAYPAL_CLIENT_SECRET ??
               randomBytes(16).toString("hex"),

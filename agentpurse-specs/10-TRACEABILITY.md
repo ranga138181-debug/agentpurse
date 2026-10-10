@@ -63,7 +63,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Verified |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Done |
 | SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Done |
-| SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Not started |
+| SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Done |
 | SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Done |
 
 ## Summary

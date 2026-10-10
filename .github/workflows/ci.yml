@@ -74,6 +74,7 @@ jobs:
       PAYPAL_CLIENT_SECRET: placeholder
       PAYPAL_WEBHOOK_ID: placeholder
       NEXT_PUBLIC_PAYPAL_CLIENT_ID: placeholder
+      DAILY_MANDATE_CAP: "500"
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
