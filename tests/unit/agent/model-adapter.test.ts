@@ -39,6 +39,8 @@ const requiredEnv = {
   SESSION_SECRET: "0".repeat(32),
   APP_URL: "http://localhost:3000",
   RENDER_GIT_COMMIT: "sha",
+  PAYPAL_CLIENT_ID: "test-client",
+  PAYPAL_CLIENT_SECRET: "test-value",
   PAYPAL_ENV: "sandbox",
 };
 

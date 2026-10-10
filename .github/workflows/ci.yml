@@ -70,6 +70,8 @@ jobs:
       RENDER_GIT_COMMIT: ${{ github.sha }}
       AI_PROVIDER: fake
       PAYPAL_ENV: sandbox
+      PAYPAL_CLIENT_ID: placeholder
+      PAYPAL_CLIENT_SECRET: placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

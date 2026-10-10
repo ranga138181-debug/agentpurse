@@ -6,6 +6,8 @@ const requiredEnv = {
   SESSION_SECRET: "0".repeat(32),
   APP_URL: "http://localhost:3000",
   RENDER_GIT_COMMIT: "sha",
+  PAYPAL_CLIENT_ID: "test-client",
+  PAYPAL_CLIENT_SECRET: "test-value",
   AI_PROVIDER: "fake",
 };
 
@@ -32,18 +34,25 @@ test("UT-PAY-001 startup succeeds when PAYPAL_ENV is sandbox", async () => {
   expect(config.PAYPAL_ENV).toBe("sandbox");
 });
 
+const settings = {
+  PAYPAL_CLIENT_ID: "test-client",
+  PAYPAL_CLIENT_SECRET: "test-value",
+  fetch,
+  now: Date.now,
+};
+
 test.each([undefined, "", "live"])(
   "UT-PAY-001 the payment client refuses to be created when PAYPAL_ENV is %j",
   (value) => {
-    expect(() => createPayPalClient({ PAYPAL_ENV: value as string })).toThrow(
-      "sandbox",
-    );
+    expect(() =>
+      createPayPalClient({ ...settings, PAYPAL_ENV: value as string }),
+    ).toThrow("sandbox");
   },
 );
 
 test("UT-PAY-001 the payment client's base URL is the PayPal sandbox host", () => {
   expect(new URL(PAYPAL_BASE_URL).hostname).toBe("api-m.sandbox.paypal.com");
-  expect(createPayPalClient({ PAYPAL_ENV: "sandbox" }).baseUrl).toBe(
-    PAYPAL_BASE_URL,
-  );
+  expect(
+    createPayPalClient({ ...settings, PAYPAL_ENV: "sandbox" }).baseUrl,
+  ).toBe(PAYPAL_BASE_URL);
 });

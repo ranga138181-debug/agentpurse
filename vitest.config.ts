@@ -31,6 +31,8 @@ export default defineConfig({
             RENDER_GIT_COMMIT: "test-sha",
             AI_PROVIDER: "fake",
             PAYPAL_ENV: "sandbox",
+            PAYPAL_CLIENT_ID: "test-client",
+            PAYPAL_CLIENT_SECRET: randomBytes(16).toString("hex"),
           },
         },
       },

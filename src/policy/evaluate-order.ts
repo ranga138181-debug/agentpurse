@@ -14,7 +14,7 @@ export interface OrderMandate {
 
 export function evaluateOrder(
   mandate: OrderMandate,
-  candidate: Candidate,
+  candidate: Candidate | null,
   orders: { status: string }[],
   now: Date,
 ): Decision {
@@ -29,8 +29,8 @@ export function evaluateOrder(
   ) {
     return decide(["APPROVAL_EXPIRED"]);
   }
-  // An approved mandate always has a budget; without one nothing can be checked, so it blocks.
-  if (max_total_cents === null || currency === null) {
+  // An approved mandate always has a candidate and a budget; without them nothing can be checked, so it blocks.
+  if (candidate === null || max_total_cents === null || currency === null) {
     return decide(["POLICY_BLOCKED"]);
   }
   const recheck = evaluateCandidate(

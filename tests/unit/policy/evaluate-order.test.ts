@@ -137,3 +137,9 @@ test("UT-POL-012 DT-O06 an approved mandate with a valid candidate and no open o
     allow,
   );
 });
+
+test("UT-POL-012 DT-O04 an approved mandate without a candidate blocks", () => {
+  expect(evaluateOrder(mandate, null, [], now)).toEqual(
+    block(["POLICY_BLOCKED"]),
+  );
+});

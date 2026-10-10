@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import {
   bigserial,
   boolean,
@@ -8,6 +9,7 @@ import {
   text,
   timestamp,
   unique,
+  uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -82,5 +84,37 @@ export const candidates = pgTable(
   (table) => [
     unique().on(table.mandate_id, table.product_id),
     unique().on(table.mandate_id, table.rank),
+  ],
+);
+
+export const orders = pgTable(
+  "orders",
+  {
+    id: uuid("id").primaryKey(),
+    mandate_id: uuid("mandate_id")
+      .notNull()
+      .references(() => mandates.id),
+    candidate_id: uuid("candidate_id")
+      .notNull()
+      .references(() => candidates.id),
+    paypal_order_id: text("paypal_order_id").notNull().unique(),
+    paypal_capture_id: text("paypal_capture_id"),
+    amount_cents: integer("amount_cents").notNull(),
+    currency: text("currency").notNull(),
+    status: text("status").notNull(),
+    created_at: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updated_at: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    uniqueIndex("orders_one_captured_per_mandate")
+      .on(table.mandate_id)
+      .where(sql`${table.status} = 'CAPTURED'`),
+    uniqueIndex("orders_one_created_per_mandate")
+      .on(table.mandate_id)
+      .where(sql`${table.status} = 'CREATED'`),
   ],
 );
