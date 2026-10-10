@@ -88,6 +88,8 @@ export function AuditTable() {
         <AgGridReact<AuditEvent>
           columnDefs={COLUMNS}
           rowData={[]}
+          suppressOverlays={["noRows"]}
+          animateRows={false}
           getRowId={({ data }) => String(data.seq)}
           onGridReady={({ api: gridApi }) => (grid.current = gridApi)}
         />
