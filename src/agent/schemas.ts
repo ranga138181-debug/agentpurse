@@ -16,3 +16,21 @@ export const rankOutputSchema = z.strictObject({
     )
     .min(1),
 });
+
+function isIanaZone(zone: string): boolean {
+  if (zone !== "UTC" && !zone.includes("/")) return false;
+  try {
+    new Intl.DateTimeFormat("en", { timeZone: zone });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export const mandateRequestSchema = z.strictObject({
+  text: z.string().refine((text) => {
+    const { length } = text.trim();
+    return length >= 1 && length <= 500;
+  }),
+  timezone: z.string().refine(isIanaZone),
+});
