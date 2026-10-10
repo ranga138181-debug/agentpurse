@@ -19,6 +19,7 @@ test("E2E-001 an approved pick is paid in the PayPal sandbox and settles", async
   const popupPromise = page.waitForEvent("popup");
   await page
     .frameLocator('iframe[title="PayPal-paypal"]')
+    .first()
     .getByRole("link", { name: /PayPal/ })
     .click();
   const popup = await popupPromise;

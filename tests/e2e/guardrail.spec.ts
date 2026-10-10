@@ -80,3 +80,31 @@ test("E2E-008 product text with markup renders as plain text and runs no script"
   await expect(auditRow(page, "PICK_PROPOSED")).toBeVisible();
   expect(dialogs).toBe(0);
 });
+
+test("E2E-008 the page works under its Content-Security-Policy with no violations", async ({
+  page,
+}) => {
+  const violations: string[] = [];
+  page.on("console", (message) => {
+    if (message.text().includes("Content Security Policy")) {
+      violations.push(message.text());
+    }
+  });
+
+  const response = await page.goto("/");
+  expect(response?.headers()["content-security-policy"]).toContain(
+    "script-src 'self' 'nonce-",
+  );
+  await submitMandate(page, "Headphones, max $50");
+  await candidate(page, "Budget Earbuds")
+    .getByRole("button", { name: /Approve/ })
+    .click();
+
+  await expect(
+    page.locator('iframe[title="PayPal-paypal"]').first(),
+  ).toBeVisible({
+    timeout: 20_000,
+  });
+  await expect(auditRow(page, "USER_APPROVED")).toBeVisible();
+  expect(violations).toEqual([]);
+});

@@ -6,12 +6,14 @@ import { api, type ApiError, type Order } from "./api";
 
 interface PayPalCheckoutProps {
   mandateId: string;
+  nonce?: string;
   onSettled: () => void;
   onError: (error: ApiError) => void;
 }
 
 export function PayPalCheckout({
   mandateId,
+  nonce,
   onSettled,
   onError,
 }: PayPalCheckoutProps) {
@@ -26,6 +28,7 @@ export function PayPalCheckout({
         clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string,
         currency: "USD",
         intent: "capture",
+        dataCspNonce: nonce,
       }}
     >
       <PayPalButtons

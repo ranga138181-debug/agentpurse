@@ -6,7 +6,7 @@ import { CandidateCard } from "./CandidateCard";
 import { errorMessage } from "./messages";
 import { PayPalCheckout } from "./PayPalCheckout";
 
-export function MandateApp() {
+export function MandateApp({ nonce }: { nonce?: string }) {
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -88,6 +88,7 @@ export function MandateApp() {
             <PayPalCheckout
               key={mandate.id}
               mandateId={mandate.id}
+              nonce={nonce}
               onSettled={() => run(`/api/mandates/${mandate.id}`)}
               onError={fail}
             />
