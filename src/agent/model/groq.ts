@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createGroq } from "@ai-sdk/groq";
 import { generateText, Output } from "ai";
 import type { z } from "zod";
 import { createBoundary } from "../boundary";
@@ -7,11 +7,8 @@ import { buildRankPrompt } from "../prompts/rank";
 import { parseOutputSchema, rankOutputSchema } from "../schemas";
 import type { ModelAdapter } from "./adapter";
 
-export function createGoogleAdapter(
-  model: string,
-  apiKey: string,
-): ModelAdapter {
-  const languageModel = createGoogleGenerativeAI({ apiKey })(model);
+export function createGroqAdapter(model: string, apiKey: string): ModelAdapter {
+  const languageModel = createGroq({ apiKey })(model);
   const generate = async (
     schema: z.ZodType,
     prompt: string,

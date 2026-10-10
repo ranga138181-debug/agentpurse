@@ -19,7 +19,7 @@ services:
       - key: APP_URL
         sync: false
       - key: AI_PROVIDER
-        value: google
+        value: groq
       - key: AI_MODEL
         sync: false
       - key: AI_API_KEY

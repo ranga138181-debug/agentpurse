@@ -106,20 +106,22 @@ test("UT-AGT-008 AI_PROVIDER=fake passes configuration", async () => {
 });
 
 test("UT-AGT-008 a real provider without AI_MODEL and AI_API_KEY fails configuration", async () => {
-  await expect(loadConfig({ AI_PROVIDER: "google" })).rejects.toThrow();
+  await expect(
+    loadConfig({ AI_PROVIDER: "groq", AI_MODEL: "", AI_API_KEY: "" }),
+  ).rejects.toThrow();
   await expect(
     loadConfig({
-      AI_PROVIDER: "google",
+      AI_PROVIDER: "groq",
       AI_MODEL: "some-model",
       AI_API_KEY: "",
     }),
   ).rejects.toThrow();
 });
 
-test("UT-AGT-008 AI_PROVIDER=google with a model and key selects the provider adapter without a network call", async () => {
+test("UT-AGT-008 AI_PROVIDER=groq with a model and key selects the provider adapter without a network call", async () => {
   const fetchSpy = vi.spyOn(globalThis, "fetch");
   const settings = {
-    AI_PROVIDER: "google",
+    AI_PROVIDER: "groq",
     AI_MODEL: "some-model",
     AI_API_KEY: "test-key",
   };
@@ -127,7 +129,7 @@ test("UT-AGT-008 AI_PROVIDER=google with a model and key selects the provider ad
   const { config } = await loadConfig(settings);
   const adapter = createModelAdapter(config);
 
-  expect(config.AI_PROVIDER).toBe("google");
+  expect(config.AI_PROVIDER).toBe("groq");
   expect(adapter).not.toBe(createModelAdapter({ AI_PROVIDER: "fake" }));
   expect(fetchSpy).not.toHaveBeenCalled();
 });
