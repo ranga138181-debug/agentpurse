@@ -1,4 +1,6 @@
 .next/
+test-results/
+playwright-report/
 pnpm-lock.yaml
 agentpurse-specs/
 /*.md

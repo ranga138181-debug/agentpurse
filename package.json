@@ -8,12 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . && prettier --check .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test:unit": "vitest run --project unit --coverage",
-    "test:integration": "vitest run --project integration"
+    "test:integration": "vitest run --project integration",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@ai-sdk/groq": "^4.0.59",
+    "@paypal/react-paypal-js": "^10.6.0",
+    "ag-grid-community": "^36.2.0",
+    "ag-grid-react": "^36.2.0",
     "ai": "^7.0.137",
     "drizzle-orm": "^0.45.4",
     "next": "^16.4.0",
@@ -23,6 +27,8 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.64.0",
     "@types/node": "^26.6.5",
     "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
