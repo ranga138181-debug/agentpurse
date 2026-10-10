@@ -42,7 +42,7 @@ Version 1.0 · 9 Oct 2026
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Not started |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Not started |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Not started |
-| NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Not started |
+| NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Done |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Not started |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Done |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |

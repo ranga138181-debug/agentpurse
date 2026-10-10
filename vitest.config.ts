@@ -7,6 +7,12 @@ if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 export default defineConfig({
   resolve: { alias: { "@": new URL("./src", import.meta.url).pathname } },
   test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text"],
+      include: ["src/policy/**"],
+      thresholds: { branches: 100 },
+    },
     projects: [
       {
         extends: true,
