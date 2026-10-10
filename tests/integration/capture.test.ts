@@ -98,11 +98,20 @@ test("IT-PAY-002 a successful capture marks the order CAPTURED and the mandate S
   });
 });
 
-test.each([
-  [
-    "a 422 from PayPal",
-    () => ({ status: 422, body: { name: "UNPROCESSABLE_ENTITY" } }),
-  ],
+const declined: [string, () => { status: number; body: unknown }][] = [
+  ...[
+    "INSTRUMENT_DECLINED",
+    "CARD_EXPIRED",
+    "PAYER_CANNOT_PAY",
+    "PAYMENT_DENIED",
+    "TRANSACTION_REFUSED",
+  ].map((issue): [string, () => { status: number; body: unknown }] => [
+    `a 422 with issue ${issue}`,
+    () => ({
+      status: 422,
+      body: { name: "UNPROCESSABLE_ENTITY", details: [{ issue }] },
+    }),
+  ]),
   [
     "a capture with status DECLINED",
     () => ({
@@ -114,7 +123,9 @@ test.each([
       },
     }),
   ],
-])(
+];
+
+test.each(declined)(
   "IT-PAY-002 %s marks the order FAILED and leaves the mandate APPROVED",
   async (_name, handler) => {
     fakePayPal({ [CAPTURE]: handler });
@@ -139,6 +150,18 @@ test.each([
 );
 
 test.each([
+  [
+    "a 422 that is not a decline",
+    () => ({
+      status: 422,
+      body: {
+        name: "UNPROCESSABLE_ENTITY",
+        details: [{ issue: "ORDER_ALREADY_CAPTURED" }],
+        debug_id: "dbg",
+      },
+    }),
+  ],
+  ["a 422 without details", () => ({ status: 422, body: {} })],
   ["a 5xx", () => ({ status: 503, body: { debug_id: "dbg" } })],
   ["a network failure", () => Promise.reject(new TypeError("fetch failed"))],
   [

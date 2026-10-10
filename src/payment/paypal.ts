@@ -30,6 +30,16 @@ const captureSchema = z.object({
     .min(1),
 });
 
+const DECLINE_ISSUES = [
+  "INSTRUMENT_DECLINED",
+  "CARD_EXPIRED",
+  "PAYER_CANNOT_PAY",
+  "PAYMENT_DENIED",
+  "TRANSACTION_REFUSED",
+];
+const declineSchema = z.object({
+  details: z.array(z.object({ issue: z.string() })),
+});
 const verificationSchema = z.object({ verification_status: z.string() });
 
 export interface WebhookTransmission {
@@ -188,8 +198,20 @@ export function createPayPalClient(settings: PayPalSettings) {
           },
         },
       );
-      // PayPal reports a refused capture as 422, or as a capture whose status is not COMPLETED or PENDING.
-      if (response.status === 422) return { outcome: "DECLINED" };
+      if (response.status === 422) {
+        // 422 covers every business-rule error; only these issues mean the payment itself was refused.
+        const body: unknown = await response
+          .clone()
+          .json()
+          .catch(() => null);
+        const error = declineSchema.safeParse(body);
+        if (
+          error.success &&
+          error.data.details.some(({ issue }) => DECLINE_ISSUES.includes(issue))
+        ) {
+          return { outcome: "DECLINED" };
+        }
+      }
       const [capture] = (await read(response, captureSchema)).purchase_units[0]
         .payments.captures;
       if (capture.status === "COMPLETED") {
