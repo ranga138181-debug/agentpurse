@@ -13,6 +13,7 @@ Version 1.0 · 9 Oct 2026
 7. NFR-008 follows FR-006 because its test UT-POL-014 exercises `evaluateCandidate`.
 8. The policy half of FR-003 (`validateBudget`, `validateDeadline`, UT-POL-002) is built in M2 so that every DT-M row passes there. FR-003 remains an M3 requirement and stays `In progress` until IT-API-002 passes.
 9. In M3 each requirement's logic and unit tests are built on its scheduled day. `POST /api/mandates` is assembled on 24 Oct with FR-007 and FR-008, and the API tests IT-API-001 to IT-API-005 are added then. A requirement whose API test is pending stays `In progress` until that day.
+10. M4 follows the same convention. Order: FR-009; SEC-013; the Stage O and Stage C policy functions with UT-POL-012; FR-010 with SEC-005; FR-024; FR-012; SEC-016 with FR-011; FR-013; SEC-006 with FR-023. Each requirement's API test is added once its endpoint exists, and the requirement stays `In progress` until then.
 
 ## Standard definition of done (every milestone)
 
