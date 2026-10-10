@@ -1,0 +1,25 @@
+name: deploy
+
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    env:
+      SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - name: Trigger Render deploy
+        run: curl -fsS "${{ secrets.RENDER_DEPLOY_HOOK_URL }}&ref=$SHA"
+      - name: SMOKE-001 wait for /api/healthz to report the commit
+        run: |
+          for attempt in $(seq 1 60); do
+            body=$(curl -fsS "${{ vars.PRODUCTION_URL }}/api/healthz" || true)
+            if [ "$(echo "$body" | jq -r '.status + " " + .version' 2>/dev/null)" = "ok $SHA" ]; then exit 0; fi
+            sleep 10
+          done
+          exit 1

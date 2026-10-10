@@ -26,13 +26,13 @@ Version 1.0 · 9 Oct 2026
 | FR-011 | Capture payment | MUST | 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-PAY-002, IT-AUD-001, E2E-001 | M4 | Not started |
 | FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Not started |
 | FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Not started |
-| FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Not started |
-| FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Not started |
+| FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Done |
+| FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Done |
 | FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Not started |
 | FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | Not started |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Not started |
 | FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | Not started |
-| FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Not started |
+| FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Done |
 | FR-021 | Read mandate | MUST | 03-API-CONTRACTS.md | IT-API-008 | M3 | Not started |
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Not started |
 | FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Not started |
@@ -44,9 +44,9 @@ Version 1.0 · 9 Oct 2026
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Not started |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Not started |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Not started |
-| NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Not started |
-| NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Not started |
-| NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Not started |
+| NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Done |
+| NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |
+| NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | In progress |
 | NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Not started |
 | NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Not started |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Not started |
@@ -55,14 +55,14 @@ Version 1.0 · 9 Oct 2026
 | SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Not started |
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Not started |
 | SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
-| SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Not started |
+| SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
 | SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Not started |
-| SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Not started |
-| SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Not started |
+| SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Done |
+| SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Done |
 | SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Not started |
 | SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Not started |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Not started |
-| SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Not started |
+| SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Done |
 | SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Not started |
 | SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Not started |
 

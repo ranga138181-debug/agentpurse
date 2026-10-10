@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: agentpurse
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: pnpm install --frozen-lockfile && pnpm build
+    # The free plan has no confirmed pre-deploy step, so migrations run first; a failure stops the start.
+    startCommand: node scripts/migrate.mjs && pnpm start
+    healthCheckPath: /api/healthz
+    autoDeployTrigger: "off"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: agentpurse-db
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: APP_URL
+        sync: false
+
+databases:
+  - name: agentpurse-db
+    plan: free
+    region: oregon
