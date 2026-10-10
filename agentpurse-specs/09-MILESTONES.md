@@ -10,6 +10,8 @@ Version 1.0 · 9 Oct 2026
 4. If a milestone slips, SHOULD and COULD requirements are cut in this order before any MUST is touched: FR-027, NFR-009, FR-026, FR-025, SEC-011, SEC-015, FR-024, FR-023 (with SEC-006), FR-022.
 5. Work proceeds one requirement at a time in the order listed for each day (`CLAUDE.md`).
 6. SEC-007 starts on 12 Oct (secret scan, git-ignore rules, `.env.example`) and stays `In progress` until its unit test UT-OPS-001 passes with the logger delivered by NFR-005 on 13 Oct.
+7. NFR-008 follows FR-006 because its test UT-POL-014 exercises `evaluateCandidate`.
+8. The policy half of FR-003 (`validateBudget`, `validateDeadline`, UT-POL-002) is built in M2 so that every DT-M row passes there. FR-003 remains an M3 requirement and stays `In progress` until IT-API-002 passes.
 
 ## Standard definition of done (every milestone)
 
@@ -46,10 +48,10 @@ Each milestone adds its own criteria below.
 | 12 Oct | Mon | M1 | Public repo with MIT licence; Next.js scaffold; lint, type check, test runner; CI workflow; secret scan; branch protection | NFR-006, SEC-007 |
 | 13 Oct | Tue | M1 | Logger; database schema and migrations; audit writer; append-only trigger; session cookie and origin check | NFR-005, FR-014, SEC-010, SEC-009 |
 | 14 Oct | Wed | M1 | Strict validation and error envelope; audit read API; health endpoint; Render blueprint and first deploy | SEC-014, FR-015, FR-020, NFR-007 |
-| 15 Oct | Thu | M2 | Budget extractor; integer-money handling | SEC-004, NFR-008 |
+| 15 Oct | Thu | M2 | Budget extractor | SEC-004 |
 | 16 Oct | Fri | M2 | Candidate rules R-01 to R-04 | FR-006 |
 | 17 Oct | Sat | M2 | Candidate rules R-05 to R-07; precedence and reason lists | FR-006 |
-| 18 Oct | Sun | M2 | Decision-table tests for every DT-R, DT-L, DT-B row | FR-006 |
+| 18 Oct | Sun | M2 | Decision-table tests for every DT-R, DT-L, DT-B row; integer-money test; mandate rules M-01 to M-07 with every DT-M row | FR-006, NFR-008, FR-003 (policy functions and UT-POL-002 only) |
 | 19 Oct | Mon | M2 | Purity and determinism tests; 100% branch coverage gate | NFR-003 |
 | 20 Oct | Tue | M3 | Model adapter interface, fake adapter, provider adapter; output schemas | FR-019, SEC-001 |
 | 21 Oct | Wed | M3 | Mandate submission; mandate rules and rejection; parsing | FR-001, FR-003, FR-002 |
