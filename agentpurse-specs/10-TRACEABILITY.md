@@ -16,7 +16,7 @@ Version 1.0 · 9 Oct 2026
 | FR-001 | Submit mandate | MUST | 03-API-CONTRACTS.md, 05-AGENT-SPEC.md | UT-AGT-001, IT-API-001 | M3 | In progress |
 | FR-002 | Parse mandate into constraints | MUST | 05-AGENT-SPEC.md, 04-POLICY-ENGINE-SPEC.md | UT-AGT-002, EV-SET | M3 | Done |
 | FR-003 | Reject incomplete, ambiguous or invalid mandates | MUST | 04-POLICY-ENGINE-SPEC.md, 03-API-CONTRACTS.md | UT-POL-002, IT-API-002, EV-SET | M3 | In progress |
-| FR-004 | Product search | MUST | 05-AGENT-SPEC.md | UT-AGT-003, IT-API-003 | M3 | Not started |
+| FR-004 | Product search | MUST | 05-AGENT-SPEC.md | UT-AGT-003, IT-API-003 | M3 | In progress |
 | FR-005 | Rank products | MUST | 05-AGENT-SPEC.md | UT-AGT-004 | M3 | Not started |
 | FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Done |
 | FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Not started |
