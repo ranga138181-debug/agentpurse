@@ -39,7 +39,7 @@ Configuration is by environment variables only (`02-ARCHITECTURE.md` §9). The a
 | `typecheck` | `tsc --noEmit` | G1 |
 | `unit` | Vitest unit tests with coverage; fail if `src/policy` branch coverage < 100% | G2, G3 |
 | `integration` | Postgres service, migrations, Vitest integration tests | G2 |
-| `secret-scan` | secret scanner over the diff and history | G4 |
+| `secret-scan` | gitleaks GitHub Action over the full history | G4 |
 | `build` | production build | – |
 
 All six are required status checks on `main`. Direct pushes to `main` are blocked.

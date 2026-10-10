@@ -125,7 +125,7 @@ Every step that changes state appends an audit event (§5). The audit table poll
 
 ## 4. Data model
 
-All IDs are UUID v4 unless noted. Timestamps are `timestamptz` in UTC. Money is `integer` cents.
+All IDs are UUID v4 unless noted. Timestamps are `timestamptz` in UTC. Money is `integer` cents. Each table is created by the migration of the first requirement that uses it (M1: `audit_events` for FR-014, `sessions` for SEC-009).
 
 ### 4.1 `sessions`
 | Column | Type | Notes |
@@ -297,7 +297,7 @@ The client holds one idempotency key per approval for order creation and one per
 
 Runtime: `next`, `react`, `react-dom`, `zod`, `ai`, one AI SDK provider package for the configured provider, `drizzle-orm`, `pg`, `ag-grid-community`, `ag-grid-react`, `@paypal/react-paypal-js`.
 
-Development: `typescript`, `drizzle-kit`, `vitest`, `@vitest/coverage-v8`, `@playwright/test`, `@axe-core/playwright`, `eslint`, `eslint-config-next`, `prettier`.
+Development: `typescript`, `drizzle-kit`, `vitest`, `@vitest/coverage-v8`, `@playwright/test`, `@axe-core/playwright`, `eslint`, `eslint-config-next`, `prettier`, `@types/node`, `@types/react`, `@types/react-dom`, `@types/pg`.
 
 Anything else requires a spec change (see `CLAUDE.md`).
 
@@ -318,5 +318,6 @@ Anything else requires a spec change (see `CLAUDE.md`).
 | `CHANNEL3_API_KEY` | yes | FR-026 only |
 | `DAILY_MANDATE_CAP` | no | SEC-015 only |
 | `LOG_LEVEL` | no | default `info` |
+| `RENDER_GIT_COMMIT` | no | deploy commit SHA, set automatically by Render; reported by `/api/healthz` (FR-020) |
 
-Configuration is validated with Zod at startup. Missing or invalid required values stop the process.
+Configuration is validated with Zod at startup. Missing or invalid required values stop the process. A variable becomes required in the milestone that first uses it. In M1 the required variables are `DATABASE_URL`, `SESSION_SECRET`, `APP_URL` and `RENDER_GIT_COMMIT`; `LOG_LEVEL` is optional.

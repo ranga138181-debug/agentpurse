@@ -9,6 +9,7 @@ Version 1.0 · 9 Oct 2026
 3. A requirement is `Done` at its milestone when its unit and integration tests pass. It becomes `Verified` when its e2e, eval and other listed tests also pass (M5 for UI flows, M7 for everything).
 4. If a milestone slips, SHOULD and COULD requirements are cut in this order before any MUST is touched: FR-027, NFR-009, FR-026, FR-025, SEC-011, SEC-015, FR-024, FR-023 (with SEC-006), FR-022.
 5. Work proceeds one requirement at a time in the order listed for each day (`CLAUDE.md`).
+6. SEC-007 starts on 12 Oct (secret scan, git-ignore rules, `.env.example`) and stays `In progress` until its unit test UT-OPS-001 passes with the logger delivered by NFR-005 on 13 Oct.
 
 ## Standard definition of done (every milestone)
 
@@ -43,8 +44,8 @@ Each milestone adds its own criteria below.
 | 10 Oct | Sat | M0 | Create PayPal developer account, sandbox app, business and buyer accounts; AI provider key; Render account; register on Devpost | – |
 | 11 Oct | Sun | M0 | Read official rules and sponsor prize terms; confirm PayPal, Render and Channel3 documentation against spec assumptions; raise spec changes; spec freeze | – |
 | 12 Oct | Mon | M1 | Public repo with MIT licence; Next.js scaffold; lint, type check, test runner; CI workflow; secret scan; branch protection | NFR-006, SEC-007 |
-| 13 Oct | Tue | M1 | Database schema and migrations; logger; audit writer; append-only trigger; audit read API | NFR-005, FR-014, SEC-010, FR-015 |
-| 14 Oct | Wed | M1 | Session cookie and origin check; strict validation and error envelope; health endpoint; Render blueprint and first deploy | SEC-009, SEC-014, FR-020, NFR-007 |
+| 13 Oct | Tue | M1 | Logger; database schema and migrations; audit writer; append-only trigger; session cookie and origin check | NFR-005, FR-014, SEC-010, SEC-009 |
+| 14 Oct | Wed | M1 | Strict validation and error envelope; audit read API; health endpoint; Render blueprint and first deploy | SEC-014, FR-015, FR-020, NFR-007 |
 | 15 Oct | Thu | M2 | Budget extractor; integer-money handling | SEC-004, NFR-008 |
 | 16 Oct | Fri | M2 | Candidate rules R-01 to R-04 | FR-006 |
 | 17 Oct | Sat | M2 | Candidate rules R-05 to R-07; precedence and reason lists | FR-006 |

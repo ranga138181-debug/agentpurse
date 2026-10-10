@@ -50,7 +50,7 @@ Version 1.0 · 9 Oct 2026
 | UT-AGT-009 | SEC-001 | Schema rejection: missing field, wrong type, extra field, over-length, bad date |
 | UT-AGT-010 | SEC-002 | Output with price or total fields rejected; candidate facts equal catalog values |
 | UT-AGT-011 | SEC-003 | Sanitiser steps 1 to 6; boundary token regenerated on collision; P-019 title becomes "Phone Case" |
-| UT-AUD-001 | FR-014 | Audit writer: event shape, enumerations enforced, rejects unknown type |
+| UT-AUD-001 | FR-014 | Audit writer with an injected insert function: event shape, enumerations enforced, rejects unknown type and nothing is inserted |
 | UT-AUD-002 | SEC-011 | Hash chain verifies; any altered field fails at that event |
 | UT-OPS-001 | NFR-005, SEC-007 | Log line fields; redaction of listed keys at depth |
 | UT-PAY-001 | SEC-013 | Startup fails unless `PAYPAL_ENV=sandbox`; base URL is the sandbox host |
@@ -80,14 +80,14 @@ Version 1.0 · 9 Oct 2026
 | IT-PAY-010 | FR-010 | Real sandbox contract: obtain token, create order with `PayPal-Request-Id`, repeat with same ID returns same order, fetch order. Skipped when sandbox secrets are absent |
 | IT-PAY-011 | FR-024 | Approval older than 15 minutes → 409 `APPROVAL_EXPIRED`, mandate back to `PROPOSED` |
 | IT-AUD-001 | FR-011 | Full approved purchase yields the event sequence in `02-ARCHITECTURE.md` §5 |
-| IT-AUD-002 | FR-015 | Cursor paging, ordering, limit, mandate filter, empty page |
+| IT-AUD-002 | FR-015 | Cursor paging, ordering, limit, mandate filter, empty page; appended events carry the next database-assigned `seq` and a server timestamp (FR-014) |
 | IT-AUD-003 | SEC-010 | UPDATE, DELETE, TRUNCATE on `audit_events` fail |
 | IT-SEC-001 | SEC-008 | Sixth mandate in a minute → 429 with `Retry-After`; model not called |
-| IT-SEC-002 | SEC-009 | Session B gets 404 for session A's audit events, mandates and orders; tampered cookie yields a fresh session. A case is added for each new session-scoped endpoint |
+| IT-SEC-002 | SEC-009 | Session B gets an empty `events` list for session A's audit events and 404 for session A's mandates and orders; tampered cookie yields a fresh session. A case is added for each new session-scoped endpoint |
 | IT-SEC-003 | SEC-012 | Each listed header present with the specified value |
 | IT-SEC-004 | SEC-014 | Each endpoint rejects unknown fields, wrong types, bad UUIDs with 400 and no side effect |
 | IT-SEC-005 | SEC-015 | At the cap → 429 `DAILY_LIMIT_REACHED`; model not called |
-| IT-SEC-006 | SEC-009 | POST with missing or foreign `Origin` → 403; webhook exempt |
+| IT-SEC-006 | SEC-009 | POST with missing or foreign `Origin` → 403; webhook exempt. In M1, before any POST endpoint exists, the origin-check function is exercised directly; a case is added for each POST endpoint when it is built |
 | IT-OPS-001 | FR-020 | Health 200 with SHA; database down → 503 |
 | IT-SRCH-001 | FR-026 | Recorded Channel3 response maps to the product schema; missing fields null; sanitiser applied |
 
