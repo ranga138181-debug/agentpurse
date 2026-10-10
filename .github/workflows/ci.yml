@@ -62,6 +62,11 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    # Route modules load the validated config during the build; these are placeholders, not credentials.
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/agentpurse_test
+      SESSION_SECRET: "00000000000000000000000000000000"
+      APP_URL: http://localhost:3000
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

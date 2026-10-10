@@ -27,7 +27,7 @@ Version 1.0 · 9 Oct 2026
 | FR-012 | Idempotent orders | MUST | 03-API-CONTRACTS.md | IT-PAY-003, IT-PAY-004 | M4 | Not started |
 | FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Not started |
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Done |
-| FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Not started |
+| FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Done |
 | FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Not started |
 | FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | Not started |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Not started |
@@ -62,7 +62,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Not started |
 | SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Not started |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Not started |
-| SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | In progress |
+| SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Done |
 | SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Not started |
 | SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Not started |
 
