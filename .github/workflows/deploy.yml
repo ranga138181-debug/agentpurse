@@ -2,14 +2,13 @@ name: deploy
 
 on:
   workflow_run:
-    workflows: [e2e]
+    workflows: [ci]
     types: [completed]
     branches: [main]
 
 jobs:
   deploy:
-    # e2e runs after ci on a push to main; nightly and manual e2e runs do not deploy.
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'workflow_run'
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
     env:
       SHA: ${{ github.event.workflow_run.head_sha }}
