@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, gte } from "drizzle-orm";
 import { localDate } from "@/agent/dates";
 import {
   AttemptsExhausted,
@@ -40,6 +40,7 @@ interface MandateInput {
 
 interface MandateDeps {
   adapter: ModelAdapter;
+  dailyCap: number;
   searchProvider: string;
   createSearch: (today: string) => ProductSearch;
 }
@@ -51,8 +52,25 @@ const REJECTION_CODES: Record<string, string> = {
 
 export async function submitMandate(
   { text, timezone, sessionId, now, requestId, deadline }: MandateInput,
-  { adapter, searchProvider, createSearch }: MandateDeps,
+  { adapter, dailyCap, searchProvider, createSearch }: MandateDeps,
 ): Promise<Response> {
+  // The cap bounds model spend, so it is checked before anything is stored or any model is called.
+  const midnightUtc = new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
+  );
+  const acceptedToday = await db.$count(
+    mandates,
+    gte(mandates.created_at, midnightUtc),
+  );
+  if (acceptedToday >= dailyCap) {
+    return errorResponse(
+      429,
+      "DAILY_LIMIT_REACHED",
+      "The demo has reached its daily mandate limit",
+      requestId,
+    );
+  }
+
   const mandateId = crypto.randomUUID();
   const update = (values: Partial<typeof mandates.$inferInsert>) =>
     db.update(mandates).set(values).where(eq(mandates.id, mandateId));

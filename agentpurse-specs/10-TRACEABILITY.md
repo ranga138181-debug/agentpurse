@@ -56,14 +56,14 @@ Version 1.0 · 9 Oct 2026
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Done |
 | SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Done |
 | SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
-| SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Not started |
+| SEC-008 | Rate limiting | MUST | 06-SECURITY.md | IT-SEC-001 | M6 | Done |
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Done |
 | SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Done |
-| SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Not started |
+| SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Done |
 | SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Verified |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Done |
 | SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Done |
-| SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Not started |
+| SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Done |
 | SEC-016 | Capture-time verification | MUST | 04-POLICY-ENGINE-SPEC.md, 06-SECURITY.md | IT-PAY-009 | M4 | Done |
 
 ## Summary

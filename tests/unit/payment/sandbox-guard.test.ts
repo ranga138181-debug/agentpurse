@@ -9,6 +9,7 @@ const requiredEnv = {
   PAYPAL_CLIENT_ID: "test-client",
   PAYPAL_WEBHOOK_ID: "WH-TEST",
   NEXT_PUBLIC_PAYPAL_CLIENT_ID: "test-client",
+  DAILY_MANDATE_CAP: "500",
   PAYPAL_CLIENT_SECRET: "test-value",
   AI_PROVIDER: "fake",
 };

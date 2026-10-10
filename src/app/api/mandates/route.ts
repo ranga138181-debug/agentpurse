@@ -23,6 +23,7 @@ export const POST = sessionRoute(
       { ...body, sessionId, now: new Date(), requestId, deadline },
       {
         adapter: createModelAdapter(config),
+        dailyCap: config.DAILY_MANDATE_CAP,
         searchProvider: config.SEARCH_PROVIDER,
         createSearch: createFixtureSearch,
       },

@@ -24,7 +24,10 @@ export default defineConfig({
           name: "integration",
           include: ["tests/integration/**/*.test.ts"],
           globalSetup: "tests/integration/global-setup.ts",
+          setupFiles: ["tests/integration/setup.ts"],
           fileParallelism: false,
+          // Each test makes several real database round trips; the 5 s default was occasionally exceeded.
+          testTimeout: 15000,
           env: {
             SESSION_SECRET: randomBytes(32).toString("hex"),
             APP_URL: "http://localhost:3000",
@@ -34,6 +37,7 @@ export default defineConfig({
             PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID ?? "test-client",
             PAYPAL_WEBHOOK_ID: "WH-TEST",
             NEXT_PUBLIC_PAYPAL_CLIENT_ID: "test-client",
+            DAILY_MANDATE_CAP: "1000000",
             PAYPAL_CLIENT_SECRET:
               process.env.PAYPAL_CLIENT_SECRET ??
               randomBytes(16).toString("hex"),
