@@ -30,6 +30,7 @@ export default defineConfig({
             APP_URL: "http://localhost:3000",
             RENDER_GIT_COMMIT: "test-sha",
             AI_PROVIDER: "fake",
+            PAYPAL_ENV: "sandbox",
           },
         },
       },

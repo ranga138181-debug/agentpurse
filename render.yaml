@@ -18,6 +18,8 @@ services:
         generateValue: true
       - key: APP_URL
         sync: false
+      - key: PAYPAL_ENV
+        value: sandbox
       - key: AI_PROVIDER
         value: groq
       - key: AI_MODEL

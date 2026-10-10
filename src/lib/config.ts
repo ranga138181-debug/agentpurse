@@ -13,6 +13,7 @@ export const config = z
     AI_MODEL: optional,
     AI_API_KEY: optional,
     SEARCH_PROVIDER: z.enum(["fixture"]).default("fixture"),
+    PAYPAL_ENV: z.literal("sandbox"),
   })
   .refine(
     (env) => env.AI_PROVIDER === "fake" || (env.AI_MODEL && env.AI_API_KEY),
