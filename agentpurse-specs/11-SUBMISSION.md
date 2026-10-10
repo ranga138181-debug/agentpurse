@@ -41,7 +41,7 @@ Version 1.0 · 9 Oct 2026
 
 ### Video
 - [ ] Under 3 minutes (target 2:50)
-- [ ] Uploaded to YouTube as Public or Unlisted, plays without sign-in
+- [ ] Uploaded to YouTube as Public, plays without sign-in
 - [ ] Shows one approved purchase and one blocked over-budget attempt
 - [ ] No secrets, tokens or real personal data on screen
 - [ ] Captions or clear narration
