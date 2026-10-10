@@ -12,6 +12,7 @@ Version 1.0 · 9 Oct 2026
 6. SEC-007 starts on 12 Oct (secret scan, git-ignore rules, `.env.example`) and stays `In progress` until its unit test UT-OPS-001 passes with the logger delivered by NFR-005 on 13 Oct.
 7. NFR-008 follows FR-006 because its test UT-POL-014 exercises `evaluateCandidate`.
 8. The policy half of FR-003 (`validateBudget`, `validateDeadline`, UT-POL-002) is built in M2 so that every DT-M row passes there. FR-003 remains an M3 requirement and stays `In progress` until IT-API-002 passes.
+9. In M3 each requirement's logic and unit tests are built on its scheduled day. `POST /api/mandates` is assembled on 24 Oct with FR-007 and FR-008, and the API tests IT-API-001 to IT-API-005 are added then. A requirement whose API test is pending stays `In progress` until that day.
 
 ## Standard definition of done (every milestone)
 

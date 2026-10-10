@@ -18,6 +18,12 @@ services:
         generateValue: true
       - key: APP_URL
         sync: false
+      - key: AI_PROVIDER
+        value: groq
+      - key: AI_MODEL
+        sync: false
+      - key: AI_API_KEY
+        sync: false
 
 databases:
   - name: agentpurse-db
