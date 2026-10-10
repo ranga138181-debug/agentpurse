@@ -66,3 +66,7 @@ dt {
 dd {
   margin: 0 0 0.5rem;
 }
+
+.audit-grid {
+  height: 24rem;
+}
