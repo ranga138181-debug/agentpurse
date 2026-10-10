@@ -54,6 +54,12 @@ A **number** is digits with optional thousands commas and an optional decimal pa
 
 Distinct amounts are distinct `(currency, cents)` pairs. The same amount written twice counts once.
 
+**Malformed and conflicting tokens.** The extractor never repairs a token and never chooses between candidates:
+
+- A number must be complete. It is not an amount if it is immediately followed by another digit, or by `.` or `,` and a digit; in the number-then-word form it must also not be immediately preceded by a digit, `.` or `,`. So `$40.555` and `$1,2345` contain no amount token and give `BUDGET_MISSING`; they are never read as a smaller amount.
+- A currency word must end at a non-letter. `40 dollarstore` is not an amount.
+- The two token forms are matched independently over the whole text and their `(currency, cents)` pairs are pooled. `$40 USD` gives one pair (USD 4000). `€40 dollars` gives two pairs (EUR 4000 and USD 4000) and is `BUDGET_AMBIGUOUS`.
+
 ### 3.2 Rules
 
 | Rule | Condition | Reason code | API error |

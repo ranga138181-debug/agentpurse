@@ -15,10 +15,10 @@ Version 1.0 · 9 Oct 2026
 |---|---|---|---|---|---|---|
 | FR-001 | Submit mandate | MUST | 03-API-CONTRACTS.md, 05-AGENT-SPEC.md | UT-AGT-001, IT-API-001 | M3 | Not started |
 | FR-002 | Parse mandate into constraints | MUST | 05-AGENT-SPEC.md, 04-POLICY-ENGINE-SPEC.md | UT-AGT-002, EV-SET | M3 | Not started |
-| FR-003 | Reject incomplete, ambiguous or invalid mandates | MUST | 04-POLICY-ENGINE-SPEC.md, 03-API-CONTRACTS.md | UT-POL-002, IT-API-002, EV-SET | M3 | Not started |
+| FR-003 | Reject incomplete, ambiguous or invalid mandates | MUST | 04-POLICY-ENGINE-SPEC.md, 03-API-CONTRACTS.md | UT-POL-002, IT-API-002, EV-SET | M3 | In progress |
 | FR-004 | Product search | MUST | 05-AGENT-SPEC.md | UT-AGT-003, IT-API-003 | M3 | Not started |
 | FR-005 | Rank products | MUST | 05-AGENT-SPEC.md | UT-AGT-004 | M3 | Not started |
-| FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Not started |
+| FR-006 | Candidate policy decision | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-003, UT-POL-004, UT-POL-005, UT-POL-006, UT-POL-007, UT-POL-008, UT-POL-009, UT-POL-010, UT-POL-011 | M2 | Done |
 | FR-007 | Evaluate and persist every candidate | MUST | 02-ARCHITECTURE.md, 04-POLICY-ENGINE-SPEC.md | IT-API-004 | M3 | Not started |
 | FR-008 | Propose a pick | MUST | 05-AGENT-SPEC.md | UT-AGT-005, IT-API-005 | M3 | Not started |
 | FR-009 | Approve or decline | MUST | 03-API-CONTRACTS.md, 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-API-006, E2E-002 | M4 | Not started |
@@ -42,17 +42,17 @@ Version 1.0 · 9 Oct 2026
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Not started |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Not started |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Not started |
-| NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Not started |
+| NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Done |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Not started |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Done |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |
 | NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Done |
-| NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Not started |
+| NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Done |
 | NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Not started |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Not started |
 | SEC-002 | Catalog is the only source of product facts | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-010, EV-027 | M3 | Not started |
 | SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Not started |
-| SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Not started |
+| SEC-004 | Spending limit is extracted deterministically | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-001, EV-022, EV-024 | M2 | Done |
 | SEC-005 | Server computes the order amount | MUST | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-007 | M4 | Not started |
 | SEC-006 | Webhook signature verification | MUST | 06-SECURITY.md | IT-PAY-008 | M4 | Not started |
 | SEC-007 | Secrets handling | MUST | 06-SECURITY.md, 08-PRODUCTION.md | CI-002, UT-OPS-001 | M1 | Done |
