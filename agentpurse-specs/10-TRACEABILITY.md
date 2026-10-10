@@ -46,7 +46,7 @@ Version 1.0 · 9 Oct 2026
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Not started |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Done |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |
-| NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Not started |
+| NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | In progress |
 | NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Not started |
 | NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Not started |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Not started |
