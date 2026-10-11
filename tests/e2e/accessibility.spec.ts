@@ -60,7 +60,7 @@ test("E2E-006 a mandate can be submitted and a candidate approved with the keybo
   await page.keyboard.press("Tab");
   await expect(page.getByLabel("What should the agent buy")).toBeFocused();
   await page.keyboard.type("Headphones, max $50");
-  await tabTo("Find a product");
+  await tabTo("Send");
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Result" })).toBeVisible();
 

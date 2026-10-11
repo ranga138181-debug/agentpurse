@@ -156,12 +156,13 @@ Version 1.0 · 9 Oct 2026
 **Tests:** E2E-003
 
 ### FR-017 — Mandate and approval UI · MUST · M5
-**Behavior:** One screen lets the user enter a mandate, see parsed constraints, see every candidate with its decision and reasons, approve or decline, and pay with PayPal.
+**Behavior:** One screen, presented as a conversation with the agent, lets the user enter a mandate, see parsed constraints, see every candidate with its decision and reasons, approve or decline, and pay with PayPal.
 **Acceptance:**
 - Given a `PROPOSED` mandate, When rendered, Then the parsed budget and deadline are shown, the pick is marked, each `ALLOW` candidate has an Approve control and each `BLOCK` candidate shows its reason codes and has no Approve control.
 - Given the user approves a candidate, When approval succeeds, Then the PayPal button is shown for that candidate's total.
 - Given capture succeeds, When the screen updates, Then it shows a settled state with the PayPal order ID.
 - Given a rejected mandate, When rendered, Then the error message states which constraint is missing or invalid.
+- Given a submitted mandate, When the response arrives, Then the mandate text appears as the user's message and the result follows it in the thread.
 **Spec:** 02-ARCHITECTURE.md, 03-API-CONTRACTS.md
 **Tests:** E2E-001, E2E-002
 
@@ -242,6 +243,14 @@ Version 1.0 · 9 Oct 2026
 - Given the form, When a sample is selected, Then the text field contains that sample and nothing is submitted.
 **Spec:** 02-ARCHITECTURE.md
 **Tests:** E2E-005
+
+### FR-028 — Store catalog display · SHOULD · M8
+**Behavior:** The store panel lists every product in the fixture catalog with its sanitised title, category, price, shipping and stock state. Descriptions are not shown. Tiles have no purchase control.
+**Acceptance:**
+- Given the page loads, When the store panel renders, Then all 20 fixture products are listed.
+- Given P-019, whose title contains markup, When rendered, Then the tile shows the text "Phone Case" and no script runs.
+**Spec:** 02-ARCHITECTURE.md
+**Tests:** E2E-009
 
 ---
 

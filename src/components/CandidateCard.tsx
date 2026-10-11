@@ -1,4 +1,5 @@
 import { formatCents, type Candidate } from "./api";
+import { CANDIDATE_REASONS } from "./messages";
 
 interface CandidateCardProps {
   candidate: Candidate;
@@ -16,10 +17,10 @@ export function CandidateCard({
   const allowed = candidate.decision === "ALLOW";
   return (
     <li className={`candidate ${allowed ? "allow" : "block"}`}>
-      <h3>
+      <h4>
         {candidate.rank}. {candidate.title ?? "Untitled product"}
         {isPick && <span className="pick"> Agent&apos;s pick</span>}
-      </h3>
+      </h4>
       <p>{candidate.merchant}</p>
       <p>
         Total {formatCents(candidate.total_cents)} (item{" "}
@@ -34,8 +35,15 @@ export function CandidateCard({
         {candidate.reason_codes.length > 0 &&
           `: ${candidate.reason_codes.join(", ")}`}
       </p>
+      {candidate.reason_codes.map((code) => (
+        <p key={code}>{CANDIDATE_REASONS[code]}</p>
+      ))}
       {allowed && canApprove && (
-        <button type="button" onClick={() => onApprove(candidate.id)}>
+        <button
+          type="button"
+          className="primary"
+          onClick={() => onApprove(candidate.id)}
+        >
           Approve {candidate.title}
         </button>
       )}

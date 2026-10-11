@@ -14,7 +14,7 @@ Version 1.0 · 9 Oct 2026
 
 | # | Layer | Location | Responsibility | May import |
 |---|---|---|---|---|
-| 1 | Client | `src/app/(ui)`, `src/components` | Mandate form, candidate list, approval, PayPal buttons, AG Grid audit table | API over HTTP only |
+| 1 | Client | `src/app/(ui)`, `src/components` | Store catalog, agent conversation, approval, PayPal buttons, AG Grid audit table | API over HTTP only; the product search boundary for FR-028 |
 | 2 | API | `src/app/api` | Session, origin check, rate limit, strict validation, idempotency, error envelope, orchestration | Agent, Policy, Payment, Audit, DB |
 | 3 | Agent service | `src/agent` | Model adapter, mandate parsing, product search, sanitising, ranking | Policy (types only), Zod, AI SDK |
 | 4 | Policy engine | `src/policy` | Budget extraction, mandate, candidate, approval, order and capture rules | **Nothing** outside `src/policy` |
@@ -29,6 +29,7 @@ Shared: `src/audit` (the only writer of audit events), `src/db` (schema, migrati
 - The agent service never writes decisions and never calls the payment service.
 - The payment service is called only from the API layer, and only after a policy ALLOW at that stage.
 - The client never sends amounts, decisions or product facts.
+- The page's server component may read the product source through the agent service's search boundary, for display only (FR-028).
 
 ## 2. Component diagram
 
@@ -269,11 +270,19 @@ A PayPal 5xx or network error leaves the order `CREATED`. `CAPTURED` and `FAILED
 
 ## 6. Client
 
-One route, `/`. Three regions:
+One route, `/`. A header shows the product name and a "Sandbox" label. Below it are three regions. The store and agent panels sit side by side at 768 px and wider, and stack below that.
 
-1. **Mandate panel:** labelled text area, submit, optional sample mandates (FR-027), error message area.
-2. **Result panel:** parsed constraints (budget, deadline, exclusions); candidate cards in rank order showing title, merchant, total with breakdown, delivery date, rationale, decision text and reason codes; Approve on ALLOW cards; Decline for the mandate; PayPal button after approval; settled confirmation with PayPal order ID.
-3. **Audit panel:** AG Grid Community table. Columns: seq, time, actor, event, decision, reason codes, product, amount, PayPal order ID. New rows are added with grid transactions from the polled cursor.
+1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only.
+2. **Agent panel:** a conversation thread and a composer.
+   - The composer has a labelled text field, a send control and the sample mandates (FR-027).
+   - The thread shows, in order: the user's mandate as a message; the parsed constraints (budget, deadline, exclusions); candidate cards in rank order, each with title, merchant, total with breakdown, delivery date, rationale, decision text, reason codes and a plain-language reason; Approve on ALLOW cards and Decline for the mandate; the PayPal button after approval; a settled message with the PayPal order ID.
+   - Errors appear in the thread as an agent message announced to assistive technology.
+   - The thread holds one mandate. Sending a new mandate starts a new thread.
+3. **Audit panel:** AG Grid Community table, full width below the other two and always visible. Columns: seq, time, actor, event, decision, reason codes, product, amount, PayPal order ID. New rows are added with grid transactions from the polled cursor.
+
+The agent answers once per mandate. There is no follow-up conversation.
+
+Styling uses the system font stack and no external fonts or images, so the Content-Security-Policy is unchanged. PayPal's name and marks appear only inside PayPal's own SDK button and popup.
 
 The client holds one idempotency key per approval for order creation and one per order for capture, and reuses it on retry. It generates a new order-creation key only after an order reaches `FAILED`.
 

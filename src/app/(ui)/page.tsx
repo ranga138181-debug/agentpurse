@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { AuditTable } from "@/components/AuditTable";
 import { MandateApp } from "@/components/MandateApp";
+import { StorePanel } from "@/components/StorePanel";
 import "./styles.css";
 
 export default async function Home() {
@@ -8,9 +9,15 @@ export default async function Home() {
   const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <main>
-      <h1>AgentPurse</h1>
-      <p>AI proposes. Policy engine decides. You approve. PayPal settles.</p>
-      <MandateApp nonce={nonce} />
+      <header>
+        <h1>AgentPurse demo store</h1>
+        <span className="badge">Sandbox</span>
+        <p>AI proposes. Policy engine decides. You approve. PayPal settles.</p>
+      </header>
+      <div className="panels">
+        <MandateApp nonce={nonce} />
+        <StorePanel />
+      </div>
       <AuditTable />
     </main>
   );

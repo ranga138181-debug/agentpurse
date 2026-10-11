@@ -67,3 +67,35 @@ test("E2E-007 at 360 px there is no horizontal page scroll and approve and pay a
   await expectReachable(pay);
   await expectNoHorizontalScroll(page);
 });
+
+test("E2E-009 the store panel lists the 20 fixture products as plain text", async ({
+  page,
+}) => {
+  let dialogs = 0;
+  page.on("dialog", async (dialog) => {
+    dialogs += 1;
+    await dialog.dismiss();
+  });
+  await page.goto("/");
+
+  const tiles = page
+    .getByRole("region", { name: "Store" })
+    .getByRole("listitem");
+  await expect(tiles).toHaveCount(20);
+  const candle = tiles.filter({ hasText: "Scented Candle Gift Set" });
+  await expect(candle).toContainText("home");
+  await expect(candle).toContainText("$24.99");
+  await expect(candle).toContainText("$4.99 shipping");
+  await expect(tiles.filter({ hasText: "Silk Scarf" })).toContainText(
+    "Free shipping",
+  );
+  await expect(tiles.filter({ hasText: "Out of stock" })).not.toHaveCount(0);
+  await expect(tiles.getByText("Phone Case", { exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Store" })).not.toContainText(
+    "onerror",
+  );
+  await expect(
+    page.getByRole("region", { name: "Store" }).getByRole("button"),
+  ).toHaveCount(0);
+  expect(dialogs).toBe(0);
+});
