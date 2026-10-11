@@ -12,6 +12,16 @@ const REASONS: Record<string, string> = {
   DEADLINE_TOO_FAR: "The delivery deadline is more than 60 days away.",
 };
 
+export const CANDIDATE_REASONS: Record<string, string> = {
+  INCOMPLETE_PRODUCT_DATA: "Some product details are missing.",
+  CURRENCY_MISMATCH: "The price is not in US dollars.",
+  OVER_BUDGET: "The total is over your budget.",
+  OUT_OF_STOCK: "This product is out of stock.",
+  LATE_DELIVERY: "It would arrive after your deadline.",
+  RESTRICTED_CATEGORY: "This category of product is restricted.",
+  EXCLUDED_TERM: "It matches something you excluded.",
+};
+
 const CODES: Record<string, string> = {
   VALIDATION_ERROR: "Enter a mandate of 1 to 500 characters.",
   RATE_LIMITED: "Too many requests. Wait a moment and try again.",

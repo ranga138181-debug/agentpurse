@@ -6,9 +6,16 @@ test("E2E-002 an over-budget product is blocked in the UI and through the API", 
 }) => {
   await openProposed(page, "Headphones, max $50");
 
+  const thread = page.getByRole("log", { name: "Conversation" });
+  await expect(thread.locator("> *").first()).toHaveText("Headphones, max $50");
+  await expect(thread.locator("> *").first()).toHaveClass(/user/);
+  await expect(thread.getByRole("heading", { name: "Result" })).toBeVisible();
+  await expect(page.getByLabel("What should the agent buy")).toHaveValue("");
+
   const blocked = candidate(page, "Premium Studio Headphones");
   await expect(blocked).toContainText("BLOCK");
   await expect(blocked).toContainText("OVER_BUDGET");
+  await expect(blocked).toContainText("The total is over your budget.");
   await expect(blocked.getByRole("button")).toHaveCount(0);
   await expect(
     candidate(page, "Budget Earbuds").getByRole("button", { name: /Approve/ }),
