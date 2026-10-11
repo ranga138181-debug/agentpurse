@@ -18,7 +18,7 @@ Version 1.0 · 9 Oct 2026
 | Unit | `UT-` | every PR | pure logic |
 | Integration | `IT-` | every PR | API + database, fakes for model and PayPal |
 | End to end | `E2E-` | `main`, nightly, before release | browser through PayPal sandbox |
-| Eval | `EV-` | nightly from 6 Nov, before release | real model behaviour |
+| Eval | `EV-` | manually, before release | real model behaviour |
 | Other | `PERF-`, `REL-`, `CI-`, `SMOKE-`, `CHK-` | as stated | gates and checks |
 
 ## 2. Unit tests
