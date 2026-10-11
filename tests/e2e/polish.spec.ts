@@ -99,3 +99,26 @@ test("E2E-009 the store panel lists the 20 fixture products as plain text", asyn
   ).toHaveCount(0);
   expect(dialogs).toBe(0);
 });
+
+test("E2E-010 the impact summary starts at zero and counts the session's decisions", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const figure = (label: string) =>
+    page
+      .getByRole("region", { name: "Impact" })
+      .locator("div")
+      .filter({ hasText: label })
+      .locator("dd");
+  await expect(figure("Products checked")).toHaveText("0");
+  await expect(figure("Blocked by policy")).toHaveText("0");
+  await expect(figure("Over-budget spend stopped")).toHaveText("$0.00");
+  await expect(figure("Payments settled")).toHaveText("0");
+
+  await openProposed(page, "Headphones, max $50");
+
+  await expect(figure("Products checked")).toHaveText("3");
+  await expect(figure("Blocked by policy")).toHaveText("1");
+  await expect(figure("Over-budget spend stopped")).toHaveText("$199.00");
+  await expect(figure("Payments settled")).toHaveText("0");
+});
