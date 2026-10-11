@@ -103,6 +103,7 @@ Version 1.0 · 9 Oct 2026
 | E2E-006 | NFR-004 | axe scan in empty, proposed, approved, settled and rejected states: no serious or critical violations; keyboard-only submit and approve |
 | E2E-007 | NFR-009 | 360 px viewport: no horizontal page scroll; approve and pay reachable |
 | E2E-008 | SEC-012 | "Phone case under $20": no alert dialog fires; the title renders as the text "Phone Case" |
+| E2E-009 | FR-028 | Store panel lists the 20 fixture products; P-019's tile shows the text "Phone Case" and no alert dialog fires |
 
 ## 5. Other checks
 
