@@ -252,6 +252,14 @@ Version 1.0 · 9 Oct 2026
 **Spec:** 02-ARCHITECTURE.md
 **Tests:** E2E-009
 
+### FR-029 — Impact summary · SHOULD · M8
+**Behavior:** The main screen shows four live figures for the session, computed from the audit events the client has received: products checked (`POLICY_DECISION` events), blocked by policy (`POLICY_DECISION` events with decision `BLOCK`), over-budget spend stopped (the sum of `total_cents` over `POLICY_DECISION` events whose reason codes include `OVER_BUDGET`) and payments settled (`ORDER_CAPTURED` events).
+**Acceptance:**
+- Given a new session, When the screen loads, Then the figures are 0, 0, $0.00 and 0.
+- Given "Headphones, max $50" is proposed, When the audit events arrive, Then the figures are 3 checked, 1 blocked, $199.00 stopped and 0 settled.
+**Spec:** 02-ARCHITECTURE.md
+**Tests:** UT-IMP-001, E2E-010
+
 ---
 
 ## Non-functional requirements

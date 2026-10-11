@@ -84,6 +84,7 @@ Recorded at 1080p on the production URL. Audit table visible throughout.
 1. **AgentPurse**: one-line description and the four-part principle.
 2. **Links**: live demo, demo video, Devpost page.
 3. **The problem**: three sentences.
+   - **Why this matters for PayPal**: one paragraph on agentic commerce and buyer trust. Benefits are stated as intended, not as measured results.
 4. **How it works**: the seven steps from the PRD; architecture diagram.
 5. **AI tool used**: the model and provider used in the demo, what it does (parse and rank), what it is not allowed to do, and how to swap it (`AI_PROVIDER`, `AI_MODEL`). State any AI coding assistant used to build the project.
 6. **PayPal integration**: Orders v2 create and capture in sandbox, idempotency with `PayPal-Request-Id`, capture-time verification, webhooks if shipped.

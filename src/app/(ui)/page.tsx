@@ -1,7 +1,6 @@
 import { headers } from "next/headers";
-import { AuditTable } from "@/components/AuditTable";
-import { MandateApp } from "@/components/MandateApp";
-import { StorePanel } from "@/components/StorePanel";
+import { listCatalog } from "@/agent/search";
+import { Shell } from "@/components/Shell";
 import "./styles.css";
 
 export default async function Home() {
@@ -10,15 +9,26 @@ export default async function Home() {
   return (
     <main>
       <header>
-        <h1>AgentPurse demo store</h1>
-        <span className="badge">Sandbox</span>
-        <p>AI proposes. Policy engine decides. You approve. PayPal settles.</p>
+        <svg viewBox="0 0 32 32" width="36" height="36" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="currentColor" />
+          <path
+            d="M8 12h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2zM8 12l11-3v3M20 17.5h1"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <div>
+          <h1>AgentPurse demo store</h1>
+          <p>
+            AI proposes. Policy engine decides. You approve. PayPal settles.
+          </p>
+        </div>
+        <span className="badge">Sandbox, no real money</span>
       </header>
-      <div className="panels">
-        <MandateApp nonce={nonce} />
-        <StorePanel />
-      </div>
-      <AuditTable />
+      <Shell nonce={nonce} products={listCatalog()} />
     </main>
   );
 }

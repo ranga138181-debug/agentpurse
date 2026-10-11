@@ -270,19 +270,19 @@ A PayPal 5xx or network error leaves the order `CREATED`. `CAPTURED` and `FAILED
 
 ## 6. Client
 
-One route, `/`. A header shows the product name and a "Sandbox" label. Below it are three regions. The store and agent panels sit side by side at 768 px and wider, and stack below that.
+One route, `/`. A header shows the product name and a "Sandbox" label. Under it is the impact summary (FR-029). Below that are three regions. The store and agent panels sit side by side at 768 px and wider, and stack below that.
 
-1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only.
+1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only. Each tile shows an icon for its category, and the tile of the picked or approved product is outlined.
 2. **Agent panel:** a conversation thread and a composer.
    - The composer has a labelled text field, a send control and the sample mandates (FR-027).
-   - The thread shows, in order: the user's mandate as a message; the parsed constraints (budget, deadline, exclusions); candidate cards in rank order, each with title, merchant, total with breakdown, delivery date, rationale, decision text, reason codes and a plain-language reason; Approve on ALLOW cards and Decline for the mandate; the PayPal button after approval; a settled message with the PayPal order ID.
+   - The thread shows, in order: the user's mandate as a message; the parsed constraints (budget, deadline, exclusions); candidate cards in rank order, each with title, merchant, total with breakdown, delivery date, rationale, decision text, reason codes and a plain-language reason; Approve on ALLOW cards and Decline for the mandate; a BLOCK card is a compact row showing rank, title, total, decision text, reason codes and the plain-language reason, which expands to the remaining details; the PayPal button after approval; a settled message with the PayPal order ID.
    - Errors appear in the thread as an agent message announced to assistive technology.
    - The thread holds one mandate. Sending a new mandate starts a new thread.
 3. **Audit panel:** AG Grid Community table, full width below the other two and always visible. Columns: seq, time, actor, event, decision, reason codes, product, amount, PayPal order ID. New rows are added with grid transactions from the polled cursor.
 
 The agent answers once per mandate. There is no follow-up conversation.
 
-Styling uses the system font stack and no external fonts or images, so the Content-Security-Policy is unchanged. PayPal's name and marks appear only inside PayPal's own SDK button and popup.
+Styling uses the system font stack and no external fonts or images (icons are inline SVG in the page), so the Content-Security-Policy is unchanged. PayPal's name and marks appear only inside PayPal's own SDK button and popup.
 
 The client holds one idempotency key per approval for order creation and one per order for capture, and reuses it on retry. It generates a new order-creation key only after an order reaches `FAILED`.
 

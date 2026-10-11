@@ -14,6 +14,12 @@ The demo runs on Render's free plan. After 15 minutes without traffic the instan
 
 AI agents can already find and choose products, but nobody sensible hands one a payment method. A language model can be argued, tricked or prompt-injected into spending more than it was told to. AgentPurse keeps the model out of the money path: it may suggest, but only deterministic code and a human can let a payment happen.
 
+## Why this matters for PayPal
+
+Agentic commerce only grows if buyers trust an agent with a payment method. AgentPurse is a control layer in front of PayPal Orders: a spending limit the model cannot change, explicit human approval, an exact-amount check before capture, and an audit record of every decision. It is designed to make agent checkouts acceptable to buyers and merchants, and to reduce the unauthorized-purchase disputes that agent errors would otherwise cause. These are the intended benefits; they have not been measured on live PayPal traffic.
+
+The app shows its own effect for each session in a summary at the top of the page: products checked, purchases blocked by policy, over-budget spend stopped, and payments settled.
+
 ## How it works
 
 1. The user types a plain-English mandate, for example "Gift for mom, max $40, delivered by Friday".

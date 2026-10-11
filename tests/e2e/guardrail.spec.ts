@@ -13,9 +13,21 @@ test("E2E-002 an over-budget product is blocked in the UI and through the API", 
   await expect(page.getByLabel("What should the agent buy")).toHaveValue("");
 
   const blocked = candidate(page, "Premium Studio Headphones");
-  await expect(blocked).toContainText("BLOCK");
-  await expect(blocked).toContainText("OVER_BUDGET");
-  await expect(blocked).toContainText("The total is over your budget.");
+  const row = blocked.locator("summary");
+  await expect(row).toContainText("$199.00");
+  await expect(row).toContainText("BLOCK");
+  await expect(row).toContainText("OVER_BUDGET");
+  await expect(row).toContainText("The total is over your budget.");
+  await expect(blocked.getByText("Delivery:")).toBeHidden();
+  await row.click();
+  await expect(blocked.getByText("Delivery:")).toBeVisible();
+  const tiles = page
+    .getByRole("region", { name: "Store" })
+    .getByRole("listitem");
+  await expect(tiles.filter({ hasText: "Wireless Earbuds Pro" })).toHaveClass(
+    /picked/,
+  );
+  await expect(page.locator(".products .picked")).toHaveCount(1);
   await expect(blocked.getByRole("button")).toHaveCount(0);
   await expect(
     candidate(page, "Budget Earbuds").getByRole("button", { name: /Approve/ }),
@@ -40,10 +52,10 @@ test("E2E-002 an over-budget product is blocked in the UI and through the API", 
 
   expect(result.status).toBe(409);
   expect(result.body.error.code).toBe("POLICY_BLOCKED");
-  const row = auditRow(page, "APPROVAL_BLOCKED");
-  await expect(row).toBeVisible();
-  await expect(row).toContainText("BLOCK");
-  await expect(row).toContainText("OVER_BUDGET");
+  const auditBlocked = auditRow(page, "APPROVAL_BLOCKED");
+  await expect(auditBlocked).toBeVisible();
+  await expect(auditBlocked).toContainText("BLOCK");
+  await expect(auditBlocked).toContainText("OVER_BUDGET");
 });
 
 test("E2E-003 new audit rows appear within 2 seconds without a reload", async ({

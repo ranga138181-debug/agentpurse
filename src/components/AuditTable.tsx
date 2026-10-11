@@ -13,8 +13,10 @@ import { api, formatCents } from "./api";
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const POLL_INTERVAL_MS = 1000;
+// A stable reference: a new array on re-render would make the grid drop its rows.
+const NO_ROWS: never[] = [];
 
-interface AuditEvent {
+export interface AuditEvent {
   seq: number;
   ts: string;
   actor: string;
@@ -34,7 +36,16 @@ const COLUMNS: ColDef<AuditEvent>[] = [
   { headerName: "Time", field: "ts" },
   { headerName: "Actor", field: "actor", width: 110 },
   { headerName: "Event", field: "event_type", filter: true },
-  { headerName: "Decision", field: "decision", width: 140, filter: true },
+  {
+    headerName: "Decision",
+    field: "decision",
+    width: 140,
+    filter: true,
+    cellClassRules: {
+      allow: ({ value }) => value === "ALLOW",
+      block: ({ value }) => value === "BLOCK",
+    },
+  },
   {
     headerName: "Reason codes",
     valueGetter: ({ data }) => data?.reason_codes.join(", "),
@@ -56,7 +67,11 @@ const COLUMNS: ColDef<AuditEvent>[] = [
   },
 ];
 
-export function AuditTable() {
+interface AuditTableProps {
+  onEvents: (events: AuditEvent[]) => void;
+}
+
+export function AuditTable({ onEvents }: AuditTableProps) {
   const grid = useRef<GridApi<AuditEvent> | null>(null);
 
   useEffect(() => {
@@ -71,12 +86,13 @@ export function AuditTable() {
       }>(`/api/audit?after_seq=${cursor}`);
       if (result.ok && result.data.events.length > 0) {
         grid.current.applyTransaction({ add: result.data.events });
+        onEvents(result.data.events);
         cursor = result.data.next_after_seq;
       }
       polling = false;
     }, POLL_INTERVAL_MS);
     return () => clearInterval(timer);
-  }, []);
+  }, [onEvents]);
 
   return (
     <section aria-labelledby="audit-heading">
@@ -87,7 +103,7 @@ export function AuditTable() {
       <div className="audit-grid">
         <AgGridReact<AuditEvent>
           columnDefs={COLUMNS}
-          rowData={[]}
+          rowData={NO_ROWS}
           suppressOverlays={["noRows"]}
           animateRows={false}
           getRowId={({ data }) => String(data.seq)}
