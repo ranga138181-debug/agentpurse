@@ -55,6 +55,7 @@ Version 1.0 · 9 Oct 2026
 | UT-OPS-001 | NFR-005, SEC-007 | Log line fields; redaction of listed keys at depth |
 | UT-PAY-001 | SEC-013 | Startup fails unless `PAYPAL_ENV=sandbox`; base URL is the sandbox host |
 | UT-PAY-002 | FR-010 | Cents to PayPal value string (0, 5, 2998, 4000, 50000); breakdown sums to total |
+| UT-IMP-001 | FR-029 | Summary counts decisions, blocks, over-budget cents and captures from audit events; other events and null totals add nothing |
 
 ## 3. Integration tests
 
@@ -104,6 +105,7 @@ Version 1.0 · 9 Oct 2026
 | E2E-007 | NFR-009 | 360 px viewport: no horizontal page scroll; approve and pay reachable |
 | E2E-008 | SEC-012 | "Phone case under $20": no alert dialog fires; the title renders as the text "Phone Case" |
 | E2E-009 | FR-028 | Store panel lists the 20 fixture products; P-019's tile shows the text "Phone Case" and no alert dialog fires |
+| E2E-010 | FR-029 | New session shows 0, 0, $0.00, 0; after "Headphones, max $50" the summary shows 3 checked, 1 blocked, $199.00 stopped, 0 settled |
 
 ## 5. Other checks
 

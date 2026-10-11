@@ -28,8 +28,8 @@ Version 1.0 · 9 Oct 2026
 | FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Verified |
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Verified |
 | FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Verified |
-| FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Verified |
-| FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | Verified |
+| FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | In progress |
+| FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | In progress |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Verified |
 | FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | Verified |
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Verified |
@@ -37,19 +37,20 @@ Version 1.0 · 9 Oct 2026
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Verified |
 | FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Verified |
 | FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Verified |
-| FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Verified |
+| FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | In progress |
 | FR-026 | Channel3 search adapter | SHOULD | 05-AGENT-SPEC.md | IT-SRCH-001 | M8 | Cut |
-| FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Verified |
-| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
+| FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | In progress |
+| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | In progress |
+| FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | Not started |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | In progress |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
-| NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Verified |
+| NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | In progress |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Verified |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |
 | NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Done |
 | NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Verified |
-| NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Verified |
+| NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | In progress |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Verified |
 | SEC-002 | Catalog is the only source of product facts | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-010, EV-027 | M3 | Verified |
 | SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Verified |
@@ -61,7 +62,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Verified |
 | SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Verified |
 | SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Verified |
-| SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Verified |
+| SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | In progress |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Verified |
 | SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Verified |
 | SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Verified |
@@ -71,10 +72,10 @@ Version 1.0 · 9 Oct 2026
 
 | Type | MUST | SHOULD | COULD | Total |
 |---|---|---|---|---|
-| FR | 21 | 6 | 1 | 28 |
+| FR | 21 | 7 | 1 | 29 |
 | NFR | 8 | 1 | 0 | 9 |
 | SEC | 14 | 2 | 0 | 16 |
-| **All** | 43 | 9 | 1 | 53 |
+| **All** | 43 | 10 | 1 | 54 |
 
 ## By milestone
 
@@ -87,7 +88,7 @@ Version 1.0 · 9 Oct 2026
 | M5 | FR-016, FR-017, FR-025, NFR-004, SEC-012 |
 | M6 | SEC-008, SEC-011, SEC-015 |
 | M7 | NFR-001, NFR-002 |
-| M8 | FR-026, FR-027, FR-028, NFR-009; client redesign rework of FR-017 |
+| M8 | FR-026, FR-027, FR-028, FR-029, NFR-009; client redesign rework of FR-017 |
 
 ## Test to requirement index
 
@@ -106,6 +107,7 @@ Version 1.0 · 9 Oct 2026
 | E2E-007 | NFR-009 |
 | E2E-008 | SEC-012 |
 | E2E-009 | FR-028 |
+| E2E-010 | FR-029 |
 | EV-022 | SEC-004 |
 | EV-024 | SEC-004 |
 | EV-027 | SEC-002, SEC-003 |
@@ -175,3 +177,4 @@ Version 1.0 · 9 Oct 2026
 | UT-POL-012 | FR-009, FR-010, FR-013, FR-024 |
 | UT-POL-013 | NFR-003 |
 | UT-POL-014 | NFR-008 |
+| UT-IMP-001 | FR-029 |
