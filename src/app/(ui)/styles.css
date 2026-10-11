@@ -74,6 +74,35 @@ h4 {
     grid-template-columns: 1fr 1fr;
     align-items: start;
   }
+
+  .store {
+    order: -1;
+  }
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.products li {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.products p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.products .stock {
+  color: var(--block);
 }
 
 .thread {

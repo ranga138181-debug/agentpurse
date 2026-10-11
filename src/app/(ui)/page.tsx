@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { AuditTable } from "@/components/AuditTable";
 import { MandateApp } from "@/components/MandateApp";
+import { StorePanel } from "@/components/StorePanel";
 import "./styles.css";
 
 export default async function Home() {
@@ -15,6 +16,7 @@ export default async function Home() {
       </header>
       <div className="panels">
         <MandateApp nonce={nonce} />
+        <StorePanel />
       </div>
       <AuditTable />
     </main>

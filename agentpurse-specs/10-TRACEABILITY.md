@@ -40,7 +40,7 @@ Version 1.0 · 9 Oct 2026
 | FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | In progress |
 | FR-026 | Channel3 search adapter | SHOULD | 05-AGENT-SPEC.md | IT-SRCH-001 | M8 | Cut |
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | In progress |
-| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Not started |
+| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | In progress |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
