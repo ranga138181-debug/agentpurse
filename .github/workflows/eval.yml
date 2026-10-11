@@ -56,6 +56,7 @@ jobs:
       E2E_BASE_URL: ${{ vars.PRODUCTION_URL }}
       PAYPAL_BUYER_EMAIL: ${{ secrets.PAYPAL_BUYER_EMAIL }}
       PAYPAL_BUYER_PASSWORD: ${{ secrets.PAYPAL_BUYER_PASSWORD }}
+      REL_PACE_MS: 30000
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

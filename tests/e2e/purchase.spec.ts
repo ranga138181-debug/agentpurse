@@ -7,6 +7,14 @@ const password = process.env.PAYPAL_BUYER_PASSWORD;
 // Needs the PayPal sandbox buyer account, which is held in CI secrets.
 test.skip(!email || !password, "PayPal sandbox buyer credentials are absent");
 
+// REL-001 repeats this test against production, where the model provider limits requests per minute.
+test.afterEach(
+  () =>
+    new Promise((resolve) =>
+      setTimeout(resolve, Number(process.env.REL_PACE_MS ?? 0)),
+    ),
+);
+
 test("E2E-001 an approved pick is paid in the PayPal sandbox and settles", async ({
   page,
 }) => {
