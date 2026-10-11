@@ -54,7 +54,9 @@ Builds the app, starts it against a CI Postgres with `AI_PROVIDER=fake` and PayP
 2. Poll production `/api/healthz` until it reports the commit SHA (timeout 10 minutes).
 3. SMOKE-001. On failure, the job fails and the rollback procedure in §6 applies.
 
-### 3.4 `eval.yml` — nightly from 6 Nov, and manual
+### 3.4 `eval.yml` — manual only
+
+Not scheduled: one eval run uses about a quarter of the model provider's free daily token allowance, which the public demo shares.
 
 Runs the 30-mandate eval in CI with the real model and a fixed clock (`07-TEST-PLAN.md` Assumption 4) and computes the §6.3 gates. Then runs PERF-001 against production. Uploads both reports as artifacts. A manual run can also start REL-001, which repeats E2E-001 twenty times against production and requires at least 19 to settle. Not a required check on pull requests (it costs model calls and is not deterministic).
 
