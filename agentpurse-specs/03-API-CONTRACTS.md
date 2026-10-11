@@ -133,6 +133,7 @@ Creates a mandate, parses it, searches, ranks and evaluates. Synchronous, 12 s d
 |---|---|---|
 | text | string | 1..500 after trim |
 | timezone | string | valid IANA zone |
+| source | string, optional | `demo` (default) or `live` (FR-026) |
 
 **201** → Mandate with status `PROPOSED` or `NO_ELIGIBLE_PRODUCT`.
 

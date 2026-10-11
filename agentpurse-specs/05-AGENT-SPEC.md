@@ -88,7 +88,23 @@ A product that fails this schema (for example a non-string ID) is dropped. Null 
 
 ### 4.4 Channel3 adapter (FR-026)
 
-Maps Channel3 results to the product schema. Any field Channel3 does not supply is null. No value is estimated or defaulted.
+Used when a mandate's `source` is `live`. Request: `POST https://api.trychannel3.com/v1/search` with the `x-api-key` header and body `{ query, limit }`.
+
+| Product field | Source |
+|---|---|
+| product_id | `c3-` followed by the Channel3 product ID |
+| title, description | Channel3, sanitised |
+| offer used | the cheapest offer that is in stock and priced in USD; if there is none, the cheapest offer of any kind |
+| merchant, product_url | that offer's retailer domain and link |
+| price_cents | that offer's price, converted from its decimal text without floating-point arithmetic; null if it has more than two decimals, is negative or is not a number |
+| currency, in_stock | that offer's currency; true only when availability is `InStock` |
+| category | Channel3's category name, lower-cased; replaced by `alcohol`, `tobacco`, `weapons`, `adult`, `pharmacy` or `gift_card` when the name contains a listed keyword for that restricted group |
+| shipping_cents | demo-store terms: 499 when price_cents is below 3500, otherwise 0; null when price_cents is null |
+| tax_cents | demo-store terms: 0 |
+| estimated_delivery_date | demo-store terms: today + 5 days |
+| image_url | null |
+
+A result with no offer has null price, currency, merchant and stock. The demo-store terms are shown on the page whenever live products are selected. AgentPurse is the sandbox merchant of record (`00-PRD.md` assumption 3), so these terms are its own and no Channel3 value is estimated.
 
 ## 5. Fixture catalog
 

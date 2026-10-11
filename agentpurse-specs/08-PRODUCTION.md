@@ -62,7 +62,7 @@ Runs the 30-mandate eval in CI with the real model and a fixed clock (`07-TEST-P
 
 ### 3.5 Secrets in GitHub Actions
 
-`PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, sandbox buyer email and password, `AI_API_KEY`, `RENDER_DEPLOY_HOOK_URL`. Workflows triggered from forks do not receive secrets; jobs that need them are skipped there.
+`PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, sandbox buyer email and password, `AI_API_KEY`, `CHANNEL3_API_KEY`, `RENDER_DEPLOY_HOOK_URL`. Workflows triggered from forks do not receive secrets; jobs that need them are skipped there.
 
 ## 4. Observability
 
