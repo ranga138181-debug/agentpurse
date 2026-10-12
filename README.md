@@ -146,7 +146,7 @@ Fill in `.env.local`:
 | `AI_PROVIDER` | `fake`, or `groq` with `AI_MODEL` and `AI_API_KEY` |
 | `DAILY_MANDATE_CAP` | for example `500` |
 
-Leave `SEARCH_PROVIDER` and `LOG_LEVEL` empty to use their defaults.
+Leave `LOG_LEVEL` empty to use its default. `CHANNEL3_API_KEY` is optional and enables live products.
 
 ```bash
 node --env-file=.env.local scripts/migrate.mjs

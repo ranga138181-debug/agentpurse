@@ -17,6 +17,7 @@ const serverEnv = {
   PAYPAL_WEBHOOK_ID: "WH-TEST",
   NEXT_PUBLIC_PAYPAL_CLIENT_ID: "test-client",
   DAILY_MANDATE_CAP: "1000000",
+  CHANNEL3_API_KEY: "test-channel3-key",
 };
 
 export default defineConfig({

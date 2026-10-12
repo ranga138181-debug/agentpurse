@@ -43,6 +43,7 @@ interface MandateDeps {
   dailyCap: number;
   searchProvider: string;
   createSearch: (today: string) => ProductSearch;
+  searchTimeoutMs?: number;
 }
 
 const REJECTION_CODES: Record<string, string> = {
@@ -52,7 +53,13 @@ const REJECTION_CODES: Record<string, string> = {
 
 export async function submitMandate(
   { text, timezone, sessionId, now, requestId, deadline }: MandateInput,
-  { adapter, dailyCap, searchProvider, createSearch }: MandateDeps,
+  {
+    adapter,
+    dailyCap,
+    searchProvider,
+    createSearch,
+    searchTimeoutMs = SEARCH_TIMEOUT_MS,
+  }: MandateDeps,
 ): Promise<Response> {
   // The cap bounds model spend, so it is checked before anything is stored or any model is called.
   const midnightUtc = new Date(
@@ -166,8 +173,8 @@ export async function submitMandate(
   let products: Product[];
   try {
     products = await withTimeout(
-      () => searchProducts(createSearch(today), constraints.query),
-      SEARCH_TIMEOUT_MS,
+      async () => searchProducts(createSearch(today), constraints.query),
+      searchTimeoutMs,
       deadline,
     );
   } catch (error) {

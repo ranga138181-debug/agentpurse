@@ -33,4 +33,5 @@ export const mandateRequestSchema = z.strictObject({
     return length >= 1 && length <= 500;
   }),
   timezone: z.string().refine(isIanaZone),
+  source: z.enum(["demo", "live"]).optional(),
 });

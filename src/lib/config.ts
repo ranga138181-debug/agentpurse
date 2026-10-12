@@ -12,7 +12,7 @@ export const config = z
     AI_PROVIDER: z.enum(AI_PROVIDERS),
     AI_MODEL: optional,
     AI_API_KEY: optional,
-    SEARCH_PROVIDER: z.enum(["fixture"]).default("fixture"),
+    CHANNEL3_API_KEY: z.string().min(1).optional(),
     PAYPAL_ENV: z.literal("sandbox"),
     PAYPAL_CLIENT_ID: z.string().min(1),
     PAYPAL_CLIENT_SECRET: z.string().min(1),
