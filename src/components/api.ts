@@ -3,6 +3,8 @@ export interface Candidate {
   product_id: string;
   title: string | null;
   merchant: string | null;
+  category: string | null;
+  in_stock: boolean | null;
   price_cents: number | null;
   shipping_cents: number | null;
   tax_cents: number | null;

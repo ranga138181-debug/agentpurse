@@ -400,6 +400,13 @@ legend {
   color: var(--muted);
 }
 
+fieldset label {
+  display: inline-block;
+  width: auto;
+  margin: 0.25rem 1rem 0 0;
+  font-weight: 400;
+}
+
 fieldset button {
   min-height: 0;
   margin-top: 0.25rem;

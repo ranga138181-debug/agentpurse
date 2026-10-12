@@ -10,9 +10,10 @@ import { MandateApp } from "./MandateApp";
 interface ShellProps {
   nonce?: string;
   products: Product[];
+  liveTerms?: string;
 }
 
-export function Shell({ nonce, products }: ShellProps) {
+export function Shell({ nonce, products, liveTerms }: ShellProps) {
   const [impact, onEvents] = useReducer(addEvents, EMPTY_IMPACT);
   const figures = [
     ["Products checked", impact.checked],
@@ -37,7 +38,7 @@ export function Shell({ nonce, products }: ShellProps) {
         </dl>
       </section>
       <div className="panels">
-        <MandateApp nonce={nonce} products={products} />
+        <MandateApp nonce={nonce} products={products} liveTerms={liveTerms} />
       </div>
       <AuditTable onEvents={onEvents} />
     </>

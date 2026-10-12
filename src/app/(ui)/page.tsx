@@ -1,6 +1,8 @@
 import { headers } from "next/headers";
 import { listCatalog } from "@/agent/search";
+import { LIVE_TERMS } from "@/agent/search/channel3";
 import { Shell } from "@/components/Shell";
+import { config } from "@/lib/config";
 import "./styles.css";
 
 export default async function Home() {
@@ -28,7 +30,11 @@ export default async function Home() {
         </div>
         <span className="badge">Sandbox, no real money</span>
       </header>
-      <Shell nonce={nonce} products={listCatalog()} />
+      <Shell
+        nonce={nonce}
+        products={listCatalog()}
+        liveTerms={config.CHANNEL3_API_KEY ? LIVE_TERMS : undefined}
+      />
     </main>
   );
 }

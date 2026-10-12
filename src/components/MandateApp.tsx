@@ -17,11 +17,14 @@ const SAMPLES = [
 interface MandateAppProps {
   nonce?: string;
   products: Product[];
+  liveTerms?: string;
 }
 
-export function MandateApp({ nonce, products }: MandateAppProps) {
+export function MandateApp({ nonce, products, liveTerms }: MandateAppProps) {
   const [text, setText] = useState("");
   const [sent, setSent] = useState<string | null>(null);
+  const [live, setLive] = useState(false);
+  const [sentLive, setSentLive] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mandate, setMandate] = useState<Mandate | null>(null);
@@ -44,10 +47,12 @@ export function MandateApp({ nonce, products }: MandateAppProps) {
     event.preventDefault();
     setMandate(null);
     setSent(text);
+    setSentLive(live);
     setText("");
     return run("/api/mandates", {
       text,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      ...(live && { source: "live" }),
     });
   }
 
@@ -146,6 +151,29 @@ export function MandateApp({ nonce, products }: MandateAppProps) {
             placeholder="Gift for mom, max $40, delivered by Friday"
             onChange={(event) => setText(event.target.value)}
           />
+          {liveTerms && (
+            <fieldset>
+              <legend>Catalog</legend>
+              <label>
+                <input
+                  type="radio"
+                  name="source"
+                  checked={!live}
+                  onChange={() => setLive(false)}
+                />
+                Demo store
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="source"
+                  checked={live}
+                  onChange={() => setLive(true)}
+                />
+                Live products (Channel3)
+              </label>
+            </fieldset>
+          )}
           <fieldset>
             <legend>Sample mandates</legend>
             {SAMPLES.map((sample) => (
@@ -163,7 +191,11 @@ export function MandateApp({ nonce, products }: MandateAppProps) {
           </button>
         </form>
       </section>
-      <StorePanel products={products} pickedId={picked?.product_id} />
+      <StorePanel
+        tiles={live ? (sentLive && mandate?.candidates) || [] : products}
+        pickedId={picked?.product_id}
+        terms={live ? liveTerms : undefined}
+      />
     </>
   );
 }
