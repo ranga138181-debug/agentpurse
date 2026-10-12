@@ -257,6 +257,7 @@ Adding, removing or reordering a rule changes `policy_version` and requires a sp
 
 ## 10. Known limits
 
+- For live products the restricted-category rule depends on keywords in the product title and category path (`05-AGENT-SPEC.md` §4.4). This over-blocks harmless products, and a restricted product named without any keyword can still pass R-06.
 - The engine trusts the catalog snapshot. A wrong catalog price is out of its reach.
 - `deliver_by` and `exclude_terms` come from the model. A misparse can loosen them. The parsed values are shown to the user before approval (FR-017); the budget is not exposed to this risk (SEC-004).
 - R-07 is a substring match. A term given in plural form ("candles") will not match a singular title. The parse prompt asks for singular lower-case terms (`05-AGENT-SPEC.md` §3).

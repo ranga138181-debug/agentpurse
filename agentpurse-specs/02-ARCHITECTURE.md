@@ -272,9 +272,9 @@ A PayPal 5xx or network error leaves the order `CREATED`. `CAPTURED` and `FAILED
 
 One route, `/`. A header shows the product name and a "Sandbox" label. Under it is the impact summary (FR-029). Below that are three regions. The store and agent panels sit side by side at 768 px and wider, and stack below that.
 
-1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only. Each tile shows an icon for its category, and the tile of the picked or approved product is outlined.
+1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only. Each tile shows an icon for its category, and the tile of the picked or approved product is outlined. With live products selected, the panel lists the products returned for the current mandate in place of the fixture catalog, and shows the demo-store terms (`05-AGENT-SPEC.md` §4.4).
 2. **Agent panel:** a conversation thread and a composer.
-   - The composer has a labelled text field, a send control and the sample mandates (FR-027).
+   - The composer has a labelled text field, a send control and the sample mandates (FR-027). It also has a catalog choice, "Demo store" or "Live products (Channel3)", shown only when a Channel3 key is configured (FR-026). Demo store is the default.
    - The thread shows, in order: the user's mandate as a message; the parsed constraints (budget, deadline, exclusions); candidate cards in rank order, each with title, merchant, total with breakdown, delivery date, rationale, decision text, reason codes and a plain-language reason; Approve on ALLOW cards and Decline for the mandate; a BLOCK card is a compact row showing rank, title, total, decision text, reason codes and the plain-language reason, which expands to the remaining details; the PayPal button after approval; a settled message with the PayPal order ID.
    - Errors appear in the thread as an agent message announced to assistive technology.
    - The thread holds one mandate. Sending a new mandate starts a new thread.
@@ -323,8 +323,7 @@ Anything else requires a spec change (see `CLAUDE.md`).
 | `PAYPAL_WEBHOOK_ID` | no | webhook verification (FR-023) |
 | `AI_PROVIDER`, `AI_MODEL` | no | adapter selection |
 | `AI_API_KEY` | yes | provider key |
-| `SEARCH_PROVIDER` | no | `fixture` (default) or `channel3` |
-| `CHANNEL3_API_KEY` | yes | FR-026 only |
+| `CHANNEL3_API_KEY` | yes | optional; enables the live product source (FR-026) |
 | `DAILY_MANDATE_CAP` | no | SEC-015 only |
 | `LOG_LEVEL` | no | default `info` |
 | `RENDER_GIT_COMMIT` | no | deploy commit SHA, set automatically by Render; reported by `/api/healthz` (FR-020) |

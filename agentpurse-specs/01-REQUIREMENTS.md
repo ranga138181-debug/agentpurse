@@ -46,7 +46,7 @@ Version 1.0 · 9 Oct 2026
 ### FR-004 — Product search · MUST · M3
 **Behavior:** The system retrieves at most 10 products for the mandate query through the `ProductSearch` interface, normalised to the internal product schema. The fixture catalog adapter is the default.
 **Acceptance:**
-- Given `SEARCH_PROVIDER=fixture` and query "gift mom", When search runs, Then it returns at most 10 products ordered by tag-match count descending then product ID ascending.
+- Given the demo source and query "gift mom", When search runs, Then it returns at most 10 products ordered by tag-match count descending then product ID ascending.
 - Given search results, When returned, Then a `SEARCH_COMPLETED` audit event records the provider and the product IDs.
 **Spec:** 05-AGENT-SPEC.md
 **Tests:** UT-AGT-003, IT-API-003
@@ -229,13 +229,14 @@ Version 1.0 · 9 Oct 2026
 **Spec:** 02-ARCHITECTURE.md
 **Tests:** E2E-004
 
-### FR-026 — Channel3 search adapter · SHOULD · M8
-**Behavior:** With `SEARCH_PROVIDER=channel3`, product search uses Channel3 and maps results to the internal product schema. Fields Channel3 does not supply stay null.
+### FR-026 — Live product source (Channel3) · SHOULD · M8
+**Behavior:** A mandate may ask for live products. Search then uses Channel3 and maps each result to the internal product schema. Price, title, retailer and stock come from Channel3. Shipping, tax and delivery date come from the demo store's published terms. No Channel3 value is estimated.
 **Acceptance:**
 - Given a recorded Channel3 response, When mapped, Then each product validates against the product schema and passes through the sanitiser.
-- Given a mapped product with a null required field, When evaluated, Then the policy decision is BLOCK `INCOMPLETE_PRODUCT_DATA`.
-**Spec:** 05-AGENT-SPEC.md
-**Tests:** IT-SRCH-001
+- Given a result with no offer, or a price that is not a valid amount, When evaluated, Then the decision is BLOCK `INCOMPLETE_PRODUCT_DATA`.
+- Given `source` is `live` and no Channel3 key is configured, or Channel3 fails or times out, When the mandate is submitted, Then the response is 503 `SEARCH_UNAVAILABLE` and nothing is picked.
+**Spec:** 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md
+**Tests:** IT-SRCH-001, IT-SRCH-002, E2E-011
 
 ### FR-027 — Sample mandates · COULD · M8
 **Behavior:** The mandate form offers three sample mandates that fill the text field.

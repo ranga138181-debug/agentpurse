@@ -1,0 +1,556 @@
+{
+  "products": [
+    {
+      "id": "i70eUCR",
+      "title": "ATH-CKS50TW2 Wireless Earbuds",
+      "description": "The Audio-Technica ATH-CKS50TW2 are high-performance wireless earbuds designed for deep bass and versatility. They feature hybrid noise-cancelling technology and 9mm proprietary drivers to deliver clear, full-range audio. A unique Magnetic Switch™ design allows users to conserve power by snapping the earbuds together to turn them off. The earbuds are IP55 water-resistant and offer significant battery life, providing up to 25 hours of playback on a single charge, extending to 65 hours with the Qi wireless charging case. Users can further customize their experience via the Audio-Technica CONNECT app, managing EQ and ambience controls.",
+      "brands": [
+        {
+          "id": "qNRu",
+          "name": "Audio-Technica"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.trychannel3.com/ed16de2f-62f0-4f73-b6d8-417d4e575c07?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": null,
+          "is_main_image": true,
+          "shot_type": "hero",
+          "alt_text": "Two black wireless earbuds shown from different angles."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/e0488315-87f7-486b-8ff7-5b223e7a584b?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": null,
+          "is_main_image": false,
+          "shot_type": "in_use",
+          "alt_text": "Hands are opening the charging case of wireless earbuds."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/68f8afc3-a7e2-463a-9c35-5c11bc4cba21?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": null,
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Open charging case of wireless earbuds showing the inside."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/3e8add3f-cc83-4d29-be92-43f70c434fec?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": "https://cdn.trychannel3.com/cleaned/v1/3e8add3f-cc83-4d29-be92-43f70c434fec?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Two black wireless earbuds shown from different angles."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/c9af6bb9-38e4-441c-86f9-f35394d0fffc?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": null,
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Open charging case of black wireless earbuds showing inside."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/937aae8c-c259-42bb-9627-8b2128090484?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": "https://cdn.trychannel3.com/cleaned/v1/937aae8c-c259-42bb-9627-8b2128090484?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Two black wireless earbuds shown from different angles."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/7b4e083d-d71b-4660-8ecf-e67082fdfc20?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": "https://cdn.trychannel3.com/cleaned/v1/7b4e083d-d71b-4660-8ecf-e67082fdfc20?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "is_main_image": false,
+          "shot_type": "lifestyle",
+          "alt_text": "A pair of black wireless earbuds shown side by side."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/c64aecb2-fd44-4c9f-b60c-95bb9e725910?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": "https://cdn.trychannel3.com/cleaned/v1/c64aecb2-fd44-4c9f-b60c-95bb9e725910?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "is_main_image": false,
+          "shot_type": "lifestyle",
+          "alt_text": "A pair of black wireless earbuds shown side by side."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/6d2f33ea-0856-4683-b1ea-7628bdb15e6c?aid=01M4RD0FAG6AR6Z2YYVFB3NS6N&mid=K6RA",
+          "cleaned_url": null,
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Wireless earbud with case and charging cable shown."
+        }
+      ],
+      "category": {
+        "slug": "headphones",
+        "title": "Headphones",
+        "path": [
+          {
+            "slug": "electronics",
+            "title": "Electronics"
+          },
+          {
+            "slug": "audio",
+            "title": "Audio"
+          },
+          {
+            "slug": "audio-components",
+            "title": "Audio Components"
+          },
+          {
+            "slug": "headphones-headsets",
+            "title": "Headphones & Headsets"
+          },
+          {
+            "slug": "headphones",
+            "title": "Headphones"
+          }
+        ],
+        "has_children": true
+      },
+      "gender": null,
+      "age": null,
+      "materials": [],
+      "key_features": [
+        "Proprietary 9 mm drivers for clear, full-range audio with deep bass",
+        "Hybrid noise-cancelling",
+        "Up to 65 hours total playback (25h earbuds / 40h case)",
+        "Quick charge: 5 minutes for 90 minutes of use",
+        "Innovative magnetic switch for power off",
+        "IP5 water resistance",
+        "Qi wireless charging",
+        "Customizable companion app with EQ and low-latency mode",
+        "Dual high-performance MEMS mics and beamforming technology for clear calls",
+        "Hear-through control"
+      ],
+      "colors": [
+        {
+          "hex": "#1c2327",
+          "percentage": 0.5051
+        },
+        {
+          "hex": "#3b4951",
+          "percentage": 0.2473
+        },
+        {
+          "hex": "#61727a",
+          "percentage": 0.1351
+        },
+        {
+          "hex": "#98a6ac",
+          "percentage": 0.1125
+        }
+      ],
+      "offers": [
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "macys.com",
+          "price": {
+            "price": 159,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0.056,
+          "dimensions": null
+        },
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "bestbuy.com",
+          "price": {
+            "price": 159,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0.004,
+          "dimensions": null
+        },
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "crutchfield.ca",
+          "price": {
+            "price": 159,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0,
+          "dimensions": null
+        }
+      ],
+      "variants": null,
+      "structured_attributes": {
+        "device-interface": ["Bluetooth", "USB"],
+        "power-source": ["Rechargeable", "Battery-powered", "USB"],
+        "earphone-features": [
+          "Built-in microphone",
+          "Noise cancellation",
+          "Awareness mode",
+          "Waterproof",
+          "Volume control"
+        ],
+        "headphone-driver-technology": ["Dynamic"],
+        "battery-size": ["Built-in battery"],
+        "driver-technology": ["Dynamic driver"],
+        "ingress-protection-ip-rating": ["IP54", "IP55"],
+        "connectivity-technology": ["Bluetooth", "Wireless", "Wi-Fi"],
+        "battery-type": ["Rechargeable", "Contained-undetachable"],
+        "charging-interface-type": [
+          "Wireless charging",
+          "USB type-C",
+          "Micro USB"
+        ],
+        "noise-cancellation-technology": [
+          "Active noise cancellation (ANC)",
+          "Passive noise isolation"
+        ],
+        "headphone-style": ["Canal", "Earbuds"],
+        "audio-connectivity": ["Bluetooth", "USB"],
+        "maximum-bit-depth": ["16-bit"],
+        "pattern": ["Solid"],
+        "material": ["Silicone", "Plastic", "Synthetic"],
+        "microphone-type": ["Omnidirectional", "Built-in"]
+      },
+      "ratings": {
+        "value": 4.31,
+        "count": 8,
+        "source_count": 2
+      }
+    },
+    {
+      "id": "yzxjsUZ",
+      "title": "The Full Nest Bouquet & Wine Gift Set",
+      "description": "A romantic gift set featuring a vibrant bouquet of approximately 30 stems, including sunflowers, spray roses, delphiniums, stock, and veronica, arranged in a clear glass vase. The set is paired with a 750 mL bottle of Hill & Harbor California Pinot Noir red wine.",
+      "brands": [
+        {
+          "id": "5q6y",
+          "name": "FTD"
+        },
+        {
+          "id": "KwzZ",
+          "name": "Hill & Harbor"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.trychannel3.com/ad50e448-0a58-48f0-bba1-2c14d7d0f0d2?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=GshA",
+          "cleaned_url": "https://cdn.trychannel3.com/7e1ba7fa-5d78-464d-9e5c-bc15c46bb791?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=GshA",
+          "is_main_image": true,
+          "shot_type": "lifestyle",
+          "alt_text": "Vibrant bouquet of flowers and a bottle of red wine in a vase."
+        },
+        {
+          "url": "https://cdn.trychannel3.com/c2aa6083-9a21-4f6f-9d1b-21003da1f6c1?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=GshA",
+          "cleaned_url": "https://cdn.trychannel3.com/cleaned/v1/c2aa6083-9a21-4f6f-9d1b-21003da1f6c1?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=GshA",
+          "is_main_image": false,
+          "shot_type": "hero",
+          "alt_text": "Front view of a dark red wine bottle with a white label."
+        }
+      ],
+      "category": {
+        "slug": "gift-giving",
+        "title": "Gift Giving",
+        "path": [
+          {
+            "slug": "arts-entertainment",
+            "title": "Arts & Entertainment"
+          },
+          {
+            "slug": "party-celebration",
+            "title": "Party & Celebration"
+          },
+          {
+            "slug": "gift-giving",
+            "title": "Gift Giving"
+          }
+        ],
+        "has_children": true
+      },
+      "gender": null,
+      "age": null,
+      "materials": ["glass"],
+      "key_features": [
+        "Includes approximately 30 stems of florals and foliage",
+        "Includes Hill & Harbor California Pinot Noir (750 mL)",
+        "Comes with a clear glass vase",
+        "Includes floral food and care instructions",
+        "Fresh from the farm flowers with a 7-day guarantee"
+      ],
+      "colors": [
+        {
+          "hex": "#b8b6ae",
+          "percentage": 0.2694
+        },
+        {
+          "hex": "#130c0c",
+          "percentage": 0.2503
+        },
+        {
+          "hex": "#363532",
+          "percentage": 0.1275
+        },
+        {
+          "hex": "#e2e1d3",
+          "percentage": 0.1232
+        },
+        {
+          "hex": "#6d594d",
+          "percentage": 0.1166
+        },
+        {
+          "hex": "#8a968b",
+          "percentage": 0.1131
+        }
+      ],
+      "offers": [
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "ftd.com",
+          "price": {
+            "price": 125,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0.07,
+          "dimensions": null
+        }
+      ],
+      "variants": null,
+      "structured_attributes": {},
+      "ratings": null
+    },
+    {
+      "id": "o1zghKp",
+      "title": "Twas The Night Wine Glass Stemless Glass",
+      "description": "Celebrate the holiday season with a touch of humor using this stemless wine glass from the 'Twas The Night collection. This 17oz glass features the playful message, 'Even the Naughty Deserve Wine,' accented with festive holly and berry graphics. It comes complete with a coordinating gift box, making it an ideal present for friends and family who love Christmas celebrations.",
+      "brands": [
+        {
+          "id": "fQUw",
+          "name": "Evergreen"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.trychannel3.com/cb59a179-bc76-4b0e-ae25-2fa1eaf362af?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=c2Op",
+          "cleaned_url": "https://cdn.trychannel3.com/3f9f10f0-ebe5-4ab4-980a-368a12b535b4?aid=01M4RD0W24D2DFBSJ258CTKVBQ&mid=c2Op",
+          "is_main_image": true,
+          "shot_type": "hero",
+          "alt_text": "Clear stemless wine glass with holiday text and Santa hat design."
+        }
+      ],
+      "category": {
+        "slug": "drinkware",
+        "title": "Drinkware",
+        "path": [
+          {
+            "slug": "home-garden",
+            "title": "Home & Garden"
+          },
+          {
+            "slug": "kitchen-dining",
+            "title": "Kitchen & Dining"
+          },
+          {
+            "slug": "tableware",
+            "title": "Tableware"
+          },
+          {
+            "slug": "drinkware",
+            "title": "Drinkware"
+          }
+        ],
+        "has_children": true
+      },
+      "gender": null,
+      "age": null,
+      "materials": ["glass"],
+      "key_features": [
+        "Holds up to 17 oz.",
+        "Includes a coordinating gift box",
+        "Hand wash only",
+        "Features 'Even the Naughty Deserve Wine' text and holiday graphics"
+      ],
+      "colors": [
+        {
+          "hex": "#d2d3d2",
+          "percentage": 0.4173
+        },
+        {
+          "hex": "#080808",
+          "percentage": 0.2122
+        },
+        {
+          "hex": "#f7f8f8",
+          "percentage": 0.1137
+        },
+        {
+          "hex": "#a2a4a3",
+          "percentage": 0.1096
+        },
+        {
+          "hex": "#415e4a",
+          "percentage": 0.0892
+        },
+        {
+          "hex": "#5d1a1d",
+          "percentage": 0.058
+        }
+      ],
+      "offers": [
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "plowhearth.com",
+          "price": {
+            "price": 19,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0.035,
+          "dimensions": {
+            "length": {
+              "number": 3.75,
+              "unit": "in"
+            },
+            "width": {
+              "number": 3.75,
+              "unit": "in"
+            },
+            "height": {
+              "number": 4.72,
+              "unit": "in"
+            },
+            "weight": null
+          }
+        }
+      ],
+      "variants": null,
+      "structured_attributes": {
+        "cleaning-instructions": ["Hand wash only"],
+        "drinkware-insulation": ["Non-insulated"],
+        "drinkware-material": ["Glass"],
+        "drinkware-shape": ["Round"],
+        "handle-type": ["No handle"],
+        "pattern": ["Text", "Graphic"],
+        "tableware-material": ["Glass"]
+      },
+      "ratings": null
+    },
+    {
+      "id": "I95pCF8",
+      "title": "TOPRenddon Mother s Day Gift Ceramic Coffee Mug Tea Cup Flower",
+      "description": "Mother s Day Gift Ceramic Coffee Mug Tea Cup Flower Features: This ceramic coffee mug tea mug may be a gift specially designed for Mother s Day  suitable to express your love and gratitude to your mother. This mug may have decorations such as butterflies and flowers. These elements often symbolize beauty and warmth  which can add elegance and warmth to Mother s Day gifts. Since it is made of ceramic  this mug may have a texture and sophisticated appearance  making it suitable for display as a gift at home or in the office. This coffee mug tea cup can be used to drink coffee  tea or other drinks. It is highly functional and can meet different needs. Choosing such a ceramic cup with flower decoration as a Mother s Day gift will not let your mother feel your attentiveness and care  but also make her feel warm and happy while enjoying the drink. Product Description: Specification: Material:ceramics Size:9.5X8CM Package List: 1X cup Note: Please allow slight error due to the manual measurement. Thanks for your understanding. Monitors are not calibrated same  item color displayed in photos may be showing slightly different from the real . Please take the real one as standard.",
+      "brands": [
+        {
+          "id": "RW8Z",
+          "name": "Walmart"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.trychannel3.com/d7210af8-fce9-45c2-95da-79393353b9fe?aid=01M4RD0Y25CC3Z5QH48ZAQ4JKF&mid=BsaX",
+          "cleaned_url": "https://cdn.trychannel3.com/1489d91c-21e2-48b7-880c-b1f18f4442f6?aid=01M4RD0Y25CC3Z5QH48ZAQ4JKF&mid=BsaX",
+          "is_main_image": true,
+          "shot_type": "hero",
+          "alt_text": "Ceramic coffee mug with a blue ocean and seashell design featuring the word MOM."
+        }
+      ],
+      "category": {
+        "slug": "mugs",
+        "title": "Mugs",
+        "path": [
+          {
+            "slug": "home-garden",
+            "title": "Home & Garden"
+          },
+          {
+            "slug": "kitchen-dining",
+            "title": "Kitchen & Dining"
+          },
+          {
+            "slug": "tableware",
+            "title": "Tableware"
+          },
+          {
+            "slug": "drinkware",
+            "title": "Drinkware"
+          },
+          {
+            "slug": "mugs",
+            "title": "Mugs"
+          }
+        ],
+        "has_children": false
+      },
+      "gender": null,
+      "age": null,
+      "materials": ["ceramics", "ceramic"],
+      "key_features": [
+        "9.5X8CM size",
+        "Flower and butterfly decorations",
+        "Ceramic mug suitable for coffee, tea or other drinks",
+        "Great as a Mother’s Day gift",
+        "Warm and elegant design"
+      ],
+      "colors": [
+        {
+          "hex": "#b7c2c3",
+          "percentage": 0.2593
+        },
+        {
+          "hex": "#7e8280",
+          "percentage": 0.149
+        },
+        {
+          "hex": "#466062",
+          "percentage": 0.1386
+        },
+        {
+          "hex": "#fbfcfc",
+          "percentage": 0.1275
+        },
+        {
+          "hex": "#8c9fa1",
+          "percentage": 0.1228
+        },
+        {
+          "hex": "#274142",
+          "percentage": 0.1057
+        },
+        {
+          "hex": "#4c7b80",
+          "percentage": 0.0971
+        }
+      ],
+      "offers": [
+        {
+          "url": "https://buy.trychannel3.com/REDACTED",
+          "domain": "walmart.com",
+          "price": {
+            "price": 11.57,
+            "compare_at_price": null,
+            "currency": "USD"
+          },
+          "availability": "InStock",
+          "condition": "new",
+          "max_commission_rate": 0.098,
+          "dimensions": null
+        }
+      ],
+      "variants": null,
+      "structured_attributes": {
+        "cleaning-instructions": ["Dishwasher safe"],
+        "drinkware-insulation": ["Double wall"],
+        "drinkware-material": ["Ceramic"],
+        "drinkware-shape": ["Round"],
+        "handle-type": ["Long"],
+        "lid-type": ["Flip-top"],
+        "microwave-compatibility": ["Microwave safe"],
+        "pattern": ["Geometric"]
+      },
+      "ratings": null
+    }
+  ],
+  "next_page_token": null
+}

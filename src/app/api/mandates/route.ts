@@ -1,5 +1,6 @@
 import { createModelAdapter } from "@/agent/model";
 import { mandateRequestSchema } from "@/agent/schemas";
+import { liveSearch } from "@/agent/search/channel3";
 import { createFixtureSearch } from "@/agent/search/fixture";
 import { config } from "@/lib/config";
 import { createDeadline } from "@/lib/deadline";
@@ -19,13 +20,15 @@ export const POST = sessionRoute(
       requestId,
     );
     if (body instanceof Response) return body;
+    const { source, ...mandate } = body;
     return submitMandate(
-      { ...body, sessionId, now: new Date(), requestId, deadline },
+      { ...mandate, sessionId, now: new Date(), requestId, deadline },
       {
         adapter: createModelAdapter(config),
         dailyCap: config.DAILY_MANDATE_CAP,
-        searchProvider: config.SEARCH_PROVIDER,
-        createSearch: createFixtureSearch,
+        ...(source === "live"
+          ? liveSearch(config.CHANNEL3_API_KEY)
+          : { searchProvider: "fixture", createSearch: createFixtureSearch }),
       },
     );
   },

@@ -122,3 +122,36 @@ test("E2E-010 the impact summary starts at zero and counts the session's decisio
   await expect(figure("Over-budget spend stopped")).toHaveText("$199.00");
   await expect(figure("Payments settled")).toHaveText("0");
 });
+
+// Uses one real Channel3 search, so it runs only where the key is present.
+test("E2E-011 live products come from Channel3 with retailer names, decisions and the demo-store terms", async ({
+  page,
+}) => {
+  test.skip(!process.env.CHANNEL3_API_KEY, "No Channel3 key is configured");
+  await page.goto("/");
+  const store = page.getByRole("region", { name: "Store" });
+  await expect(store.getByRole("listitem")).toHaveCount(20);
+
+  await page.getByLabel("Live products (Channel3)").check();
+  await expect(store).toContainText("demo-store terms");
+  await expect(store.getByRole("listitem")).toHaveCount(0);
+  await openProposedLive(page, "Wireless earbuds, max $200");
+
+  const cards = page.locator("li.candidate");
+  await expect(cards.first()).toBeVisible();
+  await expect(cards.first()).toContainText(/ALLOW|BLOCK/);
+  await expect(cards.first()).toContainText(/[a-z0-9-]+\.[a-z]{2,}/);
+  await expect(store.getByRole("listitem")).toHaveCount(await cards.count());
+  await expect(auditRow(page, "SEARCH_COMPLETED")).toBeVisible();
+
+  await page.getByLabel("Demo store").check();
+  await expect(store.getByRole("listitem")).toHaveCount(20);
+});
+
+async function openProposedLive(page: Page, text: string) {
+  await page.getByLabel("What should the agent buy").fill(text);
+  await page.getByRole("button", { name: "Send" }).click();
+  await expect(page.getByRole("heading", { name: "Result" })).toBeVisible({
+    timeout: 15_000,
+  });
+}

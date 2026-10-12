@@ -146,7 +146,7 @@ Fill in `.env.local`:
 | `AI_PROVIDER` | `fake`, or `groq` with `AI_MODEL` and `AI_API_KEY` |
 | `DAILY_MANDATE_CAP` | for example `500` |
 
-Leave `SEARCH_PROVIDER` and `LOG_LEVEL` empty to use their defaults.
+Leave `LOG_LEVEL` empty to use its default. `CHANNEL3_API_KEY` is optional and enables live products.
 
 ```bash
 node --env-file=.env.local scripts/migrate.mjs
@@ -193,12 +193,14 @@ The specifications were written first and are in [`agentpurse-specs/`](agentpurs
 
 - **AG Grid** Community renders the live audit table, with filtering, sorting and CSV export.
 - **Render** hosts the web service and the Postgres database, deployed from a blueprint by the CI pipeline.
+- **Channel3** supplies live products. Choose "Live products (Channel3)" above the mandate box and the agent searches real retailer listings. Title, price, retailer and stock come from Channel3; the policy engine then checks each product exactly as it does for the demo store.
 
 ## Limitations
 
 - PayPal sandbox only. No real money moves and no goods ship.
 - USD only, one unit of one product per mandate, budgets up to $500.
-- Products come from a bundled fixture catalog of 20 items, not a live store.
+- The demo store is a bundled catalog of 20 items. Live products come from Channel3, which does not supply shipping, tax or delivery dates, so those follow the demo store's own published terms ($4.99 shipping, free from $35; no tax; delivery in 5 days). The sandbox purchase is made with AgentPurse as the merchant; nothing is ordered from the retailer.
+- For live products, restricted goods are detected by keywords in the title and category. This blocks some harmless products (a wine glass, for example) and can miss a restricted product that is named without any keyword.
 - The engine trusts the catalog's prices.
 - The delivery deadline and exclusions are parsed by the model, so a misparse can loosen them. They are shown to the user before approval. The budget is not exposed to this risk.
 - Exclusions are substring matches: "no candles" may not block a product titled "Candle".
