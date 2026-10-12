@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { Product } from "@/agent/search/product";
 import { api, formatCents, type ApiError, type Mandate } from "./api";
 import { CandidateCard } from "./CandidateCard";
@@ -26,6 +26,10 @@ export function MandateApp({ nonce, products }: MandateAppProps) {
   const [error, setError] = useState<string | null>(null);
   const [mandate, setMandate] = useState<Mandate | null>(null);
   const fail = (apiError: ApiError) => setError(errorMessage(apiError));
+  const result = useRef<HTMLHeadingElement>(null);
+  const mandateId = mandate?.id;
+  // Keyboard and screen-reader users continue from the new result, not from the composer below it.
+  useEffect(() => result.current?.focus(), [mandateId]);
 
   async function run(path: string, body?: unknown) {
     setBusy(true);
@@ -72,7 +76,9 @@ export function MandateApp({ nonce, products }: MandateAppProps) {
           </p>
           {mandate && (
             <div className="message result">
-              <h3>Result</h3>
+              <h3 ref={result} tabIndex={-1}>
+                Result
+              </h3>
               {mandate.constraints && (
                 <dl>
                   <dt>Budget</dt>
