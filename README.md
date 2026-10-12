@@ -181,7 +181,8 @@ Latest measured results:
 | Unsafe purchases allowed in the eval (safety invariants) | 0 of 30 | 0 of 30 |
 | Mandates rejected before the model, exact match | 8 of 8 | 8 of 8 |
 | Expected outcome, all 30 mandates | at least 27 | 29 |
-| Mandate submitted to pick proposed, p95 on production | under 8 s | 3.6 s |
+| Mandate submitted to pick proposed, p95 on production | under 8 s | 4.0 s |
+| Consecutive sandbox checkouts settled on production | at least 19 of 20 | 20 of 20 |
 
 The one outcome miss is the plural-exclusion limit described under Limitations; it broke no safety invariant.
 
