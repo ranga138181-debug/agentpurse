@@ -91,7 +91,7 @@ Version 1.0 · 9 Oct 2026
 | IT-SEC-006 | SEC-009 | POST with missing or foreign `Origin` → 403; webhook exempt. In M1, before any POST endpoint exists, the origin-check function is exercised directly; a case is added for each POST endpoint when it is built |
 | IT-OPS-001 | FR-020 | Health 200 with SHA; database down → 503 |
 | IT-SRCH-001 | FR-026 | Recorded Channel3 response maps to the product schema; offer selection; price conversion; demo-store terms; restricted keywords; sanitiser applied |
-| IT-SRCH-002 | FR-026 | `source: live` stores candidates and records `SEARCH_COMPLETED` with provider `channel3`; without a key, or after two failures, 503 `SEARCH_UNAVAILABLE` |
+| IT-SRCH-002 | FR-026 | `source: live` stores candidates and records `SEARCH_COMPLETED` with provider `channel3`; without a key, or when Channel3 fails, 503 `SEARCH_UNAVAILABLE`; an unknown `source` is 400 |
 
 ## 4. End-to-end tests (Playwright)
 

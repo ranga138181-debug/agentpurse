@@ -98,11 +98,13 @@ Used when a mandate's `source` is `live`. Request: `POST https://api.trychannel3
 | merchant, product_url | that offer's retailer domain and link |
 | price_cents | that offer's price, converted from its decimal text without floating-point arithmetic; null if it has more than two decimals, is negative or is not a number |
 | currency, in_stock | that offer's currency; true only when availability is `InStock` |
-| category | Channel3's category name, lower-cased; replaced by `alcohol`, `tobacco`, `weapons`, `adult`, `pharmacy` or `gift_card` when the name contains a listed keyword for that restricted group |
+| category | Channel3's category title, lower-cased. If the product title or any part of the category path contains a restricted keyword as a whole word (singular or plural), the category is that keyword's restricted group instead |
 | shipping_cents | demo-store terms: 499 when price_cents is below 3500, otherwise 0; null when price_cents is null |
 | tax_cents | demo-store terms: 0 |
 | estimated_delivery_date | demo-store terms: today + 5 days |
 | image_url | null |
+
+Restricted keywords: `alcohol` (wine, beer, whiskey, whisky, vodka, liquor, champagne, tequila, spirits); `tobacco` (tobacco, cigarette, cigar, vape, nicotine); `weapons` (firearm, gun, rifle, pistol, ammunition, ammo); `adult` (erotic, sex); `pharmacy` (prescription, pharmacy, medication); `gift_card` (gift card, gift certificate). This over-blocks harmless products whose names contain these words.
 
 A result with no offer has null price, currency, merchant and stock. The demo-store terms are shown on the page whenever live products are selected. AgentPurse is the sandbox merchant of record (`00-PRD.md` assumption 3), so these terms are its own and no Channel3 value is estimated.
 
@@ -237,7 +239,7 @@ An empty result becomes null.
 | Budget | Value |
 |---|---|
 | Per model call timeout | 3.5 s |
-| Product search timeout | 2 s |
+| Product search timeout | 2 s for the demo source; 5 s for the live source (measured Channel3 responses took 2.0 to 2.5 s) |
 | Request deadline | 12 s from receipt |
 | Retries | One per model call, only if at least 3.5 s of the deadline remains. No retry for search |
 

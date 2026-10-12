@@ -234,7 +234,7 @@ Version 1.0 · 9 Oct 2026
 **Acceptance:**
 - Given a recorded Channel3 response, When mapped, Then each product validates against the product schema and passes through the sanitiser.
 - Given a result with no offer, or a price that is not a valid amount, When evaluated, Then the decision is BLOCK `INCOMPLETE_PRODUCT_DATA`.
-- Given `source` is `live` and no Channel3 key is configured, or Channel3 fails twice, When the mandate is submitted, Then the response is 503 `SEARCH_UNAVAILABLE` and nothing is picked.
+- Given `source` is `live` and no Channel3 key is configured, or Channel3 fails or times out, When the mandate is submitted, Then the response is 503 `SEARCH_UNAVAILABLE` and nothing is picked.
 **Spec:** 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md
 **Tests:** IT-SRCH-001, IT-SRCH-002, E2E-011
 
