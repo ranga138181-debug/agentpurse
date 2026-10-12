@@ -43,7 +43,7 @@ Version 1.0 · 9 Oct 2026
 | FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
 | FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | Verified |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
-| NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | In progress |
+| NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Verified |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Verified |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Verified |
