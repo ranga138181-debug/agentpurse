@@ -1,5 +1,10 @@
 import { expect, test } from "@playwright/test";
-import { auditRow, candidate, expectAccessible, openProposed } from "./support";
+import {
+  auditRow,
+  candidate,
+  expectAccessible,
+  submitMandate,
+} from "./support";
 
 const email = process.env.PAYPAL_BUYER_EMAIL;
 const password = process.env.PAYPAL_BUYER_PASSWORD;
@@ -18,7 +23,12 @@ test.afterEach(
 test("E2E-001 an approved pick is paid in the PayPal sandbox and settles", async ({
   page,
 }) => {
-  await openProposed(page, "Gift for mom, max $40");
+  await page.goto("/");
+  await submitMandate(page, "Gift for mom, max $40");
+  // Against production the real model answers; a mandate may take up to its 12 s request deadline.
+  await expect(page.getByRole("heading", { name: "Result" })).toBeVisible({
+    timeout: 15_000,
+  });
   await expect(page.locator("li.candidate .pick")).toHaveCount(1);
   const pick = candidate(page, "Agent's pick");
   await pick.getByRole("button", { name: /Approve/ }).click();
