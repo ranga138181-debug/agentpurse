@@ -163,6 +163,7 @@ Version 1.0 · 9 Oct 2026
 - Given capture succeeds, When the screen updates, Then it shows a settled state with the PayPal order ID.
 - Given a rejected mandate, When rendered, Then the error message states which constraint is missing or invalid.
 - Given a submitted mandate, When the response arrives, Then the mandate text appears as the user's message and the result follows it in the thread.
+- Given the pick is not ranked first, When rendered, Then its card is shown first and keeps its rank number.
 - Given no answered mandate, When the limit card renders, Then it asks for a limit; Given a mandate with parsed constraints, Then it shows that budget.
 **Spec:** 02-ARCHITECTURE.md, 03-API-CONTRACTS.md
 **Tests:** E2E-001, E2E-002
@@ -263,10 +264,11 @@ Version 1.0 · 9 Oct 2026
 **Tests:** UT-IMP-001, E2E-010
 
 ### FR-030 — Passbook · SHOULD · M8
-**Behavior:** The passbook lists the six most recent notable audit events of the session, newest first, in plain language with the amount where the event carries one. Notable events and their wording: `PICK_PROPOSED` "Agent proposed <title>"; `POLICY_DECISION` with decision `BLOCK` "Blocked <title>" with the plain-language reason; `USER_APPROVED` "You approved <title>"; `USER_DECLINED` "You declined"; `APPROVAL_BLOCKED` and `ORDER_BLOCKED` "Blocked by policy"; `MANDATE_REJECTED` "Mandate rejected" with the plain-language reason; `ORDER_CREATED` "PayPal order created" with the PayPal order ID; `ORDER_CAPTURED` "Paid with PayPal". Other events are not listed.
+**Behavior:** The passbook lists the six most recent notable audit events of the session, newest first, in plain language with the amount where the event carries one. Notable events and their wording: `PICK_PROPOSED` "Agent proposed <title>"; `POLICY_DECISION` with decision `BLOCK` "Blocked <title>" with the plain-language reason, or, when one mandate has several, a single entry "Blocked <n> products" naming up to three of them; `USER_APPROVED` "You approved <title>"; `USER_DECLINED` "You declined"; `APPROVAL_BLOCKED` and `ORDER_BLOCKED` "Blocked by policy"; `MANDATE_REJECTED` "Mandate rejected" with the plain-language reason; `ORDER_CREATED` "PayPal order created" with the PayPal order ID; `ORDER_CAPTURED` "Paid with PayPal". Other events are not listed.
 **Acceptance:**
 - Given a new session, When the passbook renders, Then it says there is no activity yet.
 - Given "Headphones, max $50" is proposed, When the audit events arrive, Then the first entry is "Agent proposed Wireless Earbuds Pro" with $49.99, and "Blocked Premium Studio Headphones" with $199.00 is listed.
+- Given a mandate with three blocked products, When the audit events arrive, Then they appear as one entry "Blocked 3 products".
 **Spec:** 02-ARCHITECTURE.md
 **Tests:** UT-PASS-001, E2E-012
 
