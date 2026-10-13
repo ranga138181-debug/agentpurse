@@ -1,6 +1,6 @@
 import type { ApiError } from "./api";
 
-const REASONS: Record<string, string> = {
+export const MANDATE_REASONS: Record<string, string> = {
   BUDGET_MISSING:
     'No budget found. Add an amount with a currency symbol, for example "max $40".',
   BUDGET_AMBIGUOUS:
@@ -38,7 +38,7 @@ const CODES: Record<string, string> = {
 
 export function errorMessage(error: ApiError): string {
   const reasons = (error.details?.reason_codes ?? [])
-    .map((code) => REASONS[code])
+    .map((code) => MANDATE_REASONS[code])
     .filter(Boolean);
   return (
     reasons.join(" ") || CODES[error.code] || "Something went wrong. Try again."

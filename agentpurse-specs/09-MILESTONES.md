@@ -37,7 +37,7 @@ Each milestone adds its own criteria below.
 | M5 | Client | 31 Oct–3 Nov | FR-016, FR-017, FR-025, NFR-004, SEC-012 |
 | M6 | Hardening | 4–5 Nov | SEC-008, SEC-011, SEC-015 |
 | M7 | Verification | 6–8 Nov | NFR-001, NFR-002 |
-| M8 | Stretch and polish | 9–10 Nov | FR-026, FR-027, FR-028, FR-029, NFR-009; client redesign (rework of FR-017) |
+| M8 | Stretch and polish | 9–10 Nov | FR-026, FR-027, FR-028, FR-029, FR-030, NFR-009; client redesign (rework of FR-017) |
 | M9 | Submission | 11–12 Nov | none |
 
 ## Day by day

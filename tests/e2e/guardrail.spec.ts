@@ -4,7 +4,14 @@ import { auditRow, candidate, openProposed, submitMandate } from "./support";
 test("E2E-002 an over-budget product is blocked in the UI and through the API", async ({
   page,
 }) => {
+  await page.goto("/");
+  const limit = page.getByRole("region", {
+    name: "Your agent's spending limit",
+  });
+  await expect(limit).toContainText("State it in your mandate");
   await openProposed(page, "Headphones, max $50");
+  await expect(limit).toContainText("$50.00");
+  await expect(limit).toContainText("locked by you, not the AI");
 
   const thread = page.getByRole("log", { name: "Conversation" });
   await expect(thread.locator("> *").first()).toHaveText("Headphones, max $50");

@@ -270,19 +270,27 @@ A PayPal 5xx or network error leaves the order `CREATED`. `CAPTURED` and `FAILED
 
 ## 6. Client
 
-One route, `/`. A header shows the product name and a "Sandbox" label. Under it is the impact summary (FR-029). Below that are three regions. The store and agent panels sit side by side at 768 px and wider, and stack below that.
+One route, `/`, laid out like a consumer payments app. From top to bottom:
+
+- **Top bar:** the product name, in-page links to Home, Store, Passbook and Audit log, and a "Sandbox" label.
+- **Limit card:** shows "Your agent's spending limit". Before a mandate is answered it asks the user to state a limit in the mandate; once a mandate has parsed constraints it shows that mandate's budget and the words "locked by you, not the AI". The composer sits inside this card.
+- **Session card:** the impact summary (FR-029), beside the limit card at 768 px and wider.
+- **Agent panel and passbook (FR-030):** side by side at 768 px and wider.
+- **Store panel**, then the **audit panel**, each full width.
+
+Narrower than 768 px, everything stacks in that order.
 
 1. **Store panel:** the product catalog as a grid of tiles (FR-028). Tiles are display only. Each tile shows an icon for its category, and the tile of the picked or approved product is outlined. With live products selected, the panel lists the products returned for the current mandate in place of the fixture catalog, and shows the demo-store terms (`05-AGENT-SPEC.md` §4.4).
-2. **Agent panel:** a conversation thread and a composer.
-   - The composer has a labelled text field, a send control and the sample mandates (FR-027). It also has a catalog choice, "Demo store" or "Live products (Channel3)", shown only when a Channel3 key is configured (FR-026). Demo store is the default.
+2. **Agent panel:** a conversation thread. Its composer is in the limit card.
+   - The composer has a labelled text field, a send control and the sample mandates (FR-027), which are shown as three shortcuts, each with a category icon, a short label and the sample text. It also has a catalog choice, "Demo store" or "Live products (Channel3)", shown only when a Channel3 key is configured (FR-026). Demo store is the default.
    - The thread shows, in order: the user's mandate as a message; the parsed constraints (budget, deadline, exclusions); candidate cards in rank order, each with title, merchant, total with breakdown, delivery date, rationale, decision text, reason codes and a plain-language reason; Approve on ALLOW cards and Decline for the mandate; a BLOCK card is a compact row showing rank, title, total, decision text, reason codes and the plain-language reason, which expands to the remaining details; the PayPal button after approval; a settled message with the PayPal order ID.
    - Errors appear in the thread as an agent message announced to assistive technology.
    - The thread holds one mandate. Sending a new mandate starts a new thread.
-3. **Audit panel:** AG Grid Community table, full width below the other two and always visible. Columns: seq, time, actor, event, decision, reason codes, product, amount, PayPal order ID. New rows are added with grid transactions from the polled cursor.
+3. **Audit panel:** AG Grid Community table, full width at the bottom and always visible. Columns: seq, time, actor, event, decision, reason codes, product, amount, PayPal order ID. New rows are added with grid transactions from the polled cursor.
 
 The agent answers once per mandate. There is no follow-up conversation.
 
-Styling uses the system font stack and no external fonts or images (icons are inline SVG in the page), so the Content-Security-Policy is unchanged. PayPal's name and marks appear only inside PayPal's own SDK button and popup.
+Styling uses the system font stack and no external fonts or images (icons are inline SVG in the page), so the Content-Security-Policy is unchanged. PayPal's name appears as plain text where a payment is described; its marks appear only inside PayPal's own SDK button and popup. The design follows common payments-app patterns and copies no other product's interface.
 
 The client holds one idempotency key per approval for order creation and one per order for capture, and reuses it on retry. It generates a new order-creation key only after an order reaches `FAILED`.
 

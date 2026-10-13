@@ -29,7 +29,7 @@ Version 1.0 · 9 Oct 2026
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Verified |
 | FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Verified |
 | FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Verified |
-| FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | Verified |
+| FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | In progress |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Verified |
 | FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | Verified |
 | FR-020 | Health endpoint | MUST | 03-API-CONTRACTS.md | IT-OPS-001 | M1 | Verified |
@@ -42,6 +42,7 @@ Version 1.0 · 9 Oct 2026
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Verified |
 | FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
 | FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | Verified |
+| FR-030 | Passbook | SHOULD | 02-ARCHITECTURE.md | UT-PASS-001, E2E-012 | M8 | Verified |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Verified |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
@@ -72,10 +73,10 @@ Version 1.0 · 9 Oct 2026
 
 | Type | MUST | SHOULD | COULD | Total |
 |---|---|---|---|---|
-| FR | 21 | 7 | 1 | 29 |
+| FR | 21 | 8 | 1 | 30 |
 | NFR | 8 | 1 | 0 | 9 |
 | SEC | 14 | 2 | 0 | 16 |
-| **All** | 43 | 10 | 1 | 54 |
+| **All** | 43 | 11 | 1 | 55 |
 
 ## By milestone
 
@@ -88,7 +89,7 @@ Version 1.0 · 9 Oct 2026
 | M5 | FR-016, FR-017, FR-025, NFR-004, SEC-012 |
 | M6 | SEC-008, SEC-011, SEC-015 |
 | M7 | NFR-001, NFR-002 |
-| M8 | FR-026, FR-027, FR-028, FR-029, NFR-009; client redesign rework of FR-017 |
+| M8 | FR-026, FR-027, FR-028, FR-029, FR-030, NFR-009; client redesign rework of FR-017 |
 
 ## Test to requirement index
 
@@ -109,6 +110,7 @@ Version 1.0 · 9 Oct 2026
 | E2E-009 | FR-028 |
 | E2E-010 | FR-029 |
 | E2E-011 | FR-026 |
+| E2E-012 | FR-030 |
 | EV-022 | SEC-004 |
 | EV-024 | SEC-004 |
 | EV-027 | SEC-002, SEC-003 |
@@ -180,3 +182,4 @@ Version 1.0 · 9 Oct 2026
 | UT-POL-013 | NFR-003 |
 | UT-POL-014 | NFR-008 |
 | UT-IMP-001 | FR-029 |
+| UT-PASS-001 | FR-030 |

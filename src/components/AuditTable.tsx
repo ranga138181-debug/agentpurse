@@ -95,7 +95,7 @@ export function AuditTable({ onEvents }: AuditTableProps) {
   }, [onEvents]);
 
   return (
-    <section aria-labelledby="audit-heading">
+    <section aria-labelledby="audit-heading" id="audit" className="audit">
       <h2 id="audit-heading">Audit log</h2>
       <button type="button" onClick={() => grid.current?.exportDataAsCsv()}>
         Export CSV

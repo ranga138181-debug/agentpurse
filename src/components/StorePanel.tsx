@@ -19,7 +19,7 @@ interface StorePanelProps {
 
 export function StorePanel({ tiles, pickedId, terms }: StorePanelProps) {
   return (
-    <section aria-labelledby="store-heading" className="store">
+    <section aria-labelledby="store-heading" id="store" className="store">
       <h2 id="store-heading">Store</h2>
       {terms && <p className="hint">{terms}</p>}
       {terms && tiles.length === 0 && (
