@@ -57,10 +57,15 @@ test("E2E-006 a mandate can be submitted and a candidate approved with the keybo
     throw new Error(`Could not reach "${text}" with the Tab key`);
   };
 
-  await page.keyboard.press("Tab");
-  await expect(page.getByLabel("What should the agent buy")).toBeFocused();
+  // The section links in the top bar come first in the tab order.
+  const field = page.getByLabel("What should the agent buy");
+  for (let presses = 0; presses < 10; presses++) {
+    await page.keyboard.press("Tab");
+    if (await field.evaluate((node) => node === document.activeElement)) break;
+  }
+  await expect(field).toBeFocused();
   await page.keyboard.type("Headphones, max $50");
-  await tabTo("Send");
+  await tabTo("Ask agent");
   await page.keyboard.press("Enter");
   await expect(page.getByRole("heading", { name: "Result" })).toBeVisible();
 

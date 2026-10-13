@@ -4,14 +4,23 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { Product } from "@/agent/search/product";
 import { api, formatCents, type ApiError, type Mandate } from "./api";
 import { CandidateCard } from "./CandidateCard";
+import { CategoryIcon } from "./CategoryIcon";
 import { errorMessage } from "./messages";
 import { PayPalCheckout } from "./PayPalCheckout";
 import { StorePanel } from "./StorePanel";
 
 const SAMPLES = [
-  "Gift for mom, max $40, delivered by Friday",
-  "Headphones, max $50",
-  "Vegan wallet for dad, max $50, nothing leather",
+  {
+    label: "Gifts",
+    icon: "flowers",
+    text: "Gift for mom, max $40, delivered by Friday",
+  },
+  { label: "Electronics", icon: "electronics", text: "Headphones, max $50" },
+  {
+    label: "Fashion",
+    icon: "accessories",
+    text: "Vegan wallet for dad, max $50, nothing leather",
+  },
 ];
 
 interface MandateAppProps {
@@ -70,6 +79,73 @@ export function MandateApp({ nonce, products, liveTerms }: MandateAppProps) {
 
   return (
     <>
+      <section aria-labelledby="limit-heading" className="limit">
+        <h2 id="limit-heading">Your agent&apos;s spending limit</h2>
+        {mandate?.constraints ? (
+          <p className="amount">
+            <strong>{formatCents(mandate.constraints.max_total_cents)}</strong>{" "}
+            locked by you, not the AI
+          </p>
+        ) : (
+          <p className="amount">
+            State it in your mandate, for example &quot;max $40&quot;.
+          </p>
+        )}
+        <form onSubmit={submit}>
+          <label htmlFor="mandate-text">
+            What should the agent buy, and for how much?
+          </label>
+          <textarea
+            id="mandate-text"
+            value={text}
+            maxLength={500}
+            rows={2}
+            placeholder="Gift for mom, max $40, delivered by Friday"
+            onChange={(event) => setText(event.target.value)}
+          />
+          <button type="submit" className="primary" disabled={busy}>
+            Ask agent
+          </button>
+          {liveTerms && (
+            <fieldset>
+              <legend>Catalog</legend>
+              <label>
+                <input
+                  type="radio"
+                  name="source"
+                  checked={!live}
+                  onChange={() => setLive(false)}
+                />
+                Demo store
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="source"
+                  checked={live}
+                  onChange={() => setLive(true)}
+                />
+                Live products (Channel3)
+              </label>
+            </fieldset>
+          )}
+          <fieldset>
+            <legend>Sample mandates</legend>
+            {SAMPLES.map((sample) => (
+              <button
+                key={sample.label}
+                type="button"
+                className="shortcut"
+                onClick={() => setText(sample.text)}
+              >
+                <CategoryIcon category={sample.icon} />
+                <strong>{sample.label}</strong>
+                <span>{sample.text}</span>
+              </button>
+            ))}
+          </fieldset>
+        </form>
+      </section>
       <section aria-labelledby="agent-heading" className="agent">
         <h2 id="agent-heading">Shopping agent</h2>
         <p className="hint">Proposes only. You approve.</p>
@@ -139,57 +215,6 @@ export function MandateApp({ nonce, products, liveTerms }: MandateAppProps) {
             </div>
           )}
         </div>
-        <form onSubmit={submit}>
-          <label htmlFor="mandate-text">
-            What should the agent buy, and for how much?
-          </label>
-          <textarea
-            id="mandate-text"
-            value={text}
-            maxLength={500}
-            rows={2}
-            placeholder="Gift for mom, max $40, delivered by Friday"
-            onChange={(event) => setText(event.target.value)}
-          />
-          {liveTerms && (
-            <fieldset>
-              <legend>Catalog</legend>
-              <label>
-                <input
-                  type="radio"
-                  name="source"
-                  checked={!live}
-                  onChange={() => setLive(false)}
-                />
-                Demo store
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="source"
-                  checked={live}
-                  onChange={() => setLive(true)}
-                />
-                Live products (Channel3)
-              </label>
-            </fieldset>
-          )}
-          <fieldset>
-            <legend>Sample mandates</legend>
-            {SAMPLES.map((sample) => (
-              <button
-                key={sample}
-                type="button"
-                onClick={() => setText(sample)}
-              >
-                {sample}
-              </button>
-            ))}
-          </fieldset>
-          <button type="submit" className="primary" disabled={busy}>
-            Send
-          </button>
-        </form>
       </section>
       <StorePanel
         tiles={live ? (sentLive && mandate?.candidates) || [] : products}

@@ -28,7 +28,7 @@ Version 1.0 · 9 Oct 2026
 | FR-013 | One settlement per mandate | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-012, IT-PAY-006 | M4 | Verified |
 | FR-014 | Append audit events | MUST | 02-ARCHITECTURE.md | UT-AUD-001 | M1 | Verified |
 | FR-015 | Audit read API | MUST | 03-API-CONTRACTS.md | IT-AUD-002 | M1 | Verified |
-| FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | In progress |
+| FR-016 | Live audit table | MUST | 02-ARCHITECTURE.md | E2E-003 | M5 | Verified |
 | FR-017 | Mandate and approval UI | MUST | 02-ARCHITECTURE.md, 03-API-CONTRACTS.md | E2E-001, E2E-002 | M5 | In progress |
 | FR-018 | Fail closed on agent or search failure | MUST | 05-AGENT-SPEC.md | UT-AGT-006, IT-API-007 | M3 | Verified |
 | FR-019 | Swappable model adapter | MUST | 05-AGENT-SPEC.md | UT-AGT-008 | M3 | Verified |
@@ -37,21 +37,21 @@ Version 1.0 · 9 Oct 2026
 | FR-022 | Fallback ranking | SHOULD | 05-AGENT-SPEC.md | UT-AGT-007 | M3 | Verified |
 | FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Verified |
 | FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Verified |
-| FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | In progress |
-| FR-026 | Live product source (Channel3) | SHOULD | 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-SRCH-001, IT-SRCH-002, E2E-011 | M8 | In progress |
-| FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | In progress |
-| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | In progress |
-| FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | In progress |
-| FR-030 | Passbook | SHOULD | 02-ARCHITECTURE.md | UT-PASS-001, E2E-012 | M8 | Not started |
+| FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Verified |
+| FR-026 | Live product source (Channel3) | SHOULD | 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-SRCH-001, IT-SRCH-002, E2E-011 | M8 | Verified |
+| FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Verified |
+| FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
+| FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | Verified |
+| FR-030 | Passbook | SHOULD | 02-ARCHITECTURE.md | UT-PASS-001, E2E-012 | M8 | Verified |
 | NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Verified |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
-| NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | In progress |
+| NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Verified |
 | NFR-005 | Structured logging | MUST | 08-PRODUCTION.md | UT-OPS-001 | M1 | Verified |
 | NFR-006 | CI gates | MUST | 08-PRODUCTION.md | CI-001 | M1 | Verified |
 | NFR-007 | Public hosted demo and licence | MUST | 08-PRODUCTION.md, 11-SUBMISSION.md | SMOKE-001, CHK-001 | M1 | Done |
 | NFR-008 | Integer money | MUST | 04-POLICY-ENGINE-SPEC.md | UT-POL-014 | M2 | Verified |
-| NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | In progress |
+| NFR-009 | Small-screen layout | SHOULD | 02-ARCHITECTURE.md | E2E-007 | M8 | Verified |
 | SEC-001 | Model output is schema-validated | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-009 | M3 | Verified |
 | SEC-002 | Catalog is the only source of product facts | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-010, EV-027 | M3 | Verified |
 | SEC-003 | Product text is sanitised and delimited | MUST | 05-AGENT-SPEC.md, 06-SECURITY.md | UT-AGT-011, EV-027, EV-028, EV-029 | M3 | Verified |
@@ -63,7 +63,7 @@ Version 1.0 · 9 Oct 2026
 | SEC-009 | Session isolation and origin check | MUST | 06-SECURITY.md | IT-SEC-002, IT-SEC-006 | M1 | Verified |
 | SEC-010 | Append-only audit log | MUST | 02-ARCHITECTURE.md, 06-SECURITY.md | IT-AUD-003 | M1 | Verified |
 | SEC-011 | Audit hash chain | SHOULD | 06-SECURITY.md | UT-AUD-002 | M6 | Verified |
-| SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | In progress |
+| SEC-012 | Output encoding and security headers | MUST | 06-SECURITY.md | E2E-008, IT-SEC-003 | M5 | Verified |
 | SEC-013 | Sandbox-only guard | MUST | 06-SECURITY.md | UT-PAY-001 | M4 | Verified |
 | SEC-014 | Strict input validation | MUST | 03-API-CONTRACTS.md | IT-SEC-004 | M1 | Verified |
 | SEC-015 | Daily mandate cap | SHOULD | 06-SECURITY.md | IT-SEC-005 | M6 | Verified |

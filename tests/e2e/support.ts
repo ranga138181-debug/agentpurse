@@ -3,7 +3,7 @@ import { expect, type Page } from "@playwright/test";
 
 export async function submitMandate(page: Page, text: string) {
   await page.getByLabel("What should the agent buy").fill(text);
-  await page.getByRole("button", { name: "Send" }).click();
+  await page.getByRole("button", { name: "Ask agent" }).click();
 }
 
 export function candidate(page: Page, title: string) {

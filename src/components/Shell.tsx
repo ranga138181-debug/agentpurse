@@ -1,11 +1,12 @@
 "use client";
 
-import { useReducer } from "react";
+import { useCallback, useReducer } from "react";
 import type { Product } from "@/agent/search/product";
 import { formatCents } from "./api";
-import { AuditTable } from "./AuditTable";
+import { AuditTable, type AuditEvent } from "./AuditTable";
 import { addEvents, EMPTY_IMPACT } from "./impact";
 import { MandateApp } from "./MandateApp";
+import { addEntries } from "./passbook";
 
 interface ShellProps {
   nonce?: string;
@@ -14,7 +15,12 @@ interface ShellProps {
 }
 
 export function Shell({ nonce, products, liveTerms }: ShellProps) {
-  const [impact, onEvents] = useReducer(addEvents, EMPTY_IMPACT);
+  const [impact, addToImpact] = useReducer(addEvents, EMPTY_IMPACT);
+  const [entries, addToPassbook] = useReducer(addEntries, []);
+  const onEvents = useCallback((events: AuditEvent[]) => {
+    addToImpact(events);
+    addToPassbook(events);
+  }, []);
   const figures = [
     ["Products checked", impact.checked],
     ["Blocked by policy", impact.blocked],
@@ -23,10 +29,11 @@ export function Shell({ nonce, products, liveTerms }: ShellProps) {
   ];
 
   return (
-    <>
-      <section aria-labelledby="impact-heading">
-        <h2 id="impact-heading" className="visually-hidden">
-          Impact
+    <div className="app">
+      <MandateApp nonce={nonce} products={products} liveTerms={liveTerms} />
+      <section aria-labelledby="impact-heading" className="session">
+        <h2 id="impact-heading">
+          This session<span className="visually-hidden">: Impact</span>
         </h2>
         <dl className="impact">
           {figures.map(([label, value]) => (
@@ -37,10 +44,28 @@ export function Shell({ nonce, products, liveTerms }: ShellProps) {
           ))}
         </dl>
       </section>
-      <div className="panels">
-        <MandateApp nonce={nonce} products={products} liveTerms={liveTerms} />
-      </div>
+      <section
+        aria-labelledby="passbook-heading"
+        id="passbook"
+        className="passbook"
+      >
+        <h2 id="passbook-heading">Passbook</h2>
+        {entries.length === 0 && <p className="hint">No activity yet.</p>}
+        <ul>
+          {entries.map((entry) => (
+            <li key={entry.seq} className={entry.tone}>
+              <p>
+                {entry.label}
+                {entry.detail && <span>{entry.detail}</span>}
+              </p>
+              {entry.amountCents !== undefined && (
+                <p className="amount">{formatCents(entry.amountCents)}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
       <AuditTable onEvents={onEvents} />
-    </>
+    </div>
   );
 }

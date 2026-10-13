@@ -150,8 +150,31 @@ test("E2E-011 live products come from Channel3 with retailer names, decisions an
 
 async function openProposedLive(page: Page, text: string) {
   await page.getByLabel("What should the agent buy").fill(text);
-  await page.getByRole("button", { name: "Send" }).click();
+  await page.getByRole("button", { name: "Ask agent" }).click();
   await expect(page.getByRole("heading", { name: "Result" })).toBeVisible({
     timeout: 15_000,
   });
 }
+
+test("E2E-012 the passbook starts empty and lists the session's notable events newest first", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const passbook = page.getByRole("region", { name: "Passbook" });
+  await expect(passbook).toContainText("No activity yet.");
+  await expect(passbook.getByRole("listitem")).toHaveCount(0);
+
+  await openProposed(page, "Headphones, max $50");
+
+  const entries = passbook.getByRole("listitem");
+  await expect(entries.first()).toContainText(
+    "Agent proposed Wireless Earbuds Pro",
+  );
+  await expect(entries.first()).toContainText("$49.99");
+  const blocked = entries.filter({
+    hasText: "Blocked Premium Studio Headphones",
+  });
+  await expect(blocked).toContainText("$199.00");
+  await expect(blocked).toContainText("The total is over your budget.");
+  await expect(passbook).not.toContainText("No activity yet.");
+});

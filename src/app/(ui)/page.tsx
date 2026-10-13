@@ -9,9 +9,9 @@ export default async function Home() {
   // Reading the per-request nonce also makes the page render dynamically, which a nonce-based policy requires.
   const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
-    <main>
+    <main id="home">
       <header>
-        <svg viewBox="0 0 32 32" width="36" height="36" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
           <rect width="32" height="32" rx="8" fill="currentColor" />
           <path
             d="M8 12h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2zM8 12l11-3v3M20 17.5h1"
@@ -22,14 +22,18 @@ export default async function Home() {
             strokeLinejoin="round"
           />
         </svg>
-        <div>
-          <h1>AgentPurse demo store</h1>
-          <p>
-            AI proposes. Policy engine decides. You approve. PayPal settles.
-          </p>
-        </div>
+        <h1>AgentPurse</h1>
+        <nav aria-label="Sections">
+          <a href="#home">Home</a>
+          <a href="#store">Store</a>
+          <a href="#passbook">Passbook</a>
+          <a href="#audit">Audit log</a>
+        </nav>
         <span className="badge">Sandbox, no real money</span>
       </header>
+      <p className="tagline">
+        AI proposes. Policy engine decides. You approve. PayPal settles.
+      </p>
       <Shell
         nonce={nonce}
         products={listCatalog()}
