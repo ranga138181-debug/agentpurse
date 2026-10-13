@@ -177,4 +177,9 @@ test("E2E-012 the passbook starts empty and lists the session's notable events n
   await expect(blocked).toContainText("$199.00");
   await expect(blocked).toContainText("The total is over your budget.");
   await expect(passbook).not.toContainText("No activity yet.");
+
+  await openProposed(page, "Gift for mom, max $40");
+  await expect(entries.first()).toContainText("Agent proposed");
+  await expect(entries.nth(1)).toContainText(/Blocked \d+ products/);
+  await expect(entries.nth(1)).toContainText(/, /);
 });

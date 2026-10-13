@@ -5,9 +5,10 @@ let seq = 0;
 const event = (
   event_type: string,
   payload: Record<string, unknown> = {},
-  rest: { decision?: string; reason_codes?: string[] } = {},
+  rest: { decision?: string; reason_codes?: string[]; mandate?: string } = {},
 ) => ({
   seq: ++seq,
+  mandate_id: rest.mandate ?? "m-1",
   event_type,
   decision: rest.decision ?? null,
   reason_codes: rest.reason_codes ?? [],
@@ -121,4 +122,53 @@ test("UT-PASS-001 a missing title falls back to a generic name", () => {
   const [entry] = addEntries([], [event("PICK_PROPOSED", { title: null })]);
 
   expect(entry.label).toBe("Agent proposed a product");
+});
+
+const block = (title: string, total_cents: number | null, mandate = "m-1") =>
+  event(
+    "POLICY_DECISION",
+    { title, total_cents },
+    { decision: "BLOCK", reason_codes: ["OVER_BUDGET"], mandate },
+  );
+
+test("UT-PASS-001 several blocks in one mandate become a single entry naming up to three", () => {
+  const two = addEntries([], [block("A", 100), block("B", 200)]);
+  const five = addEntries(two, [
+    block("C", 300),
+    block("D", null),
+    block("E", 500),
+  ]);
+
+  expect(two).toHaveLength(1);
+  expect(two[0]).toMatchObject({
+    label: "Blocked 2 products",
+    detail: "A, B",
+    tone: "block",
+  });
+  expect(two[0].amountCents).toBeUndefined();
+  expect(five).toHaveLength(1);
+  expect(five[0]).toMatchObject({
+    label: "Blocked 5 products",
+    detail: "A, B, C and 2 more",
+  });
+});
+
+test("UT-PASS-001 blocks are grouped per mandate and not across other entries", () => {
+  const entries = addEntries(
+    [],
+    [
+      block("A", 100),
+      block("B", 200),
+      event("PICK_PROPOSED", { title: "P", total_cents: 50 }),
+      block("C", 300, "m-2"),
+      block("D", 400, "m-2"),
+      block("E", 500, "m-2"),
+    ],
+  );
+
+  expect(entries.map(({ label }) => label)).toEqual([
+    "Blocked 3 products",
+    "Agent proposed P",
+    "Blocked 2 products",
+  ]);
 });
