@@ -1,10 +1,8 @@
 import { expect, test } from "vitest";
 import { createPayPalClient } from "@/payment/paypal";
 
-// Runs only when real sandbox credentials are present; other tests use a fake network.
-const hasSandboxSecrets = process.env.PAYPAL_CLIENT_ID !== "test-client";
-
-test.skipIf(!hasSandboxSecrets)(
+// Calls the real sandbox, so it runs only where it is asked for; other tests use a fake network.
+test.skipIf(process.env.PAYPAL_CONTRACT_TEST !== "1")(
   "IT-PAY-010 the real sandbox issues a token, creates an order idempotently and returns it",
   { timeout: 30000 },
   async () => {
