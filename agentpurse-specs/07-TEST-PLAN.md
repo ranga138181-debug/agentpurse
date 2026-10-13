@@ -79,7 +79,7 @@ Version 1.0 · 9 Oct 2026
 | IT-PAY-007 | SEC-005 | Extra `amount` field → 400, PayPal not called |
 | IT-PAY-008 | SEC-006 | Verification status not `SUCCESS`, or missing header → 400, no state change |
 | IT-PAY-009 | SEC-016 | PayPal amount or currency differs → 409, `FAILED`, no capture call; status not `APPROVED` → 409 |
-| IT-PAY-010 | FR-010 | Real sandbox contract: obtain token, create order with `PayPal-Request-Id`, repeat with same ID returns same order, fetch order. Skipped when sandbox secrets are absent |
+| IT-PAY-010 | FR-010 | Real sandbox contract: obtain token, create order with `PayPal-Request-Id`, repeat with same ID returns same order, fetch order. Runs only when `PAYPAL_CONTRACT_TEST=1`, which the e2e workflow sets, so local test runs do not call PayPal |
 | IT-PAY-011 | FR-024 | Approval older than 15 minutes → 409 `APPROVAL_EXPIRED`, mandate back to `PROPOSED` |
 | IT-AUD-001 | FR-011 | Full approved purchase yields the event sequence in `02-ARCHITECTURE.md` §5 |
 | IT-AUD-002 | FR-015 | Cursor paging, ordering, limit, mandate filter, empty page; appended events carry the next database-assigned `seq` and a server timestamp (FR-014) |
@@ -87,7 +87,7 @@ Version 1.0 · 9 Oct 2026
 | IT-SEC-001 | SEC-008 | Sixth mandate in a minute → 429 with `Retry-After`; model not called |
 | IT-SEC-002 | SEC-009 | Session B gets an empty `events` list for session A's audit events and 404 for session A's mandates and orders; tampered cookie yields a fresh session. A case is added for each new session-scoped endpoint |
 | IT-SEC-003 | SEC-012 | Each listed header present with the specified value |
-| IT-SEC-004 | SEC-014 | Each endpoint rejects unknown fields, wrong types, bad UUIDs with 400 and no side effect |
+| IT-SEC-004 | SEC-014 | Each endpoint rejects unknown fields, wrong types, bad UUIDs with 400 and no side effect. The shared validator is also tested directly, as it was in M1 before the endpoints existed |
 | IT-SEC-005 | SEC-015 | At the cap → 429 `DAILY_LIMIT_REACHED`; model not called |
 | IT-SEC-006 | SEC-009 | POST with missing or foreign `Origin` → 403; webhook exempt. In M1, before any POST endpoint exists, the origin-check function is exercised directly; a case is added for each POST endpoint when it is built |
 | IT-OPS-001 | FR-020 | Health 200 with SHA; database down → 503 |
