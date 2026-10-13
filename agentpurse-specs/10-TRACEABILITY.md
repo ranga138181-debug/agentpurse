@@ -38,12 +38,12 @@ Version 1.0 · 9 Oct 2026
 | FR-023 | PayPal webhook reconciliation | SHOULD | 03-API-CONTRACTS.md, 06-SECURITY.md | IT-PAY-005 | M4 | Verified |
 | FR-024 | Approval expiry | SHOULD | 04-POLICY-ENGINE-SPEC.md | UT-POL-012, IT-PAY-011 | M4 | Verified |
 | FR-025 | Audit filter, sort and export | SHOULD | 02-ARCHITECTURE.md | E2E-004 | M5 | Verified |
-| FR-026 | Live product source (Channel3) | SHOULD | 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-SRCH-001, IT-SRCH-002, E2E-011 | M8 | In progress |
+| FR-026 | Live product source (Channel3) | SHOULD | 05-AGENT-SPEC.md, 03-API-CONTRACTS.md, 02-ARCHITECTURE.md | IT-SRCH-001, IT-SRCH-002, E2E-011 | M8 | Verified |
 | FR-027 | Sample mandates | COULD | 02-ARCHITECTURE.md | E2E-005 | M8 | Verified |
 | FR-028 | Store catalog display | SHOULD | 02-ARCHITECTURE.md | E2E-009 | M8 | Verified |
 | FR-029 | Impact summary | SHOULD | 02-ARCHITECTURE.md | UT-IMP-001, E2E-010 | M8 | Verified |
-| FR-030 | Passbook | SHOULD | 02-ARCHITECTURE.md | UT-PASS-001, E2E-012 | M8 | In progress |
-| NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | In progress |
+| FR-030 | Passbook | SHOULD | 02-ARCHITECTURE.md | UT-PASS-001, E2E-012 | M8 | Verified |
+| NFR-001 | Mandate-to-pick latency | MUST | 05-AGENT-SPEC.md, 07-TEST-PLAN.md | PERF-001 | M7 | Verified |
 | NFR-002 | Checkout success rate | MUST | 07-TEST-PLAN.md | REL-001 | M7 | Verified |
 | NFR-003 | Policy engine purity and determinism | MUST | 04-POLICY-ENGINE-SPEC.md, 02-ARCHITECTURE.md | UT-POL-013, CI-003 | M2 | Verified |
 | NFR-004 | Accessibility | MUST | 02-ARCHITECTURE.md | E2E-006 | M5 | Verified |
