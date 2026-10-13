@@ -56,6 +56,7 @@ Version 1.0 · 9 Oct 2026
 | UT-PAY-001 | SEC-013 | Startup fails unless `PAYPAL_ENV=sandbox`; base URL is the sandbox host |
 | UT-PAY-002 | FR-010 | Cents to PayPal value string (0, 5, 2998, 4000, 50000); breakdown sums to total |
 | UT-IMP-001 | FR-029 | Summary counts decisions, blocks, over-budget cents and captures from audit events; other events and null totals add nothing |
+| UT-PASS-001 | FR-030 | Notable events map to their wording, reason and amount; other events are skipped; newest first, at most six |
 
 ## 3. Integration tests
 
@@ -108,6 +109,7 @@ Version 1.0 · 9 Oct 2026
 | E2E-009 | FR-028 | Store panel lists the 20 fixture products; P-019's tile shows the text "Phone Case" and no alert dialog fires |
 | E2E-010 | FR-029 | New session shows 0, 0, $0.00, 0; after "Headphones, max $50" the summary shows 3 checked, 1 blocked, $199.00 stopped, 0 settled |
 | E2E-011 | FR-026 | With a Channel3 key present: choose live products, submit a mandate, candidates show retailer names and decisions, and the demo-store terms are visible. Skipped without a key |
+| E2E-012 | FR-030 | New session: passbook says there is no activity; after "Headphones, max $50": first entry "Agent proposed Wireless Earbuds Pro" $49.99, and "Blocked Premium Studio Headphones" $199.00 listed |
 
 ## 5. Other checks
 
