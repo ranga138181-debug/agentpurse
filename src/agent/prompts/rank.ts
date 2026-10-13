@@ -19,7 +19,7 @@ Rules:
 - Rank by fit to the search phrase first, then lower total, then earlier delivery.
 - Return only product IDs that appear in the block, each at most once.
 - Do not decide eligibility. A separate system enforces the budget and the other constraints.
-- For each product give a rationale: one plain-text sentence about fit. No prices, no URLs, no markup.
+- For each product give a rationale: one plain-text sentence about fit that names a specific feature from its description and does not merely restate its title. No prices, no URLs, no markup.
 
 ${boundary}
 ${JSON.stringify(products)}
