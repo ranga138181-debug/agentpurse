@@ -62,3 +62,21 @@ test("UT-AGT-011 the rank prompt carries product text only inside the boundary b
   expect(prompt).toContain("untrusted data");
   expect(prompt).toContain("Do not decide eligibility");
 });
+
+test("UT-AGT-004 the rank prompt asks for a rationale that names a specific feature", () => {
+  const prompt = buildRankPrompt({
+    constraints: {
+      query: "gift",
+      max_total_cents: 4000,
+      currency: "USD",
+      deliver_by: null,
+      exclude_terms: [],
+    },
+    products: [],
+    boundary: "B",
+  });
+
+  expect(prompt).toContain("names a specific feature from its description");
+  expect(prompt).toContain("does not merely restate its title");
+  expect(prompt).toContain("No prices, no URLs, no markup");
+});
