@@ -70,7 +70,7 @@ test("IT-SRCH-001 the recorded response maps to valid, sanitised products on dem
   expect(products).toHaveLength(4);
   expect(products[0]).toEqual({
     product_id: "c3-i70eUCR",
-    title: "ATH-CKS50TW2 Wireless Earbuds",
+    title: "Audio-Technica ATH-CKS50TW2 Wireless Earbuds",
     description: expect.any(String),
     merchant: "macys.com",
     category: "headphones",
@@ -94,6 +94,29 @@ test("IT-SRCH-001 the recorded response maps to valid, sanitised products on dem
     expect(product.description!.length).toBeLessThanOrEqual(500);
     expect(evaluateCandidate(CONSTRAINTS, product).decision).toBeDefined();
   }
+});
+
+test("IT-SRCH-001 the first brand prefixes the title unless the title already names it", async () => {
+  const { products } = await mapped([
+    withOffers([priced(20)], { id: "a", title: "Yoga Mat" }),
+    withOffers([priced(20)], { id: "b", title: "audio-technica M50x" }),
+    withOffers([priced(20)], { id: "c", title: "Yoga Mat", brands: [] }),
+    withOffers([priced(20)], {
+      id: "d",
+      title: "Yoga Mat",
+      brands: [
+        { id: "1", name: "Gaiam" },
+        { id: "2", name: "Other" },
+      ],
+    }),
+  ]);
+
+  expect(products.map(({ title }) => title)).toEqual([
+    "Audio-Technica Yoga Mat",
+    "audio-technica M50x",
+    "Yoga Mat",
+    "Gaiam Yoga Mat",
+  ]);
 });
 
 test("IT-SRCH-001 a restricted keyword in the title or category path sets the restricted group", async () => {
@@ -232,7 +255,7 @@ test("IT-SRCH-001 results that are not Channel3 products are dropped and markup 
   ]);
 
   expect(products).toHaveLength(1);
-  expect(products[0].title).toBe("Case");
+  expect(products[0].title).toBe("Audio-Technica Case");
 });
 
 test("IT-SRCH-001 an error status or a body without products throws", async () => {
