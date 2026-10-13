@@ -48,6 +48,7 @@ const offerSchema = z.object({
 const resultSchema = z.object({
   id: z.string(),
   title: z.string(),
+  brands: z.array(z.object({ name: z.string() })).default([]),
   description: z.string().nullish(),
   category: z
     .object({
@@ -93,6 +94,13 @@ function chooseOffer(offers: Result["offers"]) {
   );
 }
 
+function titleOf({ title, brands }: Result): string {
+  const brand = brands[0]?.name;
+  return !brand || title.toLowerCase().includes(brand.toLowerCase())
+    ? title
+    : `${brand} ${title}`;
+}
+
 function categoryOf({ title, category }: Result): string | null {
   const text = [
     title,
@@ -110,7 +118,7 @@ function toProduct(result: Result, today: string) {
   const price_cents = offer?.cents ?? null;
   return {
     product_id: `c3-${result.id}`,
-    title: result.title,
+    title: titleOf(result),
     description: result.description ?? null,
     merchant: offer?.domain ?? null,
     category: categoryOf(result),

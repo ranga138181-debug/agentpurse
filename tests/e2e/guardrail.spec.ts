@@ -134,3 +134,15 @@ test("E2E-008 the page works under its Content-Security-Policy with no violation
   await expect(auditRow(page, "USER_APPROVED")).toBeVisible();
   expect(violations).toEqual([]);
 });
+
+test("E2E-002 the pick is shown first even when it is not ranked first", async ({
+  page,
+}) => {
+  await openProposed(page, "Headphones, max $30");
+
+  const cards = page.locator("li.candidate");
+  await expect(cards.first()).toContainText("2. Budget Earbuds");
+  await expect(cards.first()).toContainText("Agent's pick");
+  await expect(cards.nth(1)).toContainText("1. Wireless Earbuds Pro");
+  await expect(cards.nth(1)).toContainText("OVER_BUDGET");
+});

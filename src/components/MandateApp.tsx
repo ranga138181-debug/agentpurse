@@ -71,6 +71,12 @@ export function MandateApp({ nonce, products, liveTerms }: MandateAppProps) {
     (candidate) => candidate.id === mandate.approved_candidate_id,
   );
 
+  // The pick leads; the stable sort keeps the rest in rank order.
+  const cards = mandate?.candidates.toSorted(
+    (a, b) =>
+      Number(b.id === mandate.pick_candidate_id) -
+      Number(a.id === mandate.pick_candidate_id),
+  );
   const picked = mandate?.candidates.find(
     (candidate) =>
       candidate.id ===
@@ -200,7 +206,7 @@ export function MandateApp({ nonce, products, liveTerms }: MandateAppProps) {
                 </button>
               )}
               <ol className="candidates">
-                {mandate.candidates.map((candidate) => (
+                {cards?.map((candidate) => (
                   <CandidateCard
                     key={candidate.id}
                     candidate={candidate}

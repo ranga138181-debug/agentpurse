@@ -18,6 +18,7 @@ const NO_ROWS: never[] = [];
 
 export interface AuditEvent {
   seq: number;
+  mandate_id: string | null;
   ts: string;
   actor: string;
   event_type: string;
