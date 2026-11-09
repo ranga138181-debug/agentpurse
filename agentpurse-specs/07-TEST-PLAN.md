@@ -198,7 +198,7 @@ A release (and the final submission build) requires all of:
 | G6 | Eval gates in §6.3 met |
 | G7 | PERF-001 met |
 | G8 | REL-001 met |
-| G9 | Every MUST requirement is `Verified` in `10-TRACEABILITY.md`; every other requirement is `Verified` or `Cut` |
+| G9 | Every MUST requirement is `Verified` in `10-TRACEABILITY.md`; every other requirement is `Verified` or `Cut`. NFR-007 may be `Done` at tagging, because its CHK-001 needs the tag; it becomes `Verified` when CHK-001 is completed |
 | G10 | Security checklist in `06-SECURITY.md` §10 complete |
 | G11 | SMOKE-001 passes on the release deploy |
 
