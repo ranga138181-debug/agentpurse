@@ -6,7 +6,7 @@ A shopping agent with a spending limit it cannot talk its way past.
 
 ## Links
 
-- Live demo: https://agentpurse.onrender.com
+- Live demo: https://agentpurse-dh8r.onrender.com
 
 The demo runs on Render's free plan. After 15 minutes without traffic the instance sleeps, and the first request can take about a minute.
 
@@ -114,7 +114,7 @@ The same engine runs again at approval, at order creation and at capture. An app
 
 ## Try it
 
-Open the [live demo](https://agentpurse.onrender.com) and use a sample button or type a mandate:
+Open the [live demo](https://agentpurse-dh8r.onrender.com) and use a sample button or type a mandate:
 
 - `Gift for mom, max $40, delivered by Friday` — one product is blocked because shipping takes it one dollar over.
 - `Headphones, max $50` — one listing hides instructions claiming it costs $9.99. Its real price is $199, and it is blocked as over budget.
