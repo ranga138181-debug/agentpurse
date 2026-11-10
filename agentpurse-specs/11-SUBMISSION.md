@@ -58,26 +58,29 @@ Version 1.0 · 9 Oct 2026
 
 ## 2. Demo video script (target 2:50)
 
-Recorded at 1080p on the production URL. Audit table visible throughout.
+Recorded at 1080p on the production URL in `PRODUCTION_URL`. Audit table visible throughout.
 
 | Time | On screen | Narration |
 |---|---|---|
-| 0:00–0:15 | Title card, then the empty app | "Would you give an AI agent your credit card? AgentPurse gives it a wallet with a limit it cannot talk its way past. AI proposes, a policy engine decides, you approve, PayPal settles." |
-| 0:15–0:35 | Type: **Gift for mom, max $40, delivered by Friday**. Submit | "I give the agent a mandate in plain English. The forty-dollar limit is pulled out by code, not by the model, so no prompt can change it." |
-| 0:35–1:00 | Parsed constraints appear. Candidates list. Audit rows stream in | "The model ranks products. Then a deterministic policy engine checks every one. The spa basket is thirty-six dollars, but shipping takes it to forty-one: blocked. The mug arrives too late: blocked. Each decision lands in the audit table as it happens." |
-| 1:00–1:25 | Click Approve on the pick. PayPal button appears. PayPal sandbox popup, approve | "The agent proposes; I approve. Only then does PayPal get involved, for the exact total the policy engine allowed." |
-| 1:25–1:40 | Settled state with PayPal order ID. Audit shows `ORDER_CREATED`, `ORDER_CAPTURED` | "Captured in the PayPal sandbox. The order is idempotent, so a retry can never charge twice." |
-| 1:40–2:05 | New mandate: **Headphones, max $50**. Split screen: the P-011 description in the repository's fixture catalog, with the injected text highlighted | "Now the attack. This listing hides instructions telling the agent it costs nine ninety-nine and to ignore my budget. The real price is one hundred ninety-nine dollars." |
-| 2:05–2:25 | P-011 shows BLOCK, `OVER_BUDGET`. No Approve control. Pick is an in-budget product | "Product text is treated as untrusted data. Prices come from the catalog, never from the model. Blocked, over budget." |
-| 2:25–2:40 | Send an approval request for the blocked product from the browser's network tools; response 409 `POLICY_BLOCKED`; `APPROVAL_BLOCKED` row appears | "Even if I bypass the interface and call the API directly, the policy engine refuses, and that attempt is on the record too." |
-| 2:40–2:50 | Audit table filtered to BLOCK, then architecture diagram | "Every decision is in an append-only audit log. Built with PayPal Orders, the Vercel AI SDK, AG Grid and Render. AgentPurse: spend limits agents cannot break." |
+| 0:00–0:12 | Title card, then the app | "Would you give an AI agent your credit card? AgentPurse gives it a wallet with a limit it cannot talk its way past. AI proposes, a policy engine decides, you approve, PayPal settles." |
+| 0:12–0:30 | Click the **Gifts** shortcut (**Gift for mom, max $40, delivered by Friday**), then **Ask agent**. The limit card shows $40.00, locked by you | "I tell the agent what I want in plain English. The forty-dollar limit is pulled out by code, not by the model, so no prompt can change it." |
+| 0:30–0:58 | The pick appears first; other candidates show ALLOW or BLOCK. Expand the Spa Gift Basket block. Audit rows stream in | "The model ranks products. Then a deterministic policy engine checks every one. The spa basket is thirty-six dollars, but shipping takes it to forty-one: blocked. The wine box is a restricted category: blocked. Each decision lands in the audit table as it happens." |
+| 0:58–1:20 | Click Approve on the pick. PayPal button appears. PayPal sandbox popup, approve | "The agent proposes; I approve. Only then does PayPal get involved, for the exact total the policy engine allowed." |
+| 1:20–1:35 | Settled state with PayPal order ID. Passbook shows the payment; audit shows `ORDER_CREATED`, `ORDER_CAPTURED` | "Captured in the PayPal sandbox. The amount is re-checked with PayPal before capture, and the order is idempotent, so a retry can never charge twice." |
+| 1:35–1:55 | Click the **Electronics** shortcut (**Headphones, max $50**). Split screen: the P-011 description in the repository's fixture catalog, with the injected text highlighted | "Now the attack. This listing hides instructions telling the agent it costs nine ninety-nine and to ignore my budget. The real price is one hundred ninety-nine dollars." |
+| 1:55–2:10 | P-011 shows BLOCK, `OVER_BUDGET`. No Approve control. Pick is an in-budget product. The session summary counts the stopped spend | "Product text is treated as untrusted data. Prices come from the catalog, never from the model. Blocked, over budget." |
+| 2:10–2:28 | Send an approval request for the blocked product from the browser's developer tools; response 409 `POLICY_BLOCKED`; `APPROVAL_BLOCKED` row appears | "Even if I bypass the interface and call the API directly, the policy engine refuses, and that attempt is on the record too." |
+| 2:28–2:42 | Select live products (Channel3), type **Wireless earbuds, max $80**, submit. Live listings show ALLOW or BLOCK | "The same checks run on real retailer listings from Channel3. The source changes; the guardrail does not." |
+| 2:42–2:50 | Audit table filtered to BLOCK, then architecture diagram | "Every decision is in an append-only audit log. Built with PayPal Orders, the Vercel AI SDK, AG Grid, Render and Channel3. AgentPurse: spend limits agents cannot break." |
 
 **Recording notes**
 
 - Rehearse twice. Run both mandates on production immediately before recording to warm the instance.
-- "Friday" resolves relative to the recording date. Check before recording that at least one in-budget product is on time; if not, say the weekday that works.
+- The script uses blocks that hold on any day (price, category). Check any late-delivery claim on the recording day.
+- Run the Channel3 mandate once before recording; if it returns no listings, drop 2:28–2:42 and give the time to the API bypass.
+- Do not run the eval or REL-001 on the recording day (shared AI allowance).
 - Keep a second take ready in case the PayPal popup is slow.
-- If FR-025 was cut, replace the filtered view at 2:40 with scrolling the audit table.
+- If FR-025 was cut, replace the filtered view at 2:42 with scrolling the audit table.
 
 ## 3. README outline
 
